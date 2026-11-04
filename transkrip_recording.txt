@@ -1,0 +1,651 @@
+[00:00] Terima kasih.
+[00:56] Pada pagi ini, di belakang kita, saya sendiri maaf.
+[01:04] Kalau kita kena nama Syarikat ini, nampak pada 26 bulan,
+[01:09] saya akan nak tunggua keputusan selesai habis musyarak tentang
+[01:17] penampangan rumah daripada JBA.
+[01:20] Perlu puluh porsi dia kerja yang menetapkan 6.000.000 sebelum
+[01:28] GDP bermula kena diadikan musyarak daripada waktu.
+[01:32] Jadi nak tak nak kita kena lah.
+[01:35] Musyarak juga walaupun kita tak dilantar dengan musyarak terputar jalan,
+[01:39] semuanya pada petang ini kita buat fokus kepada rumah yang biasa.
+[01:46] Kemudian, apabila kita mengeluarkan syarikat,
+[01:50] penyelahkan bersidang 10 untuk mengetukkan,
+[01:55] pilihkan kelas berasakan 20 mas-masi.
+[01:58] Jadi nak takkan ada dua lah.
+[02:00] Okey?
+[02:01] Sebab untuk memunuhi prosesi dekatcil, kalau kita langgar,
+[02:05] kerja dekat-keci itu nanti.
+[02:06] Lagi-lagi, pengumum, kelihatan, kelihatan.
+[02:11] Jadi kelihatan yang pertama,
+[02:19] mungkin tugasan tak akhir pun tak nak membuat.
+[02:22] Okey, pakai kelihatan yang pernah ada dalam ini.
+[02:25] Nak ambil orang.
+[02:30] Okey, kita berbuallah dah.
+[02:32] Tenang.
+[02:33] Okey, jadi kita ada beberapa genda.
+[02:37] Okey, jadi kita pergi pada...
+[02:42] Genda pertama, yaitu pemeriksaan minyum syarikat lepas.
+[02:46] Kita saksikan.
+[02:48] Jadi kita tengok, silakan hadirannya.
+[02:52] Kita tengok siapa yang hadir.
+[02:55] So, ramai hadir.
+[03:10] Siapa yang hadir boleh saksikan.
+[03:16] Tapi sebelum menaksakkan, kita tak ada panggilan.
+[03:19] Kita pergi dulu, sikit.
+[03:21] Mungkin yang hadir ke...
+[03:52] Okey.
+[05:51] Maaf, Pak Roshidah tak familiar.
+[05:54] Mungkin AI.
+[05:56] Zaliha.
+[06:14] Zaliha, tahu.
+[06:16] Zaliha.
+[06:24] Kita pergi kepada pembentangan dengan pindahan daripada noma asal.
+[08:54] Yang pertama, bagi diploma kejur rutaan awam.
+[08:59] Norma tiga kelas sama dengan sehantar sebaik bulu orang.
+[09:05] Kita dengan hasil kukung kekant, diploma semimina 30 orang, satu kelas.
+[09:13] Kediga, 20 orang sama dengan tiga kelas.
+[09:27] Seterusnya, bagi JKI, ada perubahan daripada tahun lepas.
+[09:45] Bagi BTK.
+[09:47] BTK normalnya kita samit 40 orang sahaja satu kelas untuk...
+[09:52] ...kali ini diluluskan dengan perubahan yang baru, 120 orang sama dengan tiga kelas.
+[09:59] Manakala DIP dikurangkan kepada 40 orang sahaja.
+[10:03] Itu satu kelas.
+[10:05] Bagi DIT, kekat 80 orang.
+[10:11] Walaupun norm biasanya akan lebih, ia akan cek jangka pada tiga kelas biasanya.
+[10:17] Manakala bagi DUP, biasanya kita samit 2 kelas.
+[10:26] Dengan semua, baik-baik secepatan lepah hari.
+[10:34] BHF, bagi DSK.
+[10:41] DSK biasanya 2 kelas.
+[10:43] Jangan jeceh jadi tiga kelas.
+[10:45] Cuma ada segi pindahan.
+[10:46] Jembatkan DSK ini sama orang yang dijembatkan kelas.
+[10:49] Bagi DSK, dikurangkan pada 40 orang sahaja.
+[10:54] Bagi DIF, dikaitkan kepada 110 orang.
+[10:58] Norma biasa adalah 90 orang sahaja.
+[11:01] Total kelas adalah 20 lagi diplomak.
+[11:12] Ada 20 kelas dengan akaran jumlah lajar yang nama-hukum adalah 790 orang.
+[11:23] HCP ini lagu base yang sederhana.
+[11:28] Yang sebelumnya 760 orang.
+[11:32] Bagi DSK, dikasihkan pada sebuah kelas.
+[11:41] Biasanya yang akan lebih ada di DIP, DUP dan DSK.
+[11:46] Biasanya kita program ini akan lebih daripada orang marah.
+[11:50] Tapi kali ini memang orang marah kita gunakan.
+[11:52] Kita gunakan daripada 10 minggu.
+[11:54] Mungkin dengan angkaraan, kalau kita minta DUP 1 kelas,
+[12:00] mungkin akan jadi 2.
+[12:02] Kalau sebelumnya 2, dia akan cekak ke 3.
+[12:05] Sama juga bagi DIP, biasanya akan cekak ke 3.
+[12:09] Bukan sebab penawaran TV.
+[12:12] Penawaran biasanya sama.
+[12:14] 1 pada gada, bagi program-program kual.
+[12:20] 2, maksudkan 80 akan kawal 1, 60.
+[12:24] Tapi bagi program-engineering, biasanya akan kawal 3 pada gada.
+[12:28] Jadi yang masuknya biasanya parah yang sama orang sebenarnya.
+[12:31] Parah yang kita nak, kita akan kubilikan kepada jendera ini dan kelas.
+[12:38] Untuk kerja perancangan yang luar tu,
+[12:42] boleh menggunakan datayang ini dengan step-by-mula.
+[12:48] Contohnya, katakan kalau kita gunakan datayang ini.
+[12:53] Katakan hari pendapatan, minggu daftar,
+[12:57] atau minyata biji, kita tak boleh lebih.
+[13:00] So, cabaran tindakan stand-by-mula untuk mungkung untuk sediap kelas.
+[13:05] Maksudnya bagi DIP, BIP dan BSK,
+[13:10] kita mungkung keadaan yang sama ada untuk perancangan kelas.
+[13:13] Nak cekak sama dengan ini.
+[13:18] Tapi kalau datang, mungkung untuk sediap kelas.
+[13:26] Kita tak lama kita saja, kita sambar kelas.
+[13:30] Maksudnya, kalau di BIP kita tak malu, sekarang kita berkelas.
+[13:34] Maksudnya kalau dia sampai lebih keadaan daripada 40-50 pun boleh mengunjung combine.
+[13:41] Maksudnya, proses combine,
+[13:44] naksli atau combine itu boleh kita delakan sekarang
+[13:47] atau belum kita tetapkan masukkan BSK.
+[13:50] Sebelum pendapat, kita berdua langsung.
+[13:52] Itu saja.
+[13:56] 760 atau 860 orang ini tetap menjadur.
+[14:01] Sebab kalau seperti, normal kelas yang dibuka ini hampir sama dengan yang kita kita.
+[14:08] Contohnya, klas, BSK, CK, ya memang kita buka 3 kelas.
+[14:12] Cuma dia tak pergi pada mesimo.
+[14:15] Contoh, patut mesimo sehingga 20 orang.
+[14:18] Tapi yang kita buka, maksud ada 100 orang.
+[14:21] So, 20 orang yang utang ini dibantu di topak oleh jabatan-jabatan yang lain.
+[14:25] Itulah yang mencukupkan normal kita 760 orang.
+[14:30] Sebab kalau kita kurang daripada 760 orang,
+[14:34] ada potensi KPI kita jadi.
+[14:37] Sebab kita kena ketahkan KPI kita jemlak pelajar yang tak tahu
+[14:42] pada tahun semasa pelajar yang semasa daripada kandanya sekarang.
+[14:46] Maksudnya, kandanya sekarang itu ada kandanya yang tak apakah?
+[14:49] Tiga berapa?
+[14:50] Tiga ribu.
+[14:54] Tiga ribu.
+[14:55] Tiga ribu ada itu.
+[14:58] Sekarang kita tak apakah.
+[15:00] Dia kena kukupkan.
+[15:02] Maksudnya kalau kurang masuk, sudah akan jadi.
+[15:05] Ada potensi kita akan jadi.
+[15:07] Itu saja untuk malam bantuan polis.
+[15:09] Okey.
+[15:10] Baik.
+[15:11] Rasai Cik Pak Pro.
+[15:12] Mereka nak...
+[15:16] ...dua persoalan yang diajukkan untuk KPI-CPU,
+[15:20] untuk memutuskan yang pertama.
+[15:22] Untuk kita kekatkan pada nom semasa daripada kandanya yang terbaik.
+[15:27] Tidak.
+[15:29] Tingkatkan.
+[15:30] Jadi, apa-apa yang kalau...
+[15:32] ...berkurang tutup lakas.
+[15:36] Macam ayam dan tenang.
+[15:38] Salam saja.
+[15:39] Nak keluar tenang dulu ataupun nak ayam.
+[15:44] Untuk...
+[15:45] ...percangat jaduan lagi reka-reka sekolah,
+[15:48] ...kali-kali buat awal,
+[15:49] ...kalau semasa ribu tanya untuk tambah kelas...
+[15:53] ...tagi suka.
+[15:54] ...tapi lebih baik kita siap-siap baik.
+[15:57] Untuk tutup itu ada rolled.
+[16:01] Jujur-jujur jadu.
+[16:02] Calon.
+[16:03] Jujur-jujur jadu.
+[16:04] Jujur-jujur jadu.
+[16:06] Jujur, jujur jadu.
+[16:08] Jujur jadu.
+[16:10] Untuk kotak-kotak,
+[16:13] jujur jadu,
+[16:14] ...mungkin tak dibelakai dengan negeri.
+[16:16] Jujur jadu.
+[16:19] Jadi J.P.
+[16:21] Jujur jadu.
+[16:22] Jujur jadu.
+[16:23] Jujur jadu.
+[16:25] Kali terdiskir, kita akan bincangkan kelas 12
+[16:30] Diskir 2, K-I-M, Kali terdiskir, kelas 13
+[16:36] Dikir, D-U-P, D-J-S, D-U-P, K-I-M-K, D-I-M-K
+[16:47] Assalamualaikum, Kali terdiskir, kita dah bincangkan kelas 13
+[16:53] Kali terdiskir, kita dah bincangkan kelas 13
+[16:57] D-HK, D-HK2
+[17:00] D-HK2
+[17:03] D-HK2
+[17:07] D-HK2
+[17:11] D-HK2
+[17:15] D-HK2
+[17:19] D-HK2
+[17:23] D-HK2
+[17:27] D-HK2
+[17:31] D-HK2
+[17:35] D-HK2
+[17:39] D-HK2
+[17:43] D-HK2
+[17:47] Jk E K, Jk E pun E K
+[17:55] Jk E mana?
+[17:56] Jk E
+[17:58] Jk E
+[17:59] Jk E
+[18:00] Tiga, Tiga nak sopa sepatu
+[18:03] Tiga satu
+[18:05] Di EP satu?
+[18:06] Jk E biasa satu
+[18:09] Takkan kita mahu tidur
+[18:11] Takkan tidur, takkan tidur
+[18:13] Bahkan, depan ini memang tak 4
+[18:15] Takkan tidur sepatu
+[18:17] Harapnya, kita kena balik rakanan
+[18:27] Boleh, jawa tak terukang, okey?
+[18:29] Bagaimana keadaan kita?
+[18:38] Okey, sebab kita punya kemasiti dah
+[18:41] New sort, kalau ada kekuali atau pada tahun 20
+[18:44] So, untuk ikan-ikan kita ada 20-20 sekarang
+[18:47] Kali kekualiti
+[18:48] Kalau ada 20-20, satu
+[18:52] Jadi, semua nak tanah kita kena
+[18:54] Perdama yang tadi
+[18:56] Makasih, makasih
+[18:58] Saya nak tanya, Cik Papu yang berhutup di EP
+[19:02] Perpunyai kelas yang tak baik dengan kek
+[19:06] Kita takkan terima
+[19:08] Ya, untuk saya sini, kita takkan terima
+[19:11] Walaupun tak dapat, ada yang takkan
+[19:13] Kita kena tengok
+[19:16] Bagaimana jari
+[19:18] Kita akan membuat program ini
+[19:22] Yang terpaksa membuat program ini
+[19:25] Yang dapat mencuali
+[19:28] Yang kena buat media
+[19:33] Bagaimana untuk saya?
+[19:36] Yang bagus, saya bantu
+[19:38] Bagaimana untuk saya?
+[19:40] Bagaimana?
+[19:43] Bagi kerja ini, kalau ada
+[19:45] Jalan ini, kena bersama orang
+[19:48] Kalau ada yang ini, kalau ada yang tak dulu
+[19:50] Kena protesikkan untuk kita
+[19:52] Lepas program ini
+[19:54] Kalau ada media
+[19:58] Yang media untuk yang tak kredit
+[20:00] Yang dimanjukan
+[20:02] Kalau ada yang tak beri asasi
+[20:04] Kalau ada yang tak beri asasi
+[20:06] Kita akan membuat program ini
+[20:08] Bagaimana?
+[20:10] Makasih
+[20:11] Kita akan membuat program ini
+[20:27] Bagaimana untuk saya?
+[20:29] Bagaimana untuk saya?
+[20:32] Bagaimana untuk JASON���?
+[20:34] Bagaimana untuk saya?
+[20:36] Jadi ahli...
+[20:38] Ada semania saya
+[20:39] وهadalah suite
+[20:41] Bagaimana untuk saya?
+[20:43] Bagaimana buat saya?
+[20:47] Bagaimana untuk saya?
+[20:50] Kalau ada yang tak podcasts
+[20:54] Dan vacu
+[20:57] leveraging
+[20:59] Rappi yang kita kasiwakan
+[21:02] Tapi datang kita tahu yang pelajar yang kita tiba-tiba
+[21:06] Dan kepadahari kita jangka-jangka
+[21:08] Jangan jangka-jangka
+[21:10] Bagaimana kelas itu?
+[21:12] Kita tengah-tengah soal
+[21:20] Okey, kita dombra
+[21:23] Okey
+[21:24] Terus bersaing dombra, kita pergi ke pelajar
+[21:28] Perni pengelajaran digital
+[21:30] Cepet
+[21:31] Ada apa-apa yang kita tak nak
+[21:33] Kita nak beritahu
+[21:35] Saya ada hasil pelajar yang kita tak tahu
+[21:38] Dalam kepadahari di kelomang adalah 10 july
+[21:42] Jadi, cuma taruh pada tampung putus
+[21:45] Sampai 20 july
+[21:46] Bagi hati penataran di kelomang
+[21:49] Bagi hati, dia akan seminggu sebelumlah
+[21:51] Maksudnya di kelomang 11 july
+[21:53] Laks penataran
+[21:56] Saya rasa sedikit
+[22:09] Saya rasa sedikit
+[22:11] Saya rasa sedikit
+[22:13] Saya rasa serang-sang couple
+[22:15] Saya rasa serang-sang couple
+[22:17] Tapi tak nuna
+[22:19] Belumlah
+[22:20] Bukan
+[22:21] Bukan
+[22:22] Bukan
+[22:23] Bukan
+[22:24] Pokok
+[22:26] Pokok, ahli��, yang kita sebenarnya
+[22:29] Bukan
+[22:30] Bukan, saya boleh
+[22:33] Bukan
+[22:34] Bukan
+[22:37] Saya nak tunggu lagi
+[22:39] Bukan
+[22:40] Bukan
+[22:42] Pada masa yang saya beritahu, saya tidak tahu apa yang saya katakan.
+[22:46] Saya juga.
+[22:47] Asasin 13th grade, asasin 22 June.
+[22:51] Penaptaran asasin adalah di kompleks June di Desminggawad.
+[22:57] Pada Diplomans 22 June.
+[23:01] Bukan.
+[23:02] Anjun.
+[23:03] Tapi akhirnya penaptaran banyak Diplomans adalah 20 Julai,
+[23:08] asasin 10 Juni, penasaran 13 Julai.
+[23:13] 10 orang penutup.
+[23:15] Pembenangan pemenang amiliti.
+[24:50] Di sini ada di SES 128.
+[24:52] Di mana 10 Julai ini juga di SES 117.
+[24:57] Pada lain, di SES 117.
+[25:00] SES 117.
+[25:02] Di sini ada di SES 129.
+[25:05] Dan di sini adalah pada 10 minit.
+[25:08] Untuk yang datang ke undara, di satu kaitan di SES 117 di SES 129.
+[25:13] Sebelum ini ada SES 119.
+[25:16] Dan di sini ada penangkat di dalam.
+[25:18] Di sini ada penangkat di dalam.
+[25:22] Jadi dia tak tengok pada di dalam.
+[25:24] Di SES 119.
+[25:26] Di sini ada penangkat di dalam.
+[25:29] Di sini ada penangkat di dalam.
+[25:33] Untuk membeli ke dalam.
+[25:35] Sistem di dalam.
+[25:37] Jadi dia tak faham.
+[25:40] Ossi adalah penasaran di dalam.
+[25:43] Mereka bawa bentang.
+[25:45] Blob dan semanahX4 mendfähar.
+[25:47] Sebab kita tidak bertibur dengan rencana...
+[25:49] lebih dahulu.
+[25:51] Pada pencapan di dalam.
+[25:53] J quand ialah di H Brittany di seluruh Kata Lain.
+[25:56] Accordingly, kita akan l bestenabung.
+[25:59] Yang melewati ada disini, bahagian yang mungkin ...
+[26:05] di Arkasi Canang O chatting.
+[26:39] kita tak pernah ada sepada dalam jadwal-jadwal itu.
+[26:43] Manilapalawadil syarul yang saya boleh masuk dengan student,
+[26:47] kita selesai jadwal-jadwal sistem,
+[26:49] kita jadwal,
+[26:50] waktu sendiri kita keluar dari situ
+[26:52] masalah saya lah di panggilan.
+[26:54] Masa kita dipercaya-mangatkan ialah
+[26:56] macam mana polis masuk sekolah di jadwal-jadwal.
+[27:03] Tak, dia itu, dia kata sebab dia beri ring,
+[27:06] orang tak isi dengan itu.
+[27:07] Dia duduk dari isi,
+[27:08] sebab saya siapkan dia,
+[27:09] baru masuk ke jadwal-jadwal itu tak berlaku.
+[27:12] Selesai.
+[27:14] Peningkat ke jadwal-jadwal.
+[27:23] Seperti jadwal-jadwal.
+[27:25] Jadi, bukan sebenarnya.
+[27:27] Jadi, dalam isi-isi pun dia.
+[27:37] Kalau tak ada,
+[27:39] dia matang dengan banyak sial.
+[27:41] Untuk jadwal-jadwal isi,
+[27:43] bawang di dalam sistem yang masih boleh saya matang.
+[27:50] Jadi,
+[27:54] ada jelaskan di kanan.
+[28:01] Okey, mana saja di sana.
+[28:08] Boleh.
+[28:09] Tapi saya kena hadapi dia punya jelaskan.
+[28:11] Kalau tengok ring jadwal-jadwal,
+[28:13] bahkan sebab dia tak terperasa,
+[28:15] dia tak masuk dalam sistem.
+[28:16] Kemudian jadwal-jadwal ini,
+[28:17] dia tak masuk dalam jadwal-jadwal.
+[28:21] Jadi, dia dah layak.
+[28:23] Pasal bila-bila tak,
+[28:24] jadwal-jadwal ini tak berlaku baik-baik.
+[28:26] Di pihak pilih ini,
+[28:27] dia tak perlu mengalala
+[28:29] pasal dua-dua peluk.
+[28:31] Jadi, jadwal-jadwal itu dah jadi posongan.
+[28:34] So, tak perlu pergi dulu.
+[28:35] Tapi itu,
+[28:37] saya harap bahawa
+[28:39] sekarang
+[28:41] jadwal-jadwal ini,
+[28:42] layas yang masih boleh saya beli di atas
+[28:44] dengan jadwal-jadwal yang ada pada saya ini.
+[28:46] Bila-bila,
+[28:47] jadwal-jadwal ini ada dalam sistem,
+[28:49] dapet yang boleh saya matang.
+[28:50] Walaupun,
+[28:51] dia memang sudah asir,
+[28:53] daripada si jadwal.
+[28:54] Jadi, jadwal-jadwal ini ada dalam sistem.
+[28:57] Jadi,
+[28:59] saya kena minta-minta
+[29:00] untuk beli darah.
+[29:02] Apakah jadwal ini terutama?
+[29:34] dalam sistem yang terstuatkan di situasi
+[29:37] supaya tujuan SK, terdepan tujuan,
+[29:40] masuk ke mana yang susah dengan kepejian air niu
+[29:42] wasi di kanan tujuan di jamatan.
+[29:44] Minggu ni nak jahit?
+[29:50] Sebenarnya ikut yang saya sedangkan sebuah polisi itu lebih
+[29:53] inilah, maksudnya ada blocking saya siap. Jadi
+[29:55] PJW kadang mungkin dia terlepas pandangan, saya pun
+[29:58] tak adalah follow up semua jamatan kan? Sebab
+[30:00] ada penyelara sebilik TCC juga yang follow up
+[30:02] sebenarnya Puan Helina
+[30:04] jadi macam tu lebih
+[30:06] ni ikut macam JPA, block je
+[30:08] nanti kan di bagi nama pesyarat,
+[30:10] satu yang akan mengejau untuk JPA kita.
+[30:12] Lebih senang lah.
+[30:14] JPA tak jahit-jahit tu, tak ada
+[30:16] inilah sebaiknya, nak dikupanya yang
+[30:18] macam?
+[30:20] Ling yang saya lua-ging tu, terus lewat
+[30:22] je, JPA block
+[30:24] siap slot. Nanti kan ikut rifle
+[30:26] untuk buat jahit-jahit rifle yang tu je.
+[30:31] Bagi TCC macam-macam
+[30:33] ni tetap ada
+[30:35] penyelara sebilik
+[30:37] kita hanya ada slot sahaja di mana
+[30:39] perempuan TCC, semua S5
+[30:41] ada pelajaran TCC
+[30:43] jadi jika ada
+[30:45] penyelara S3 dia boleh memungkong
+[30:47] perlainan dia, TCC
+[30:49] ada penyelara S5.
+[30:51] Sokala ada penyelara
+[30:54] tapi jika nak boleh penyelara
+[30:56] TCC sebenarnya boleh memungkong
+[30:58] penyelara S5 dan jahit-jahit
+[31:00] tu, dia kan nak masuk lagi
+[31:02] kita memungkong lagi
+[31:04] penyelara TCC
+[31:06] sahaja di mana dia
+[31:08] baik, terima kasih TCC
+[31:14] tadi ialah dia, tapi
+[31:19] diserahkan kepada di dalam
+[31:21] perlenggatan TCC sekarang
+[31:23] untuk mengenai TCC-U
+[31:25] TCC-U kepadaan teknologi
+[31:27] keperluan TCC.
+[31:29] kemudian kita pergi kepada
+[31:31] penawaran khusus Koko
+[31:33] okay
+[31:35] toko kremasasi
+[31:37] toko keridik
+[31:39] okay, baik
+[31:41] Bismillahirrohmanirrohmanirrohmanirroh
+[31:43] marahmatullahi wabarakatuh
+[31:45] yang berusaha tuat perusahaan TCC-JKK
+[31:47] TCC-JKK
+[31:49] TCC-JKK dan TCC-U
+[31:51] TCC-JKK dan TCC-U
+[31:53] Sokala berikut
+[31:55] tak banyak perubahan
+[31:57] masak ini berubah, jelah jelah
+[31:59] okay, terus
+[32:01] terus dia
+[32:08] okay, kita masih
+[32:10] menggantikan harian 80
+[32:12] 100%
+[32:14] sebelum berikut
+[32:16] 100% pas, kita
+[32:18] tak ada lebih banyak perubahan
+[32:20] sebab kita dah pun mengutuk harian
+[32:22] perubahan tak terlalu
+[32:24] terus dia
+[32:26] ini beri kelas 30 jam
+[32:28] JGK yang dah dikini
+[32:30] sangat refreshing
+[32:33] terus
+[32:35] terus
+[32:48] pasal yang terus yang ini dah
+[32:50] bumbu daripada SCP
+[32:52] kita di belasak kelas JGK masuk 790
+[32:54] jadi kelihatan SCP dia nak 20 kelas
+[32:56] jadi kelihatan SCP
+[32:58] kita ini tak 14 kelas
+[33:00] cuma
+[33:02] mengikut sederah
+[33:04] dia tak akan sejar
+[33:06] sampai 790
+[33:08] 10%
+[33:10] di bahagian 690
+[33:12] jadi kalau kita tengok sekarang
+[33:14] 10%
+[33:16] ada 139 sehari
+[33:18] jadi yang boleh diperlukan
+[33:20] kita akan buka kelas 30 dengan 20 orang
+[33:22] sehari 90
+[33:24] supaya tak pelancar tahun-tahun sebelum ini
+[33:26] kita buka 40
+[33:28] 1 kelas 40, 2 kelas lagi
+[33:30] kita akan lepaskan SCP
+[33:32] kita lepaskan SCP
+[33:34] untuk mengawal SCP
+[33:36] sejak 11-11, kita buka kelas SCP
+[33:38] jadi perjalanan kami
+[33:40] 18 kelas itu
+[33:42] ke arah pihak KT2, Pembasong
+[33:44] dan kita nak menjahurkan pihak KT2
+[33:46] Pembasong itu, kelihatan
+[33:48] sehingga di kelas SCP
+[33:50] kita ini kelas SCP
+[33:52] di mana satu pisupan dan satu asgama dan yang
+[33:54] jadi untuk SCP kita tabah
+[33:56] 2 kelas dan 2 kelas untuk
+[33:58] KT4, KT4, KL5
+[34:00] eskipa kita nak kelas SCP
+[34:02] untuk menawarkan semua, untuk KT4
+[34:04] SCP tak ada kelas SCP
+[34:06] pun lagi KT4
+[34:08] SCP baru saya balik
+[34:10] ini ada
+[34:12] KT4
+[34:14] dan KT4
+[34:16] ada
+[34:18] KT4, KT4
+[34:20] dan KT4
+[34:22] cuma fokus kepada
+[34:24] SCP
+[34:26] 8 kelas
+[34:28] pun di mana 7, 7 kelas
+[34:30] dan 2 asgama
+[34:32] 2 pisapap
+[34:34] tapi nak kelas SCP lagi
+[34:36] macam kasi, saya faham
+[34:38] tapi pada Januari sini
+[34:40] kita fokus pada SCP1 saja
+[34:42] dibanding untuk JKI
+[34:44] pembahagian yang kita mau adalah
+[34:46] KT4, KL5
+[34:48] KT4, KT4
+[34:50] KT4, KL5
+[34:52] KT4, KL5
+[34:54] KT4, KL5
+[34:56] KT4, KL5
+[34:58] KT4, KL5
+[35:00] KT4, KL5
+[35:02] KT4, KL5
+[35:04] KT4, KL5
+[35:06] KT4
+[35:08] dan KT4
+[35:10] dan KT4
+[35:12] untuk unik KT4
+[35:14] saya faham
+[35:16] beri percaya
+[35:18] kelas SCP
+[35:20] tapi kami ada plan
+[35:22] lagi SCP
+[35:24] dan kita sedikit
+[35:26] untuk mengalir KT4
+[35:28] kepada KT4 yang akan
+[35:30] memperuskan sepenuhnya
+[35:32] untuk lalikan
+[35:34] mana-mana yang jadi perjalanan KT4
+[35:36] dan kemudian memperuskan
+[35:38] dan memantaukan SCP
+[35:40] untuk mempertutukan soalan
+[35:42] sebab ada maka
+[35:44] sebab ada maka dalam bajah
+[35:46] bagi motivasi bajah
+[35:48] dan untuk menghentikan SCP1
+[35:50] yang mempaksa di dalam SCP1
+[35:52] jadi ini penting
+[35:54] untuk saya beritahu
+[35:56] ada besi ini
+[35:58] sedangkan dari saun-bulan
+[36:00] jadi untuk
+[36:02] bila itu
+[36:04] KT4
+[36:06] saya lupa
+[36:08] kepadanya
+[36:16] saya ada sedikit
+[36:18] soalan
+[36:20] kemudian ini
+[36:22] 1,2,3,2
+[36:24] jadi kali itu
+[36:26] kami ada KT4
+[36:28] KT4
+[36:30] KT4
+[36:32] kalau mengikut KT4
+[36:34] bersama dengan mantan
+[36:36] untuk tingkatkan
+[36:38] yang akan berdialingan
+[36:40] dengan jijin berlalu-lalu
+[36:42] kami suruhkan
+[36:44] kasi niapun
+[36:46] dapet SCP
+[36:48] tapi akhirnya ada 5 kelas
+[36:50] jadi kami berlipu-lipu
+[36:52] kami dah tak lama dengan kamu
+[36:54] jadi kami minta
+[36:56] untuk yang
+[36:58] koko
+[37:00] yang diberi jawatan
+[37:02] untuk mencari kekuatan
+[37:04] saya tak tolong
+[37:06] kainan itu
+[37:08] saya kongsi
+[37:10] soal
+[37:14] dia beri kongsi
+[37:16] bila itu minta tolong
+[37:18] jalan-jalan
+[37:20] saya ada sekelipas
+[37:22] saya ada di Musha'i Larek
+[37:24] jadi kalau saya lepas
+[37:26] saya dapatkan untuk berdapat
+[37:28] pesyarat yang sepatutnya
+[37:30] 1011
+[37:32] kita boleh jadi lapor-poblanyan
+[37:34] sebab kita boleh menanggu pelah yang lain
+[37:36] tapi dia takkan lapor-poblanyan
+[37:38] kalau tengok pada keren
+[37:40] saya
+[37:42] jika sampai
+[37:44] masalahnya cuma
+[37:46] lapor-poblanyan
+[37:48] tapi rasanya rada tak lebih
+[37:50] tak lebih pah
+[37:52] kalau pah, boleh tengok saya nak kurangkan 2 kelas
+[37:54] daripada 20 kelas
+[37:56] cuman diharapkan
+[38:00] promosi unik
+[38:02] kita kena bersedia sekarang
+[38:04] di mana sering-sering
+[38:06] cuman
+[38:08] kita takkan pah lagi
+[38:10] dikasih ni sekarang
+[38:12] cuma biadab
+[38:14] cuman terpasemasi di unik
+[38:16] cuman di masing-sing lain
+[38:18] tak datang
+[38:20] dan di jalan-jalan
+[38:22] masuk-masuk
+[38:24] kalau kita cari
+[38:26] dapet
+[38:28] itu berita yang kita kena terima
+[38:30] cuman
+[38:32] nak berubah di kepala
+[38:34] asal
+[38:36] penuh sayang cik
+[38:38] nak kurangkan 1 kelas
+[38:40] 1 kelas dan pahit
+[38:42] dan kelas itu ok
+[38:44] untuk
+[38:46] kita banyak lagi kekelah
+[38:48] sebab kita suka
+[38:50] masukkan yang berkumpul dengan tuj
+[38:52] contohnya kalau kita
+[38:54] selalunya macam mana ajam
+[38:56] dia takkan bagi pahit orang kekelahan
+[38:58] dan dia suka suka yang beramai
+[39:00] contohnya caku
+[39:02] kalau pelajar
+[39:04] tuj, kelas
+[39:06] jadi kita 1 kelas
+[39:08] kita banyak lagi
+[39:10] skriper
+[39:12] banyak lagi
+[39:14] jauh nak skriper
+[39:16] selama lama
+[39:18] saya nak pahit
+[39:20] selama lama
+[39:22] jadinya
