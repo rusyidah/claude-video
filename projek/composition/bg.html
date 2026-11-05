@@ -19,8 +19,8 @@ const R=rnd(7);
 const PAL=[[236,180,96],[245,196,120],[255,214,150],[214,160,90],[255,236,200]];   // gold-dominant, a little cool accent
 // layers: far -> near. speed in px/s (walking leftwards), size range, blur(alpha softness)
 const LAYERS=[
-  {n:22,speed:14, r:[22,40], a:.30, y:[40,1100]},
-  {n:16,speed:36, r:[34,62], a:.34, y:[20,1250]},
+  {n:22,speed:14, r:[22,40], a:.38, y:[40,1100]},
+  {n:16,speed:36, r:[34,62], a:.42, y:[20,1250]},
   {n:8, speed:80, r:[60,110],a:.30, y:[0,1400]},
 ].map(L=>({...L,items:[...Array(L.n)].map(()=>({x:R()*W*1.4,y:L.y[0]+R()*(L.y[1]-L.y[0]),r:L.r[0]+R()*(L.r[1]-L.r[0]),c:PAL[(R()*PAL.length)|0],ph:R()*6.28}))}));
 // vertical light pillars (street lamps) for depth
@@ -29,11 +29,11 @@ const LAMPS=[...Array(9)].map((_,i)=>({x:R()*W*1.6,w:6+R()*10,h:700+R()*500,sp:6
 function render(t){
   // base gradient: deep teal-navy top -> warm charcoal bottom
   let gr=g.createLinearGradient(0,0,0,H);
-  gr.addColorStop(0,'#07070f'); gr.addColorStop(.4,'#100c1d'); gr.addColorStop(.75,'#1a1424'); gr.addColorStop(1,'#0d0a14');
+  gr.addColorStop(0,'#101024'); gr.addColorStop(.4,'#1d1738'); gr.addColorStop(.75,'#2a2040'); gr.addColorStop(1,'#1a1228');
   g.globalCompositeOperation='source-over'; g.fillStyle=gr; g.fillRect(0,0,W,H);
   // warm glow behind subject (where the face sits)
   let rg=g.createRadialGradient(W*.5,H*.34,40,W*.5,H*.34,820);
-  rg.addColorStop(0,'rgba(120,90,140,.40)'); rg.addColorStop(.5,'rgba(90,60,110,.14)'); rg.addColorStop(1,'rgba(0,0,0,0)');
+  rg.addColorStop(0,'rgba(170,130,190,.50)'); rg.addColorStop(.5,'rgba(120,90,150,.20)'); rg.addColorStop(1,'rgba(0,0,0,0)');
   g.fillStyle=rg; g.fillRect(0,0,W,H);
   // cool counter-glow bottom right
   rg=g.createRadialGradient(W*.95,H*.85,20,W*.95,H*.85,700);
@@ -65,11 +65,11 @@ function render(t){
   });
   // floor reflection sheen
   g.globalCompositeOperation='source-over';
-  const fg=g.createLinearGradient(0,H*.78,0,H); fg.addColorStop(0,'rgba(0,0,0,0)'); fg.addColorStop(1,'rgba(0,0,0,.55)');
+  const fg=g.createLinearGradient(0,H*.78,0,H); fg.addColorStop(0,'rgba(0,0,0,0)'); fg.addColorStop(1,'rgba(0,0,0,.32)');
   g.fillStyle=fg; g.fillRect(0,H*.78,W,H*.22);
   // vignette
   const vg=g.createRadialGradient(W/2,H/2,H*.28,W/2,H/2,H*.78);
-  vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.55)'); g.fillStyle=vg; g.fillRect(0,0,W,H);
+  vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.34)'); g.fillStyle=vg; g.fillRect(0,0,W,H);
   // fine film grain (deterministic) so gradients don't band after H.264
   const gn=rnd(1000+Math.floor(t*25)); g.fillStyle='rgba(255,255,255,.035)';
   for(let i=0;i<260;i++){g.fillRect(gn()*W,gn()*H,2,2)}
