@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>EarFun Air Pro 3 — background</title>
+<style>
+  html,body{margin:0;width:1080px;height:1920px;background:#07080c;overflow:hidden}
+  canvas{display:block;width:1080px;height:1920px}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+/* Premium "walking through a lit boulevard at dusk" backdrop.
+   Fully deterministic: render(t) draws everything from t alone. */
+const W=1080,H=1920,cv=document.getElementById('c'),g=cv.getContext('2d');
+function rnd(seed){let s=seed>>>0;return()=>((s=Math.imul(s^s>>>15,2246822507)^Math.imul(s^s>>>13,3266489909),(s^=s>>>16)>>>0)/4294967296)}
+const R=rnd(7);
+const PAL=[[245,184,0],[255,154,0],[255,214,130],[120,180,255],[255,236,200]];   // gold-dominant, a little cool accent
+// layers: far -> near. speed in px/s (walking leftwards), size range, blur(alpha softness)
+const LAYERS=[
+  {n:26,speed:16, r:[26,46], a:.22, y:[420,1500]},
+  {n:20,speed:42, r:[40,78], a:.26, y:[350,1650]},
+  {n:12,speed:95, r:[80,150],a:.22, y:[300,1750]},
+].map(L=>({...L,items:[...Array(L.n)].map(()=>({x:R()*W*1.4,y:L.y[0]+R()*(L.y[1]-L.y[0]),r:L.r[0]+R()*(L.r[1]-L.r[0]),c:PAL[(R()*PAL.length)|0],ph:R()*6.28}))}));
+// vertical light pillars (street lamps) for depth
+const LAMPS=[...Array(7)].map((_,i)=>({x:R()*W*1.6,w:6+R()*10,h:700+R()*500,sp:60+R()*60,a:.10+R()*.1}));
+
+function render(t){
+  // base gradient: deep teal-navy top -> warm charcoal bottom
+  let gr=g.createLinearGradient(0,0,0,H);
+  gr.addColorStop(0,'#0a1220'); gr.addColorStop(.45,'#14192a'); gr.addColorStop(.8,'#241a1a'); gr.addColorStop(1,'#120c0b');
+  g.globalCompositeOperation='source-over'; g.fillStyle=gr; g.fillRect(0,0,W,H);
+  // warm glow behind subject (where the face sits)
+  let rg=g.createRadialGradient(W*.5,H*.34,40,W*.5,H*.34,820);
+  rg.addColorStop(0,'rgba(255,170,70,.55)'); rg.addColorStop(.45,'rgba(255,120,40,.16)'); rg.addColorStop(1,'rgba(0,0,0,0)');
+  g.fillStyle=rg; g.fillRect(0,0,W,H);
+  // cool counter-glow bottom right
+  rg=g.createRadialGradient(W*.95,H*.85,20,W*.95,H*.85,700);
+  rg.addColorStop(0,'rgba(60,120,255,.28)'); rg.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=rg; g.fillRect(0,0,W,H);
+
+  g.globalCompositeOperation='lighter';
+  // lamp pillars drifting left
+  LAMPS.forEach(l=>{
+    const span=W*1.6, x=((l.x-l.sp*t)%span+span)%span-120;
+    const lg=g.createLinearGradient(x-l.w,0,x+l.w,0);
+    lg.addColorStop(0,'rgba(255,200,120,0)');lg.addColorStop(.5,`rgba(255,215,150,${l.a})`);lg.addColorStop(1,'rgba(255,200,120,0)');
+    g.fillStyle=lg; g.fillRect(x-l.w*4,H*.18,l.w*8,l.h);
+  });
+  // bokeh layers
+  LAYERS.forEach((L,li)=>{
+    const span=W*1.4;
+    L.items.forEach(b=>{
+      const x=((b.x-L.speed*t)%span+span)%span-W*.2;
+      const y=b.y+Math.sin(t*.8+b.ph)*10*(li+1);
+      const tw=.75+.25*Math.sin(t*1.7+b.ph);
+      const [r,gc,bl]=b.c;
+      const rr=g.createRadialGradient(x,y,b.r*.05,x,y,b.r);
+      rr.addColorStop(0,`rgba(${r},${gc},${bl},${L.a*.35*tw})`);
+      rr.addColorStop(.78,`rgba(${r},${gc},${bl},${L.a*tw})`);
+      rr.addColorStop(.92,`rgba(${r},${gc},${bl},${L.a*1.25*tw})`);
+      rr.addColorStop(1,`rgba(${r},${gc},${bl},0)`);
+      g.fillStyle=rr; g.beginPath(); g.arc(x,y,b.r,0,6.2832); g.fill();
+    });
+  });
+  // floor reflection sheen
+  g.globalCompositeOperation='source-over';
+  const fg=g.createLinearGradient(0,H*.78,0,H); fg.addColorStop(0,'rgba(0,0,0,0)'); fg.addColorStop(1,'rgba(0,0,0,.55)');
+  g.fillStyle=fg; g.fillRect(0,H*.78,W,H*.22);
+  // vignette
+  const vg=g.createRadialGradient(W/2,H/2,H*.28,W/2,H/2,H*.78);
+  vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.55)'); g.fillStyle=vg; g.fillRect(0,0,W,H);
+  // fine film grain (deterministic) so gradients don't band after H.264
+  const gn=rnd(1000+Math.floor(t*25)); g.fillStyle='rgba(255,255,255,.035)';
+  for(let i=0;i<260;i++){g.fillRect(gn()*W,gn()*H,2,2)}
+}
+window.render=render; render(0);
+</script>
+</body>
+</html>
