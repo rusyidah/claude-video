@@ -1,7 +1,8 @@
 import sys, subprocess, numpy as np
 from PIL import Image, ImageFilter
 SP = sys.argv[1]; SRC = sys.argv[2]; OUT = sys.argv[3]
-W, H, FPS = 720, 1280, 30
+ASPECT = sys.argv[5] if len(sys.argv) > 5 else '9x16'
+W, H, FPS = (1280, 720, 30) if ASPECT == '16x9' else (720, 1280, 30)
 im = np.asarray(Image.open(SRC).convert('RGB')).astype(np.float32)
 
 def inpaint(a, x0, y0, x1, y1, sides):
@@ -27,7 +28,7 @@ inpaint(im, 244, 350, 284, 377, 'lb')  # 4s
 inpaint(im, 296, 349, 368, 420, 'rb')  # 04
 inpaint(im, 536, 350, 573, 377, 'lb')  # 6s
 inpaint(im, 4, 694, 78, 764, 'rb')     # 05
-inpaint(im, 543, 694, 573, 722, 'lb')  # 8s
+inpaint(im, 533, 692, 573, 726, 'lb')  # 8s
 UP = 4
 base = Image.fromarray(np.clip(im, 0, 255).astype(np.uint8))
 Image.fromarray(np.clip(im,0,255).astype(np.uint8)).save(f'{SP}/work/clean.png')
@@ -43,6 +44,15 @@ S = [
   ((382, 486, 280), (494, 486, 280)),   # 04 pan phone -> case
   ((292, 810, 236), (442, 810, 236)),   # 05 pan face -> earbuds -> bag
 ]
+if ASPECT == '16x9':
+    # crop width = h*16/9; panels are ~281px wide, so frames are wide & short
+    S = [
+      ((143, 150, 158), (143, 142, 140)),   # 01 eyes + case, push-in
+      ((432, 134, 158), (448, 134, 140)),   # 02 push-in toward ear
+      ((141, 435, 154), (150, 438, 138)),   # 03 face, stays above chip badges
+      ((432, 499, 158), (436, 505, 148)),   # 04 phone + face + case, gentle push
+      ((290, 810, 236), (345, 810, 236)),   # 05 face/earbuds -> reveal bag
+    ]
 ease = lambda t: t*t*(3-2*t)
 p = subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-',
     '-c:v','libx264','-pix_fmt','yuv420p','-crf','17','-preset','slow',OUT], stdin=subprocess.PIPE)
@@ -55,7 +65,7 @@ for f in range(N):
     cx = a[0] + (b[0]-a[0])*u; cy = a[1] + (b[1]-a[1])*u; h = a[2] + (b[2]-a[2])*u
     # small "punch" zoom on each cut for TikTok energy
     pu = (t - bounds[i]); h *= 1 - 0.035*max(0, 1 - pu/0.18)
-    w = h*9/16
+    w = h*16/9 if ASPECT == '16x9' else h*9/16
     box = tuple(v*UP for v in (cx-w/2, cy-h/2, cx+w/2, cy+h/2))
     fr = big.transform((W, H), Image.EXTENT, box, Image.BICUBIC)
     p.stdin.write(fr.tobytes())
