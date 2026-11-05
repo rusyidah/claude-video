@@ -18,17 +18,22 @@ def inpaint(a, x0, y0, x1, y1, sides):
     p = Image.fromarray(a[y0-3:y1+3, x0-3:x1+3].astype(np.uint8)).filter(ImageFilter.GaussianBlur(2))
     a[y0:y1, x0:x1] = np.asarray(p).astype(np.float32)[3:-3, 3:-3]
 
+import json
+CFG = json.load(open(sys.argv[6])) if len(sys.argv) > 6 else None
 # number badges (top-left) and timestamp badges (top-right) of each panel
-inpaint(im, 4, 4, 78, 74, 'rb')        # 01
-inpaint(im, 244, 3, 284, 32, 'lb')     # 0s
-inpaint(im, 296, 4, 368, 74, 'rb')     # 02
-inpaint(im, 536, 3, 573, 32, 'lb')     # 2s
-inpaint(im, 4, 349, 78, 420, 'rb')     # 03
-inpaint(im, 244, 350, 284, 377, 'lb')  # 4s
-inpaint(im, 296, 349, 368, 420, 'rb')  # 04
-inpaint(im, 536, 350, 573, 377, 'lb')  # 6s
-inpaint(im, 4, 694, 78, 764, 'rb')     # 05
-inpaint(im, 533, 692, 573, 726, 'lb')  # 8s
+if CFG:
+    for r in CFG['inpaint']: inpaint(im, *r)
+else:
+  inpaint(im, 4, 4, 78, 74, 'rb')        # 01
+  inpaint(im, 244, 3, 284, 32, 'lb')     # 0s
+  inpaint(im, 296, 4, 368, 74, 'rb')     # 02
+  inpaint(im, 536, 3, 573, 32, 'lb')     # 2s
+  inpaint(im, 4, 349, 78, 420, 'rb')     # 03
+  inpaint(im, 244, 350, 284, 377, 'lb')  # 4s
+  inpaint(im, 296, 349, 368, 420, 'rb')  # 04
+  inpaint(im, 536, 350, 573, 377, 'lb')  # 6s
+  inpaint(im, 4, 694, 78, 764, 'rb')     # 05
+  inpaint(im, 533, 692, 573, 726, 'lb')  # 8s
 UP = 4
 base = Image.fromarray(np.clip(im, 0, 255).astype(np.uint8))
 Image.fromarray(np.clip(im,0,255).astype(np.uint8)).save(f'{SP}/work/clean.png')
@@ -53,6 +58,8 @@ if ASPECT == '16x9':
       ((432, 499, 158), (436, 505, 148)),   # 04 phone + face + case, gentle push
       ((290, 810, 236), (345, 810, 236)),   # 05 face/earbuds -> reveal bag
     ]
+if CFG:
+    S = [tuple(map(tuple, sc)) for sc in CFG['scenes'][ASPECT]]
 ease = lambda t: t*t*(3-2*t)
 p = subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-',
     '-c:v','libx264','-pix_fmt','yuv420p','-crf','17','-preset','slow',OUT], stdin=subprocess.PIPE)
