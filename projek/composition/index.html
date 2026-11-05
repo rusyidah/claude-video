@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>EarFun Air Pro 3 — overlay</title>
+<meta name="viewport" content="width=1080">
+<style>
+  :root{
+    --gold:#F5B800; --gold2:#FF9A00; --ink:#0B0B0E; --blue:#2F7BFF; --blue2:#6FB6FF;
+    --card:rgba(12,12,16,.90);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;background:transparent;overflow:hidden;
+    font-family:'Inter','Inter Display',system-ui,sans-serif;color:#fff}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+  /* preview background only when opened in a normal browser: ?bg=1 */
+  body.bg{background:#222 url(../assets/poster-bg.jpg) center/cover}
+
+  .vig-top{position:absolute;inset:0 0 auto 0;height:380px;background:linear-gradient(#000a,#0000)}
+  .vig-bot{position:absolute;inset:auto 0 0 0;height:900px;background:linear-gradient(#0000,#000c)}
+
+  /* top bar */
+  #progress{position:absolute;left:0;top:0;height:10px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+  #brand{position:absolute;left:60px;top:78px;display:flex;align-items:center;gap:16px;
+    background:rgba(10,10,14,.78);border:1.5px solid rgba(255,255,255,.16);border-radius:60px;padding:14px 28px 14px 18px}
+  #brand .dot{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+    display:grid;place-items:center;color:#111;font-weight:900;font-size:26px}
+  #brand b{font-size:30px;font-weight:800;letter-spacing:.2px}
+  #brand i{font-style:normal;font-weight:600;font-size:24px;color:#bfc3cc;border-left:2px solid #fff3;padding-left:16px}
+
+  /* hook */
+  #hook{position:absolute;left:60px;top:1130px;width:960px}
+  #hook .l{display:block;font-weight:900;font-size:120px;line-height:1.02;letter-spacing:-2px;text-transform:uppercase;
+    text-shadow:0 6px 30px #000c}
+  #hook .l.g{color:var(--gold)}
+  #hook .sub{margin-top:22px;font-size:34px;font-weight:600;color:#e6e8ee;text-shadow:0 3px 14px #000}
+
+  /* captions */
+  #caps{position:absolute;left:40px;width:1000px;top:985px;height:190px;display:flex;align-items:flex-end;justify-content:center}
+  .cap{position:absolute;bottom:0;left:0;right:0;text-align:center;font-weight:800;font-size:58px;line-height:1.14;
+    -webkit-text-stroke:11px rgba(0,0,0,.88);paint-order:stroke fill;text-shadow:0 6px 24px #0009;opacity:0}
+  .cap span{display:inline-block;margin:0 .13em;color:#fff;transition:none}
+  .cap span.on{color:var(--gold)}
+
+  /* cards */
+  .card{position:absolute;left:60px;top:1195px;width:960px;height:500px;border-radius:52px;opacity:0;
+    background:linear-gradient(160deg,rgba(12,12,17,.93),rgba(28,28,36,.90));
+    border:1.5px solid rgba(255,255,255,.16);box-shadow:0 40px 90px rgba(0,0,0,.55), inset 0 1px 0 #fff2;overflow:hidden}
+  .card .kick{font-size:26px;font-weight:800;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .card .txt{position:absolute;left:52px;top:44px;width:470px}
+  .card .tile{position:absolute;right:40px;top:40px;width:370px;height:330px;border-radius:34px;overflow:hidden;background:#cfd6e0;
+    box-shadow:0 20px 50px #0008}
+  .card .tile img{width:100%;height:100%;object-fit:cover;display:block}
+  .big{font-weight:900;line-height:.9;letter-spacing:-6px}
+  .unit{font-weight:800;color:#d5d9e2;letter-spacing:0}
+  .note{font-size:28px;font-weight:600;color:#aab0bd;margin-top:18px;line-height:1.25}
+  .pill{display:inline-block;font-size:27px;font-weight:800;padding:10px 22px;border-radius:40px;background:#ffffff14;border:1.5px solid #ffffff30;margin:10px 10px 0 0}
+  .pill.g{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border:none}
+  .strip{position:absolute;left:52px;right:52px;bottom:30px;height:84px;border-radius:26px;background:#ffffff10;border:1.5px solid #ffffff22;overflow:hidden}
+
+  /* s1 product */
+  #s1 .tile{left:40px;right:auto;width:420px;height:420px;top:40px;background:#fff;border-radius:40px}
+  #s1 .tile img{object-fit:contain;padding:10px;animation:none}
+  #s1 .txt{left:500px;top:50px;width:420px}
+  #s1 .t{font-size:136px;font-weight:900;line-height:.92;letter-spacing:-5px;margin:14px 0 18px}
+  #s1 .t em{font-style:normal;color:var(--gold)}
+
+  /* s2 anc */
+  #s2 .big{font-size:210px;background:linear-gradient(180deg,#9fd0ff,#2F7BFF);-webkit-background-clip:text;color:transparent;display:inline-block}
+  #s2 .unit{font-size:70px;margin-left:8px}
+  #s2 .txt{top:36px}
+  #wave{position:absolute;left:0;top:0;width:100%;height:100%}
+  #quiet{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-weight:900;font-size:30px;color:#7be39a;letter-spacing:2px;opacity:0}
+
+  /* s3 driver */
+  #s3 .big{font-size:190px;color:var(--gold);display:inline-block}
+  #s3 .unit{font-size:70px}
+  #eq{position:absolute;right:40px;top:40px;width:370px;height:330px;border-radius:34px;background:#ffffff0d;border:1.5px solid #ffffff22;
+    display:flex;align-items:flex-end;justify-content:space-between;padding:26px 24px}
+  #eq i{display:block;width:16px;border-radius:10px;background:linear-gradient(180deg,var(--gold),var(--gold2));height:20px}
+
+  /* s4 chip */
+  #s4 .t{font-size:98px;font-weight:900;letter-spacing:-3px;line-height:.95;margin:12px 0 6px}
+
+  /* s5 battery */
+  #s5 .big{font-size:215px;display:inline-block;background:linear-gradient(180deg,#fff,#cfd3dc);-webkit-background-clip:text;color:transparent}
+  #s5 .unit{font-size:64px;color:var(--gold)}
+  #batt{display:inline-block;width:92px;height:44px;border:5px solid #fff;border-radius:12px;position:relative;margin-right:14px;vertical-align:middle}
+  #batt:after{content:"";position:absolute;right:-13px;top:11px;width:8px;height:14px;background:#fff;border-radius:3px}
+  #batt b{position:absolute;left:4px;top:4px;bottom:4px;width:0;background:linear-gradient(90deg,var(--gold),#7be39a);border-radius:5px}
+  #fast{position:absolute;left:52px;right:52px;bottom:30px;height:84px;border-radius:26px;background:linear-gradient(90deg,#F5B800,#FF9A00);color:#111;
+    display:flex;align-items:center;justify-content:center;gap:16px;font-weight:900;font-size:36px;letter-spacing:.5px}
+
+  /* s6 multipoint */
+  #s6 .tile{width:380px}
+  #s6 .big{font-size:200px;color:var(--gold);display:inline-block}
+  #s6 .t{font-size:46px;font-weight:900;line-height:1.05;display:inline-block;margin-left:14px;vertical-align:48px}
+
+  /* s7 CTA */
+  #s7{background:linear-gradient(135deg,#FFCB1F,#FF9A00);border:none;color:#111}
+  #s7 .rings{position:absolute;right:-160px;bottom:-260px;width:620px;height:620px}
+  #s7 .rings i{position:absolute;inset:0;border-radius:50%;border:5px solid rgba(255,255,255,.55)}
+  #s7 .tile{left:36px;right:auto;top:40px;width:330px;height:330px;background:#fff;border-radius:40px;transform:rotate(-4deg)}
+  #s7 .tile img{object-fit:contain;padding:8px}
+  #s7 .txt{left:400px;top:44px;width:520px}
+  #s7 .kick{color:#111a;font-size:24px}
+  #s7 .t{font-size:98px;font-weight:900;line-height:.92;letter-spacing:-3px;margin:12px 0 0}
+  #s7 .btn{position:absolute;left:52px;right:52px;bottom:30px;height:96px;border-radius:30px;background:#111;color:var(--gold);
+    display:flex;align-items:center;justify-content:center;gap:18px;font-weight:900;font-size:38px;letter-spacing:1px}
+  #s7 .btn svg{width:48px;height:48px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="vig-top"></div><div class="vig-bot"></div>
+  <div id="progress"></div>
+  <div id="brand"><div class="dot">e</div><b>earfun</b><i>AIR PRO 3</i></div>
+
+  <div id="hook">
+    <span class="l">Bunyi luar</span>
+    <span class="l g">masih bising?</span>
+  </div>
+
+  <div id="caps"></div>
+
+  <!-- S1 product -->
+  <div class="card" id="s1">
+    <div class="tile"><img src="../assets/product.jpg"></div>
+    <div class="txt">
+      <div class="kick">True Wireless</div>
+      <div class="t">AIR<br><em>PRO 3</em></div>
+      <div class="note">LE Audio · ANC<br>Bluetooth 5.3</div>
+    </div>
+  </div>
+
+  <!-- S2 ANC -->
+  <div class="card" id="s2">
+    <div class="txt">
+      <div class="kick">Active Noise Cancelling</div>
+      <div><span class="big" id="ancnum">0</span><span class="unit">dB</span></div>
+      <div class="note" style="margin-top:6px">6-mic · QuietSmart 2.0</div>
+    </div>
+    <div class="tile"><img src="../assets/anc.jpg" style="object-position:18% 55%"></div>
+    <div class="strip"><svg id="wave" viewBox="0 0 856 84" preserveAspectRatio="none"><path id="wp" fill="none" stroke="#6FB6FF" stroke-width="5" stroke-linecap="round"/></svg><div id="quiet">SENYAP ✓</div></div>
+  </div>
+
+  <!-- S3 driver -->
+  <div class="card" id="s3">
+    <div class="txt">
+      <div class="kick">Dynamic Driver</div>
+      <div><span class="big" id="drv">11</span><span class="unit">mm</span></div>
+      <div class="note" style="margin-top:14px;font-size:44px;font-weight:900;color:#fff">BASS PADU.</div>
+    </div>
+    <div id="eq"></div>
+  </div>
+
+  <!-- S4 chip -->
+  <div class="card" id="s4">
+    <div class="txt">
+      <div class="kick">Qualcomm® Audio SoC</div>
+      <div class="t">QCC<br>3071</div>
+      <span class="pill g">aptX™ Adaptive</span><span class="pill">Bluetooth 5.3</span>
+    </div>
+    <div class="tile" style="background:#e9edf3"><img src="../assets/chip.jpg"></div>
+  </div>
+
+  <!-- S5 battery -->
+  <div class="card" id="s5">
+    <div class="txt">
+      <div class="kick"><span id="batt"><b></b></span>Bateri tahan lama</div>
+      <div><span class="big" id="hrs">0</span><span class="unit"> JAM</span></div>
+      <div class="note" style="margin-top:4px">Earbuds 9 jam + casing 36 jam</div>
+    </div>
+    <div class="tile"><img src="../assets/battery.jpg" style="object-position:50% 50%"></div>
+    <div id="fast">⚡ CHARGE 10 MIN <span style="opacity:.6">=</span> 90 MIN</div>
+  </div>
+
+  <!-- S6 multipoint -->
+  <div class="card" id="s6">
+    <div class="txt" style="width:520px;left:48px">
+      <div class="kick">Multipoint Connection</div>
+      <div style="margin-top:6px"><span class="big" id="two">2</span><span class="t">DEVICE<br>SERENTAK</span></div>
+      <span class="pill g" style="margin-top:20px">Telefon + Laptop</span>
+    </div>
+    <div class="tile"><img src="../assets/multipoint.jpg" style="object-position:55% 50%"></div>
+  </div>
+
+  <!-- S7 CTA -->
+  <div class="card" id="s7">
+    <div class="rings"><i></i><i style="inset:80px"></i><i style="inset:160px"></i></div>
+    <div class="tile"><img src="../assets/product.jpg"></div>
+    <div class="txt">
+      <div class="kick">EarFun Air Pro 3</div>
+      <div class="t">TEKAN<br>BAKUL<br>KUNING</div>
+    </div>
+    <div class="btn" id="btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#F5B800" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.8L20.5 8H6"/></svg>
+      BELI SEKARANG <span id="arrow">↓</span>
+    </div>
+  </div>
+</div>
+
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+if (location.search.includes('bg')) document.body.classList.add('bg');
+const $ = s => document.querySelector(s);
+const DUR = 30.146;
+
+/* ---- captions (ASR corrected) ---- */
+const CAPS = [
+  [2.86, 5.60, "Okey, so ni earphone Air Pro 3."],
+  [5.72, 9.20, "Tekan sekali, ANC sampai 43 desibel."],
+  [9.46, 11.60, "Bising terus senyap. Nampak?"],
+  [11.76,14.80, "Driver 11mm, bass memang padu."],
+  [15.08,18.20, "Chip Qualcomm, aptX Adaptive, audio jelas."],
+  [18.58,21.00, "Battery sampai 45 jam dengan case."],
+  [21.22,23.72, "Charge 10 minit dapat 90 minit."],
+  [23.80,26.20, "Ada apps, boleh sambung dua device serentak."],
+  [26.34,26.95, "Senang je!"],
+  [26.95,29.90, "Memang best! Tekan bakul kuning sekarang!"],
+];
+const capsEl = $('#caps');
+const capObjs = CAPS.map(([a,b,t])=>{
+  const d=document.createElement('div'); d.className='cap';
+  const words=t.split(' '); const tot=words.reduce((s,w)=>s+w.length+1,0);
+  let acc=0; const ws=words.map(w=>{const s=document.createElement('span'); s.textContent=w;
+    const st=a+(b-a)*0.92*acc/tot; acc+=w.length+1; d.appendChild(s); return {s,st};});
+  capsEl.appendChild(d); return {d,a,b,ws};
+});
+
+/* ---- EQ bars ---- */
+const eq=$('#eq'); const bars=[]; for(let i=0;i<14;i++){const b=document.createElement('i');eq.appendChild(b);bars.push(b);}
+
+/* ---- timeline ---- */
+const tl = gsap.timeline({paused:true});
+const IN  = (el,t,extra={}) => tl.fromTo(el,{y:150,opacity:0,scale:.93},{y:0,opacity:1,scale:1,duration:.6,ease:'expo.out',...extra},t);
+const OUT = (el,t) => tl.to(el,{y:-36,opacity:0,scale:.98,duration:.28,ease:'power2.in'},t);
+const KIDS = (sel,t) => tl.from(sel,{y:34,opacity:0,duration:.5,ease:'power3.out',stagger:.07},t+.12);
+
+// top bar
+tl.from('#brand',{x:-80,opacity:0,duration:.6,ease:'expo.out'},0.15);
+
+// hook
+tl.from('#hook .l',{y:80,opacity:0,duration:.55,ease:'back.out(1.7)',stagger:.16},0.1);
+tl.fromTo('#hook',{opacity:1},{opacity:0,y:-30,duration:.3,ease:'power2.in'},2.5);
+
+// scenes [id, in, out]
+const SC=[['#s1',2.75,5.70],['#s2',5.70,11.65],['#s3',11.65,15.00],['#s4',15.00,18.50],['#s5',18.50,23.78],['#s6',23.78,26.32],['#s7',26.32,99]];
+SC.forEach(([id,a,b],i)=>{
+  IN(id,a); KIDS(id+' .txt > *, '+id+' .tile, '+id+' #eq, '+id+' .strip, '+id+' #fast, '+id+' .btn',a);
+  if(b<99) OUT(id,b-.28);
+});
+// s1 tile float handled in render()
+// counters
+const anc={v:0}; tl.to(anc,{v:43,duration:1.6,ease:'power2.out',onUpdate:()=>$('#ancnum').textContent=Math.round(anc.v)},6.1);
+const hr={v:0};  tl.to(hr,{v:45,duration:1.3,ease:'power2.out',onUpdate:()=>$('#hrs').textContent=Math.round(hr.v)},18.7);
+const bt={v:0};  tl.to(bt,{v:1,duration:1.6,ease:'power2.out',onUpdate:()=>$('#batt b').style.width=(bt.v*100*0.92)+'%'},18.7);
+tl.from('#fast',{scale:.9,duration:.4,ease:'back.out(2)'},21.2);
+tl.fromTo('#quiet',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:'back.out(2.4)'},9.55);
+tl.fromTo('#two',{scale:.4,rotate:-12},{scale:1,rotate:0,duration:.6,ease:'back.out(2.2)'},23.95);
+tl.fromTo('#drv',{scale:.6},{scale:1,duration:.5,ease:'back.out(2)'},11.9);
+// final fade
+tl.to('#stage',{opacity:0,duration:.25},DUR-.25);
+tl.set({},{},DUR);
+
+/* ---- deterministic per-frame drawing ---- */
+function wavePath(t){
+  const w=856,h=84,mid=h/2; let d='';
+  const calm = t>=9.5 ? Math.max(0, 1-(t-9.5)/0.45) : 1;      // noise collapses after "senyap"
+  const amp = (t<5.7?0:1) * (6 + 30*calm);
+  for(let x=0;x<=w;x+=6){
+    const k=x/w;
+    const y = mid + amp*( .55*Math.sin(k*22+t*11) + .3*Math.sin(k*47-t*17) + .22*Math.sin(k*9+t*5) )*(.35+.65*Math.sin(k*Math.PI));
+    d += (x?'L':'M')+x+' '+y.toFixed(1);
+  }
+  return d;
+}
+function render(t){
+  tl.time(Math.min(t,DUR));
+  $('#progress').style.width=(t/DUR*100)+'%';
+  // captions
+  capObjs.forEach(c=>{
+    const vis = t>=c.a-.04 && t<=c.b+.12;
+    let o=0,s=1;
+    if(vis){ const k=Math.min(1,(t-(c.a-.04))/.14); o=Math.min(k, t>c.b ? Math.max(0,1-(t-c.b)/.12):1); s=.9+.1*k; }
+    c.d.style.opacity=o; c.d.style.transform=`scale(${s})`;
+    c.ws.forEach(w=>w.s.classList.toggle('on', t>=w.st && t<=c.b+.05));
+  });
+  $('#wp').setAttribute('d',wavePath(t));
+  bars.forEach((b,i)=>{
+    const on = t>=11.9 && t<15.0;
+    const beat = Math.pow(Math.abs(Math.sin(t*Math.PI*2.4)),3);
+    const hgt = on ? 30 + 250*Math.abs(Math.sin(t*5+i*.9))*(.45+.55*beat)*(1-Math.abs(i-6.5)/14) : 20;
+    b.style.height=hgt+'px';
+  });
+  // gentle float on product tiles
+  const fl=Math.sin(t*2.2)*7;
+  $('#s1 .tile').style.translate=`0 ${fl}px`;
+  $('#s7 .tile').style.translate=`0 ${-fl}px`;
+  // CTA pulse + arrow bounce
+  if(t>=26.9){ const p=1+0.025*Math.sin((t-26.9)*9); $('#btn').style.transform=`scale(${p})`; }
+  $('#arrow').style.display='inline-block'; $('#arrow').style.transform=`translateY(${Math.abs(Math.sin(t*7))*8}px)`;
+  document.querySelectorAll('#s7 .rings i').forEach((r,i)=>{ const k=((t*0.5+i/3)%1); r.style.transform=`scale(${.75+k*.5})`; r.style.opacity=1-k; });
+}
+window.render=render; window.DUR=DUR;
+render(0);
+</script>
+</body>
+</html>
