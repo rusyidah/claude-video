@@ -503,13 +503,13 @@ function cursor(x, y, press) {
   X.fillStyle = '#fff'; X.strokeStyle = '#111'; X.lineWidth = 3; X.beginPath(); X.moveTo(0, 0); X.lineTo(0, 44); X.lineTo(12, 33); X.lineTo(22, 54); X.lineTo(31, 49); X.lineTo(21, 29); X.lineTo(36, 29); X.closePath(); X.fill(); X.stroke(); X.restore();
 }
 function sCTA(T) {
-  // avatar placeholder (no logo/handle supplied)
+  // avatar (user-supplied photo, circular crop)
   const ak = outBack(p(T, 40.25, 40.7));
-  if (ak > 0) {
+  if (ak > 0.01) {
     X.save(); X.translate(540, 520); X.scale(ak, ak);
-    X.strokeStyle = COL.g; X.lineWidth = 6; X.fillStyle = '#16211B'; circ(0, 0, 118); X.fill(); X.stroke();
-    X.fillStyle = '#2C3B33'; circ(0, -22, 40); X.fill(); X.beginPath(); X.ellipse(0, 78, 70, 54, 0, Math.PI, 0); X.fill();
-    X.fillStyle = 'rgba(244,247,245,.16)'; rr(-130, 150, 260, 30, 15); X.fill();
+    X.shadowColor = rgba(COL.g, .5); X.shadowBlur = 36; X.fillStyle = '#16211B'; circ(0, 0, 132); X.fill(); X.shadowBlur = 0;
+    X.save(); circ(0, 0, 124); X.clip(); X.drawImage(AV, -124, -124, 248, 248); X.restore();
+    X.strokeStyle = COL.g; X.lineWidth = 7; circ(0, 0, 128); X.stroke();
     X.restore();
   }
   headline([
@@ -565,7 +565,9 @@ function render(T) {
   X.globalAlpha = 1;
 }
 window.render = render;
+const AV = new Image(); AV.src = 'assets/avatar.jpg';
 window.ready = Promise.all([
+  AV.decode(),
   document.fonts.load("700 100px Oswald"), document.fonts.load("700 40px 'JetBrains Mono'"),
   document.fonts.load("100px 'Noto Color Emoji'", '🤔'),
 ]).then(() => true);
