@@ -1,0 +1,55 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    .dg-sp { position: absolute; color: var(--lime, #C8F169); filter: drop-shadow(0 0 12px rgba(200,241,105,.7)); }
+    #dg-s1 { left: 820px; top: 230px; width: 70px; height: 70px; }
+    #dg-s2 { left: 930px; top: 360px; width: 40px; height: 40px; }
+    #dg-s3 { left: 720px; top: 380px; width: 34px; height: 34px; }
+    #dg-chip { left: 64px; top: 190px; }
+    #dg-serif { left: 66px; top: 268px; font-size: 92px; color: var(--cream, #FFF6E3); }
+    #dg-serif em { color: var(--lime, #C8F169); }
+    #dg-s1, #dg-s2, #dg-s3, #dg-chip, #dg-serif { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="design" data-width="1080" data-height="1920">
+
+    <div id="dg-s1" class="dg-sp ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2 C34 22 42 30 62 32 C42 34 34 42 32 62 C30 42 22 34 2 32 C22 30 30 22 32 2 Z" fill="currentColor"/></svg></div>
+    <div id="dg-s2" class="dg-sp ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2 C34 22 42 30 62 32 C42 34 34 42 32 62 C30 42 22 34 2 32 C22 30 30 22 32 2 Z" fill="currentColor"/></svg></div>
+    <div id="dg-s3" class="dg-sp ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2 C34 22 42 30 62 32 C42 34 34 42 32 62 C30 42 22 34 2 32 C22 30 30 22 32 2 Z" fill="currentColor"/></svg></div>
+    <div id="dg-chip" class="chip"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M30 60 C30 44 33 26 42 6" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round"/><ellipse rx="6.5" ry="13" transform="translate(23 44) rotate(-48)" fill="currentColor"/><ellipse rx="6.5" ry="13" transform="translate(41 38) rotate(42)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(26 28) rotate(-40)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(44 22) rotate(48)" fill="currentColor"/><ellipse rx="5" ry="10" transform="translate(41 8) rotate(10)" fill="currentColor"/></svg></span>Warna hijau Nutrilite</div>
+    <div id="dg-serif" class="serif">corak <em>daun</em> ✦</div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#dg-s1", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 0.350);
+      tl.to("#dg-s1", { opacity: 0, scale: 0.3, duration: 0.3, ease: "power2.in" }, 1.250);
+      tl.fromTo("#dg-s2", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 0.440);
+      tl.to("#dg-s2", { opacity: 0, scale: 0.3, duration: 0.3, ease: "power2.in" }, 1.340);
+      tl.fromTo("#dg-s3", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 0.530);
+      tl.to("#dg-s3", { opacity: 0, scale: 0.3, duration: 0.3, ease: "power2.in" }, 1.430);
+      tl.fromTo("#dg-chip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 1.750);
+      tl.fromTo("#dg-serif", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power3.out" }, 1.900);
+      tl.to("#dg-chip", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 2.730);
+      tl.to("#dg-serif", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 2.730);
+
+      window.__timelines["design"] = tl;
+    })();
+  </script>
+</template>

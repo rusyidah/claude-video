@@ -1,0 +1,6 @@
+node_modules/
+.hyperframes/
+renders/
+# large binary: regenerate with tools/prepare_media.sh from the source clip
+assets/video/aroll.mp4
+.transcode-cache/

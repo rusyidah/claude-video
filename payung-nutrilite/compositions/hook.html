@@ -1,0 +1,59 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #hk-kicker { left: 64px; top: 182px; }
+    #hk-title { left: 56px; top: 248px; font-size: 158px; }
+    #hk-excl { left: 92px; top: 384px; font-size: 104px; transform: rotate(-4deg); }
+    #hk-stamp { position: absolute; left: 782px; top: 168px; width: 236px; height: 236px;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,.35)); }
+    #hk-stamp svg { width: 100%; height: 100%; }
+    #hk-stamp { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+
+    <div id="hk-kicker" class="chip"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M30 60 C30 44 33 26 42 6" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round"/><ellipse rx="6.5" ry="13" transform="translate(23 44) rotate(-48)" fill="currentColor"/><ellipse rx="6.5" ry="13" transform="translate(41 38) rotate(42)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(26 28) rotate(-40)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(44 22) rotate(48)" fill="currentColor"/><ellipse rx="5" ry="10" transform="translate(41 8) rotate(10)" fill="currentColor"/></svg></span>Nutrilite · 90 tahun</div>
+    <div id="hk-title" class="big">Payung</div>
+    <div id="hk-excl" class="serif">eksklusif</div>
+    <div id="hk-stamp" data-layout-ignore><svg viewBox="0 0 200 200" aria-hidden="true">
+  <defs><path id="hks-c" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+  <circle cx="100" cy="100" r="98" fill="#C8F169"/>
+  <circle cx="100" cy="100" r="54" fill="none" stroke="#0B3D2E" stroke-width="2.5" stroke-dasharray="3 6"/>
+  <text font-family="Archivo Black" font-size="19.5" letter-spacing="2.6" fill="#0B3D2E">
+    <textPath href="#hks-c">HANYA DI AMWAY • HANYA DI AMWAY • </textPath></text>
+  <g transform="translate(70 66) scale(0.95)" color="#0B3D2E"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path d="M30 60 C30 44 33 26 42 6" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round"/><ellipse rx="6.5" ry="13" transform="translate(23 44) rotate(-48)" fill="currentColor"/><ellipse rx="6.5" ry="13" transform="translate(41 38) rotate(42)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(26 28) rotate(-40)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(44 22) rotate(48)" fill="currentColor"/><ellipse rx="5" ry="10" transform="translate(41 8) rotate(10)" fill="currentColor"/></svg></g>
+</svg></div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hk-title", { scale: 1.08, transformOrigin: "0% 50%" }, { scale: 1, duration: 0.7, ease: "expo.out" }, 0);
+      tl.fromTo("#hk-kicker", { opacity: 1, x: -10 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, 0);
+      tl.fromTo("#hk-excl", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power3.out" }, 0.700);
+      tl.fromTo("#hk-stamp", { opacity: 0, scale: 0.2, rotation: -120 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.55, ease: "expo.out" }, 1.84);
+      tl.to("#hk-stamp svg", { rotation: 22, duration: 0.85, ease: "none" }, 1.84);
+      tl.to("#hk-kicker", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.520);
+      tl.to("#hk-title", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.520);
+      tl.to("#hk-excl", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.520);
+      tl.to("#hk-stamp", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.520);
+
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

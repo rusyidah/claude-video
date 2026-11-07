@@ -1,0 +1,65 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #ny-card { position: absolute; left: 60px; top: 176px; width: 900px; height: 318px; border-radius: 40px;
+      background: rgba(8, 46, 32, .93); box-shadow: 0 24px 60px rgba(0,0,0,.4); border: 2px solid rgba(200,241,105,.35); }
+    #ny-since { position: absolute; left: 112px; top: 214px; font: 800 30px/1 var(--font-ui); letter-spacing: .2em;
+      color: var(--lime, #C8F169); text-transform: uppercase; }
+    #ny-year { position: absolute; left: 104px; top: 258px; font: 400 150px/1 var(--font-display); color: var(--cream, #FFF6E3);
+      font-variant-numeric: tabular-nums; }
+    #ny-90 { position: absolute; left: 100px; top: 236px; font: 400 196px/1 var(--font-display); color: var(--lime, #C8F169); }
+    #ny-tahun { position: absolute; left: 432px; top: 246px; font: 400 92px/1 var(--font-display); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; }
+    #ny-world { position: absolute; left: 434px; top: 352px; display: flex; align-items: center; gap: 14px;
+      font: italic 800 56px/1 var(--font-serif); color: var(--lime, #C8F169); white-space: nowrap; }
+    #ny-world .ico { width: 54px; height: 54px; color: var(--cream, #FFF6E3); }
+    #ny-card, #ny-since, #ny-year, #ny-90, #ny-tahun, #ny-world { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="ninety" data-width="1080" data-height="1920">
+
+    <div id="ny-card"></div>
+    <div id="ny-since">Nutrilite sejak 1934</div>
+    <div id="ny-year">1934</div>
+    <div id="ny-90">90</div>
+    <div id="ny-tahun">Tahun</div>
+    <div id="ny-world"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.5"><circle cx="32" cy="32" r="26"/><ellipse cx="32" cy="32" rx="11" ry="26"/><path d="M6 32 H58 M10 18 H54 M10 46 H54"/></svg></span>di seluruh dunia</div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#ny-card", { opacity: 0, scaleY: 0.2, transformOrigin: "50% 0%" }, { opacity: 1, scaleY: 1, duration: 0.4, ease: "expo.out" }, 0.0);
+      tl.fromTo("#ny-since", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 0.120);
+      tl.set("#ny-year", { opacity: 1 }, 0.16);
+      const yr = document.querySelector("#ny-year"); const ctr = { v: 1934 };
+      tl.fromTo(ctr, { v: 1934 }, { v: 2024, duration: 0.62, ease: "power2.inOut", onUpdate: function () { yr.textContent = String(Math.round(ctr.v)); } }, 0.16);
+      tl.to("#ny-year", { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 0.620);
+      tl.fromTo("#ny-90", { opacity: 0, scale: 1.6, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 0.680);
+      tl.fromTo("#ny-tahun", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 0.780);
+      tl.fromTo("#ny-world", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.22, ease: "power3.out" }, 2.420);
+      tl.to("#ny-card", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in" }, 4.280);
+      tl.to("#ny-since", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in" }, 4.280);
+      tl.to("#ny-90", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in" }, 4.280);
+      tl.to("#ny-tahun", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in" }, 4.280);
+      tl.to("#ny-world", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power2.in" }, 4.280);
+
+      window.__timelines["ninety"] = tl;
+    })();
+  </script>
+</template>

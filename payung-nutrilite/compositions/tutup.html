@@ -1,0 +1,61 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #tt-chip { left: 64px; top: 190px; }
+    #tt-tarik { left: 58px; top: 272px; font-size: 118px; }
+    #tt-arrow { position: absolute; left: 420px; top: 262px; width: 70px; height: 132px; color: var(--lime, #C8F169);
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,.45)); }
+    #tt-ting { position: absolute; left: 470px; top: 196px; font: 400 150px/1 var(--font-display); color: var(--lime, #C8F169);
+      text-transform: uppercase; transform: rotate(8deg);
+      text-shadow: 0 7px 0 var(--forest, #0B3D2E), 0 16px 40px rgba(0,0,0,.5); }
+    .tt-sp { position: absolute; color: var(--cream, #FFF6E3); }
+    #tt-s1 { left: 900px; top: 168px; width: 56px; height: 56px; }
+    #tt-s2 { left: 450px; top: 360px; width: 40px; height: 40px; }
+    #tt-chip, #tt-tarik, #tt-arrow, #tt-ting, #tt-s1, #tt-s2 { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="tutup" data-width="1080" data-height="1920">
+
+    <div id="tt-chip" class="chip"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 32 Q32 2 58 32 Q51.5 27 45 32 Q38.5 27 32 32 Q25.5 27 19 32 Q12.5 27 6 32 Z" fill="currentColor"/><path d="M32 31 V52 Q32 59 25 59 Q20 59 20 54" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/></svg></span>Cara tutup</div>
+    <div id="tt-tarik" class="big">Tarik</div>
+    <div id="tt-arrow" class="ico"><svg viewBox="0 0 64 120" aria-hidden="true"><path d="M32 6 V100 M10 78 L32 108 L54 78" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div id="tt-ting">Ting!</div>
+    <div id="tt-s1" class="tt-sp ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2 C34 22 42 30 62 32 C42 34 34 42 32 62 C30 42 22 34 2 32 C22 30 30 22 32 2 Z" fill="currentColor"/></svg></div>
+    <div id="tt-s2" class="tt-sp ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2 C34 22 42 30 62 32 C42 34 34 42 32 62 C30 42 22 34 2 32 C22 30 30 22 32 2 Z" fill="currentColor"/></svg></div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#tt-chip", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, 0.070);
+      tl.fromTo("#tt-tarik", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 2.000);
+      tl.fromTo("#tt-arrow", { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 2.070);
+      tl.to("#tt-tarik", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.640);
+      tl.to("#tt-arrow", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.640);
+      tl.fromTo("#tt-ting", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2.4)" }, 3.800);
+      tl.fromTo("#tt-s1", { opacity: 0, scale: 0, rotation: -60 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" }, 3.840);
+      tl.to("#tt-s1", { opacity: 0, scale: 0.2, duration: 0.25, ease: "power2.in" }, 4.560);
+      tl.fromTo("#tt-s2", { opacity: 0, scale: 0, rotation: -60 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" }, 3.900);
+      tl.to("#tt-s2", { opacity: 0, scale: 0.2, duration: 0.25, ease: "power2.in" }, 4.620);
+      tl.to("#tt-ting", { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" }, 4.920);
+      tl.to("#tt-chip", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 4.920);
+
+      window.__timelines["tutup"] = tl;
+    })();
+  </script>
+</template>

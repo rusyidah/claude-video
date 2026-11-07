@@ -1,0 +1,15 @@
+{
+  "name": "payung-nutrilite",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 tools/build.py",
+    "dev": "npx hyperframes preview",
+    "check": "npx hyperframes check",
+    "preview:render": "npx hyperframes render --quality draft -o renders/preview-draft.mp4",
+    "render": "npx hyperframes render --quality high -o renders/payung-nutrilite-final.mp4"
+  },
+  "devDependencies": {
+    "hyperframes": "0.9.19"
+  }
+}

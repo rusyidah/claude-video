@@ -1,0 +1,53 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #bk-chip { left: 64px; top: 190px; }
+    #bk-l1 { left: 58px; top: 270px; font-size: 104px; }
+    #bk-l2 { left: 58px; top: 376px; font-size: 104px; color: var(--lime, #C8F169); }
+    #bk-btn { position: absolute; left: 640px; top: 382px; width: 92px; height: 92px; border-radius: 50%;
+      background: var(--cream, #FFF6E3); box-shadow: inset 0 -8px 0 rgba(11,61,46,.25), 0 10px 26px rgba(0,0,0,.4); }
+    #bk-btn i { position: absolute; left: 30px; top: 26px; width: 32px; height: 32px; border-radius: 50%; background: var(--forest, #0B3D2E); }
+    #bk-chip, #bk-l1, #bk-l2, #bk-btn { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="buka" data-width="1080" data-height="1920">
+
+    <div id="bk-chip" class="chip"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 32 Q32 2 58 32 Q51.5 27 45 32 Q38.5 27 32 32 Q25.5 27 19 32 Q12.5 27 6 32 Z" fill="currentColor"/><path d="M32 31 V52 Q32 59 25 59 Q20 59 20 54" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/></svg></span>Cara buka</div>
+    <div id="bk-l1" class="big">Tekan</div>
+    <div id="bk-l2" class="big">1 butang</div>
+    <div id="bk-btn"><i></i></div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#bk-chip", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, 0.080);
+      tl.fromTo("#bk-l1", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 1.700);
+      tl.fromTo("#bk-l2", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 1.900);
+      tl.fromTo("#bk-btn", { opacity: 0, scale: 0.4, rotation: -12 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(1.7)" }, 2.080);
+      tl.to("#bk-btn", { scale: 0.86, duration: 0.08, ease: "power2.in" }, 3.140);
+      tl.to("#bk-btn", { scale: 1, duration: 0.25, ease: "power3.out" }, 3.220);
+      tl.to("#bk-chip", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.980);
+      tl.to("#bk-l1", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.980);
+      tl.to("#bk-l2", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.980);
+      tl.to("#bk-btn", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.980);
+
+      window.__timelines["buka"] = tl;
+    })();
+  </script>
+</template>
