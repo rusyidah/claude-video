@@ -88,9 +88,9 @@ def w(text, nth=0):
 GROUPS = [(7, 8), (9, 11), (12, 13), (14, 15), (16, 17), (18, 18), (19, 20), (21, 21), (22, 23), (24, 26),
           (27, 28), (29, 30), (31, 32), (33, 34), (35, 36), (37, 38), (39, 41), (42, 44), (45, 46), (47, 48),
           (49, 51), (52, 53), (54, 55), (56, 57), (58, 58)]
-HOT = {"Air", "Pro", "3.", "ANC", "43", "senyap.", "11mm,", "padu.", "Qualcomm", "aptX", "45", "jam", "10", "90",
+HOT = {"Nampak?", "Air", "Pro", "3.", "ANC", "43", "senyap.", "11mm,", "padu.", "Qualcomm", "aptX", "45", "jam", "10", "90",
        "2", "device", "best.", "beg", "kuning"}
-YELLOW = {"beg", "kuning"}
+YELLOW = {"beg", "kuning", "Nampak"}
 
 # ---------------------------------------------------------------- voice level for the EQ dock (output-time, 30 fps)
 db_src = None
@@ -140,7 +140,8 @@ HEAD = {
     "h-hook": (0.0, seg("B")["o"]),
     "h-name": (seg("B")["o"] + 0.05, seg("C")["o"]),
     "h-anc": (t_anc - 0.05, seg("D")["o"]),
-    "h-senyap": (t_senyap - 0.04, seg("E1")["o"] + 0.25),
+    "h-senyap": (t_senyap - 0.04, seg("E1")["o"] - 0.02),
+    "h-nampak": (seg("E1")["o"] - 0.03, t_11 - 0.07),
     "h-driver": (t_11 - 0.05, seg("F")["o"]),
     "h-chip": (t_qual - 0.08, seg("G")["o"]),
     "h-batt": (t_45 - 0.08, seg("H")["o"]),
@@ -166,6 +167,7 @@ for i, c in enumerate(CARDS):
     SFX.append((f"sfx-wh-{c[0]}", f"assets/sfx/{whooshes[i % 3]}.mp3", max(0, c[3] - 0.04), 0.42))
 SFX += [
     ("sfx-tap", "assets/sfx/tap-3.mp3", t_tap - 0.02, 0.9),
+    ("sfx-pop-nampak", "assets/sfx/pop-3.mp3", seg("E1")["o"], 0.45),
     ("sfx-pop-43", "assets/sfx/pop-3.mp3", t_43 + 0.02, 0.38),
     ("sfx-vacuum", "assets/sfx/vacuum-1.mp3", t_terus - 0.05, 0.55),
     ("sfx-bass", "assets/sfx/bass-1.mp3", t_padu - 0.03, 0.55),
@@ -244,6 +246,10 @@ P(f"""<!doctype html>
       html, body {{ width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }}
       #root {{ position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--text); }}
       #stage-bg {{ position: absolute; inset: 0; background: var(--ink); }}
+      .world {{ position: absolute; left: -60px; top: -100px; width: 1200px; height: 2120px; }}
+      .world img {{ width: 1200px; height: 2120px; object-fit: cover; display: block; }}
+      #w-quiet {{ clip-path: circle(0px at 605px 840px); }}
+      #w-quiet-tint {{ position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 38%, rgba(59,226,255,0.0) 30%, rgba(59,226,255,0.14) 100%); }}
       #cam {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: {ORIGIN[0]}px {ORIGIN[1]}px; }}
       #cam video {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
 
@@ -325,15 +331,17 @@ P(f"""<!doctype html>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920" data-motion-blur="on">
       <div id="stage-bg"></div>
+      <div id="w-noisy" class="world" data-layout-ignore data-motion-blur="off"><img id="img-noisy" src="assets/img/bg-noisy.jpg" alt="" /></div>
+      <div id="w-quiet" class="world" data-layout-ignore data-motion-blur="off"><img id="img-quiet" src="assets/img/bg-quiet.jpg" alt="" /><div id="w-quiet-tint"></div></div>
       <div id="cam">
 """)
 
 # video clips
 for g in SEGS:
     dur = round(g["b"] - g["a"], 3)
-    P(f'        <video id="v-{g["id"]}" class="clip" src="assets/video/speaker.mp4" data-start="{g["o"]}" data-duration="{dur}" '
-      f'data-media-start="{g["a"]}" data-track-index="0" data-has-audio="true" data-volume="1" data-fade-in="0.015" data-fade-out="0.015" playsinline></video>\n')
-P(f'        <img id="v-hold" class="clip" src="assets/img/last-frame.jpg" alt="" data-start="{VID_END}" data-duration="{HOLD}" data-track-index="1" style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover" />\n')
+    P(f'        <video id="v-{g["id"]}" class="clip" src="assets/video/speaker-cutout.webm" data-start="{g["o"]}" data-duration="{dur}" '
+      f'data-media-start="{g["a"]}" data-track-index="0" muted playsinline></video>\n')
+P(f'        <img id="v-hold" class="clip" src="assets/img/last-frame-cutout.png" alt="" data-start="{VID_END}" data-duration="{HOLD}" data-track-index="1" style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover" />\n')
 P("      </div>\n")
 
 # noise arcs
@@ -355,6 +363,7 @@ HEAD_HTML = {
     "h-name": '<div class="kicker">EarFun <b>//</b> Review jujur</div><div class="hl mid"><span class="slab">Air Pro 3</span></div>',
     "h-anc": '<div class="kicker">Active Noise Cancelling</div><div class="row"><div class="hl big"><span id="n-43">0</span><span class="unit">dB</span></div><div class="hl sm"><span class="slab">ANC</span></div></div>',
     "h-senyap": '<div class="hl big row" id="senyap-word" style="gap:0">' + "".join(f'<span class="sl" id="sl-{i}" style="display:inline-block">{ch}</span>' for i, ch in enumerate("SENYAP.")) + '</div>',
+    "h-nampak": '<div class="hl big"><span class="slab y" id="nampak-slab">Nampak?</span></div>',
     "h-driver": '<div class="kicker">Dynamic driver</div><div class="row"><div class="hl big">11<span class="unit">mm</span></div><div class="hl sm"><span class="slab" id="bass-slab">Bass padu</span></div></div>',
     "h-chip": '<div class="kicker">Qualcomm QCC3071</div><div class="hl mid"><span class="slab">aptX Adaptive</span></div>',
     "h-batt": '<div class="kicker">Bateri + case</div><div class="row"><div class="hl big"><span id="n-45">0</span></div><div class="hl sm"><span class="slab">Jam</span></div></div>',
@@ -401,6 +410,8 @@ P('        <div id="dock-title">Air Pro 3 &#183; LE Audio</div>\n        <div id
 P(f'      <audio id="bgm" class="clip" src="assets/music/bgm.mp3" data-start="0" data-duration="{TOTAL}" data-media-start="{round(BGM_MEDIA_START,3)}" data-track-index="10" data-volume="1" '
   f"data-fx-chain=\"{html.escape(json.dumps({'version':1,'nodes':[{'type':'highpass','id':'hp','label':'Phone-speaker clean','params':{'frequency':110}},{'type':'peaking','id':'pk','label':'Voice pocket','params':{'frequency':2500,'gain':-4,'q':0.9}}]}), quote=True)}\" "
   f"data-automation='{auto(BGM_PTS)}'></audio>\n")
+for g in SEGS:
+    P(f'      <audio id="vo-{g["id"]}" class="clip" src="assets/video/voice.m4a" data-start="{g["o"]}" data-duration="{round(g["b"]-g["a"],3)}" data-media-start="{g["a"]}" data-track-index="9" data-volume="1" data-fade-in="0.015" data-fade-out="0.015"></audio>\n')
 P(f"      <audio id=\"noise\" class=\"clip\" src=\"assets/sfx/city-noise.mp3\" data-start=\"0\" data-duration=\"{round(noise_end,3)}\" data-track-index=\"11\" data-volume=\"1\" data-automation='{auto(NOISE_PTS)}'></audio>\n")
 for i, (sid, f, a, v) in enumerate(SFX):
     kind = f.split("/")[-1].split("-")[0]
@@ -419,6 +430,29 @@ for g in SEGS:
     dur = g["b"] - g["a"]
     J(f'tl.set("#cam", {{ scale: {g["s"]}, x: 0, y: 0 }}, {g["o"]});')
     J(f'tl.to("#cam", {{ scale: {round(g["s"] + 0.025, 3)}, duration: {round(dur, 3)}, ease: "none" }}, {g["o"]});')
+    bs = round(1 + (g["s"] - 1) * 0.45, 3)
+    J(f'tl.set(".world", {{ scale: {bs} }}, {g["o"]});')
+    J(f'tl.to(".world", {{ scale: {round(bs + 0.012, 3)}, duration: {round(dur, 3)}, ease: "none" }}, {g["o"]});')
+
+# background worlds follow the script: noisy street while it is loud, quiet room once ANC is on.
+IRIS_C = "605px 840px"
+def quiet_in(t, d=0.5):
+    J(f'tl.fromTo("#w-quiet", {{ clipPath: "circle(0px at {IRIS_C})" }}, {{ clipPath: "circle(1500px at {IRIS_C})", duration: {d}, ease: "power3.inOut" }}, {round(t,3)});')
+J(f'tl.set("#w-quiet", {{ clipPath: "circle(0px at {IRIS_C})" }}, 0);')
+quiet_in(t_tap + 0.02, 0.55)                       # Tekan sekali -> ANC on
+J(f'tl.set("#w-quiet", {{ clipPath: "circle(0px at {IRIS_C})" }}, {round(t_bising - 0.04,3)});')  # Bising -> street slams back
+quiet_in(t_terus, 0.45)                             # terus senyap
+# street jitter while it is noisy (deterministic hand-held shake)
+import random as _r
+_rng = _r.Random(7)
+_t = 0.0
+while _t < t_senyap:
+    noisy = _t < t_tap + 0.3 or (t_bising - 0.05 <= _t < t_terus + 0.2)
+    amp = 9 if noisy else 0
+    J(f'tl.to("#img-noisy", {{ x: {round((_rng.random()-0.5)*2*amp,1)}, y: {round((_rng.random()-0.5)*2*amp,1)}, duration: 0.08, ease: "none" }}, {round(_t,2)});')
+    _t += 0.08
+# quiet room breathes very slowly (calm)
+J(f'tl.fromTo("#img-quiet", {{ x: 0 }}, {{ x: -30, duration: TOTAL, ease: "none" }}, 0);')
 
 # noise arcs: flicker through precomputed frames while noisy, then flatten
 nz_on, nz_dim, nz_flat = 0.0, seg("B")["o"], t_senyap
@@ -455,7 +489,7 @@ def head_in(hid, a, kind):
 def head_out(hid, b):
     J(f'tl.to("#{hid}-in", {{ opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }}, {round(b - 0.15, 3)});')
 
-KINDS = {"h-hook": "now", "h-name": "whip", "h-anc": "pop", "h-senyap": "blur", "h-driver": "drop", "h-chip": "whip",
+KINDS = {"h-nampak": "pop", "h-hook": "now", "h-name": "whip", "h-anc": "pop", "h-senyap": "blur", "h-driver": "drop", "h-chip": "whip",
          "h-batt": "pop", "h-charge": "drop", "h-device": "whip", "h-best": "pop", "h-cta": "blur"}
 for hid, (a, b) in HEAD.items():
     head_in(hid, round(a, 3), KINDS[hid])
@@ -477,6 +511,7 @@ J(f'tl.fromTo("#cam", {{ y: 0 }}, {{ y: 10, duration: 0.05, yoyo: true, repeat: 
 # 90 min slab lands
 J(f'tl.fromTo("#slab-90", {{ scale: 0.6, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }}, {t_90});')
 J(f'tl.fromTo("#n-2", {{ scale: 0.3, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }}, {t_2});')
+J(f'tl.fromTo("#nampak-slab", {{ rotation: -8 }}, {{ rotation: 0, duration: 0.35, ease: "back.out(3)" }}, {seg("E1")["o"]});')
 # stars
 for i in range(5):
     J(f'tl.fromTo("#st-{i}", {{ scale: 0, rotation: -40 }}, {{ scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" }}, {round(t_best + 0.05 + i*0.07,3)});')
