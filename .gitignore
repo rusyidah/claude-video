@@ -1,0 +1,8 @@
+node_modules/
+edit/node_modules/
+edit/package*.json
+**/.hyperframes/
+media/raw/
+media/audio_candidates/
+edit/earfun/assets/video/
+*.log
