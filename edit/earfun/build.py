@@ -140,8 +140,6 @@ HEAD = {
     "h-hook": (0.0, seg("B")["o"]),
     "h-name": (seg("B")["o"] + 0.05, seg("C")["o"]),
     "h-anc": (t_anc - 0.05, seg("D")["o"]),
-    "h-senyap": (t_senyap - 0.04, seg("E1")["o"] - 0.02),
-    "h-nampak": (seg("E1")["o"] - 0.03, t_11 - 0.07),
     "h-driver": (t_11 - 0.05, seg("F")["o"]),
     "h-chip": (t_qual - 0.08, seg("G")["o"]),
     "h-batt": (t_45 - 0.08, seg("H")["o"]),
@@ -218,6 +216,19 @@ def noise_path(side, k, amp):
 
 NOISE_FRAMES = 40
 
+# ---------------------------------------------------------------- BISING equaliser bars (deterministic)
+import random as _r
+_rb = _r.Random(42)
+BARS = []
+for i in range(13):
+    x = 14 + i * 82
+    top = _rb.choice([_rb.randint(0, 120), _rb.randint(160, 520)])
+    bot = _rb.randint(1150, 1600)
+    BARS.append((x, top, bot))
+BARS_HTML = "".join(f'<div class="eqb" id="eqb-{i}" style="left:{x}px;top:{t}px;height:{b-t}px"></div>' for i, (x, t, b) in enumerate(BARS))
+CUTOUT_SEGS = {"D", "E1"}
+NAMPAK_END = round(T(w("11mm")) - 0.14, 3)  # hold the "Nampak?" highlight; the "Driver" caption waits for it   # the only shots where the room is replaced
+
 # ---------------------------------------------------------------- HTML
 esc = html.escape
 parts = []
@@ -246,10 +257,20 @@ P(f"""<!doctype html>
       html, body {{ width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }}
       #root {{ position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--text); }}
       #stage-bg {{ position: absolute; inset: 0; background: var(--ink); }}
-      .world {{ position: absolute; left: -60px; top: -100px; width: 1200px; height: 2120px; }}
-      .world img {{ width: 1200px; height: 2120px; object-fit: cover; display: block; }}
-      #w-quiet {{ clip-path: circle(0px at 605px 840px); }}
-      #w-quiet-tint {{ position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 38%, rgba(59,226,255,0.0) 30%, rgba(59,226,255,0.14) 100%); }}
+      .world {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; opacity: 0; }}
+      #w-bising {{ background: #f0bd45; }}
+      #w-bising .eqb {{ position: absolute; width: 58px; background: #0d0d0d; border-radius: 4px; }}
+      #bising-word {{ position: absolute; left: 0; top: 150px; width: 1080px; text-align: center; font-family: "Montserrat", sans-serif;
+                      font-weight: 900; font-size: 250px; line-height: 1; letter-spacing: -0.03em; color: #fff; }}
+      #w-senyap {{ background: #ffffff; }}
+      #senyap-line {{ position: absolute; left: 0; top: 770px; width: 1080px; height: 3px; background: #111; transform-origin: 50% 50%; }}
+      #senyap-word {{ position: absolute; left: 0; top: 215px; width: 1080px; text-align: center; font-family: "Montserrat", sans-serif;
+                      font-weight: 300; font-size: 150px; line-height: 1; letter-spacing: 0.08em; color: #111; }}
+      .pill-wrap {{ position: absolute; left: 0; top: 1186px; width: 1080px; height: 140px; display: flex; align-items: center; justify-content: center; }}
+      .pill {{ display: flex; align-items: center; gap: 16px; padding: 12px 22px; border-radius: 18px; background: rgba(18,18,18,0.94);
+               font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 62px; color: #fff; opacity: 0; }}
+      .pill .pw {{ display: inline-block; }}
+      .ybox {{ display: inline-block; padding: 0 16px 4px; border-radius: 12px; background: #f2c14e; color: #141414; }}
       #cam {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: {ORIGIN[0]}px {ORIGIN[1]}px; }}
       #cam video {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
 
@@ -331,17 +352,18 @@ P(f"""<!doctype html>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920" data-motion-blur="on">
       <div id="stage-bg"></div>
-      <div id="w-noisy" class="world" data-layout-ignore data-motion-blur="off"><img id="img-noisy" src="assets/img/bg-noisy.jpg" alt="" /></div>
-      <div id="w-quiet" class="world" data-layout-ignore data-motion-blur="off"><img id="img-quiet" src="assets/img/bg-quiet.jpg" alt="" /><div id="w-quiet-tint"></div></div>
+      <div id="w-bising" class="world" data-layout-ignore data-motion-blur="off">{BARS_HTML}<div id="bising-word">BISING</div></div>
+      <div id="w-senyap" class="world" data-layout-ignore data-motion-blur="off"><div id="senyap-line"></div><div id="senyap-word">SENYAP</div></div>
       <div id="cam">
 """)
 
 # video clips
 for g in SEGS:
     dur = round(g["b"] - g["a"], 3)
-    P(f'        <video id="v-{g["id"]}" class="clip" src="assets/video/speaker-cutout.webm" data-start="{g["o"]}" data-duration="{dur}" '
+    src = "assets/video/speaker-cutout.webm" if g["id"] in CUTOUT_SEGS else "assets/video/speaker.mp4"
+    P(f'        <video id="v-{g["id"]}" class="clip" src="{src}" data-start="{g["o"]}" data-duration="{dur}" '
       f'data-media-start="{g["a"]}" data-track-index="0" muted playsinline></video>\n')
-P(f'        <img id="v-hold" class="clip" src="assets/img/last-frame-cutout.png" alt="" data-start="{VID_END}" data-duration="{HOLD}" data-track-index="1" style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover" />\n')
+P(f'        <img id="v-hold" class="clip" src="assets/img/last-frame.jpg" alt="" data-start="{VID_END}" data-duration="{HOLD}" data-track-index="1" style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover" />\n')
 P("      </div>\n")
 
 # noise arcs
@@ -379,12 +401,14 @@ for hid, (a, b) in HEAD.items():
 P('      <div id="cap-layer" data-motion-blur="off">\n')
 for gi, (i0, i1) in enumerate(GROUPS):
     a = T(W[i0][1]) - 0.06
+    if i0 == 22:
+        a = NAMPAK_END
     b = T(W[i1][2]) + 0.04
     if gi + 1 < len(GROUPS):
         nx = T(W[GROUPS[gi + 1][0]][1]) - 0.06
         b = nx if nx - b < 0.7 else b
-    if i0 >= 56:
-        continue  # the CTA pill speaks this line
+    if i0 >= 56 or i0 in (18, 19, 21):
+        continue  # the CTA pill / reference-style pills speak these lines
     words = []
     for i in range(i0, i1 + 1):
         t = W[i][0]
@@ -392,6 +416,10 @@ for gi, (i0, i1) in enumerate(GROUPS):
         words.append(f'<span id="w-{i}" class="{cls}">{esc(t.rstrip(",."))}</span>')
     P(f'        <div id="cap-{gi}" class="cap clip" data-start="{round(a,3)}" data-duration="{round(b-a,3)}" data-track-index="3"><div id="cap-{gi}-in" class="cin">{"".join(words)}</div></div>\n')
 P("      </div>\n")
+pb_a = round(t_bising - 0.04, 3); pb_b = round(seg("E1")["o"] - 0.02, 3)
+P(f'      <div id="pb-host" class="pill-wrap clip" data-start="{pb_a}" data-duration="{round(pb_b-pb_a,3)}" data-track-index="5" data-motion-blur="off"><div class="pill" id="pill-bts"><span class="pw" id="pw-bising">Bising</span><span class="pw" id="pw-terus">terus</span><span class="pw ybox" id="pw-senyap">senyap</span></div></div>\n')
+pn_a = round(seg("E1")["o"] - 0.03, 3); pn_b = NAMPAK_END
+P(f'      <div id="pn-host" class="pill-wrap clip" data-start="{pn_a}" data-duration="{round(pn_b-pn_a,3)}" data-track-index="5" data-motion-blur="off"><div class="pill" id="pill-nampak" style="font-size:78px"><span class="pw ybox">Nampak?</span></div></div>\n')
 
 # CTA
 BAG = ('<svg id="cta-bag" viewBox="0 0 64 64"><path d="M14 22h36l-3 34H17z" fill="#0a0e1a"/>'
@@ -430,29 +458,32 @@ for g in SEGS:
     dur = g["b"] - g["a"]
     J(f'tl.set("#cam", {{ scale: {g["s"]}, x: 0, y: 0 }}, {g["o"]});')
     J(f'tl.to("#cam", {{ scale: {round(g["s"] + 0.025, 3)}, duration: {round(dur, 3)}, ease: "none" }}, {g["o"]});')
-    bs = round(1 + (g["s"] - 1) * 0.45, 3)
-    J(f'tl.set(".world", {{ scale: {bs} }}, {g["o"]});')
-    J(f'tl.to(".world", {{ scale: {round(bs + 0.012, 3)}, duration: {round(dur, 3)}, ease: "none" }}, {g["o"]});')
 
-# background worlds follow the script: noisy street while it is loud, quiet room once ANC is on.
-IRIS_C = "605px 840px"
-def quiet_in(t, d=0.5):
-    J(f'tl.fromTo("#w-quiet", {{ clipPath: "circle(0px at {IRIS_C})" }}, {{ clipPath: "circle(1500px at {IRIS_C})", duration: {d}, ease: "power3.inOut" }}, {round(t,3)});')
-J(f'tl.set("#w-quiet", {{ clipPath: "circle(0px at {IRIS_C})" }}, 0);')
-quiet_in(t_tap + 0.02, 0.55)                       # Tekan sekali -> ANC on
-J(f'tl.set("#w-quiet", {{ clipPath: "circle(0px at {IRIS_C})" }}, {round(t_bising - 0.04,3)});')  # Bising -> street slams back
-quiet_in(t_terus, 0.45)                             # terus senyap
-# street jitter while it is noisy (deterministic hand-held shake)
-import random as _r
-_rng = _r.Random(7)
-_t = 0.0
-while _t < t_senyap:
-    noisy = _t < t_tap + 0.3 or (t_bising - 0.05 <= _t < t_terus + 0.2)
-    amp = 9 if noisy else 0
-    J(f'tl.to("#img-noisy", {{ x: {round((_rng.random()-0.5)*2*amp,1)}, y: {round((_rng.random()-0.5)*2*amp,1)}, duration: 0.08, ease: "none" }}, {round(_t,2)});')
+# BISING / SENYAP worlds on "Bising, terus senyap" (+ "Nampak?"), from the reference frames
+w_in = round(t_bising - 0.04, 3)
+w_sw = round(t_terus - 0.02, 3)
+w_out = seg("E2")["o"]
+J(f'tl.set("#w-bising", {{ opacity: 1 }}, {w_in});')
+J(f'tl.fromTo(".eqb", {{ scaleY: 0 }}, {{ scaleY: 1, duration: 0.18, ease: "power3.out", stagger: 0.015 }}, {w_in});')
+J(f'tl.fromTo("#bising-word", {{ scale: 1.35, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.18, ease: "power4.out" }}, {w_in});')
+_t = w_in + 0.2
+_k = 0
+while _t < w_sw - 0.05:
+    for i in range(len(BARS)):
+        J(f'tl.to("#eqb-{i}", {{ scaleY: {round(_rb.uniform(0.7, 1.12),3)}, y: {round(_rb.uniform(-70, 70),1)}, duration: 0.08, ease: "none" }}, {round(_t,3)});')
+    J(f'tl.to("#bising-word", {{ x: {round(_rb.uniform(-7,7),1)}, y: {round(_rb.uniform(-5,5),1)}, duration: 0.08, ease: "none" }}, {round(_t,3)});')
     _t += 0.08
-# quiet room breathes very slowly (calm)
-J(f'tl.fromTo("#img-quiet", {{ x: 0 }}, {{ x: -30, duration: TOTAL, ease: "none" }}, 0);')
+J(f'tl.set("#w-bising", {{ opacity: 0 }}, {w_sw});')
+J(f'tl.set("#w-senyap", {{ opacity: 1 }}, {w_sw});')
+J(f'tl.fromTo("#senyap-line", {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.7, ease: "power2.out" }}, {w_sw});')
+J(f'tl.fromTo("#senyap-word", {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }}, {round(t_senyap - 0.05,3)});')
+J(f'tl.set("#w-senyap", {{ opacity: 0 }}, {w_out});')
+# pill captions in the reference style
+J(f'tl.fromTo("#pill-bts", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }}, {w_in});')
+J(f'tl.fromTo("#pw-senyap", {{ scale: 1 }}, {{ scale: 1.2, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out" }}, {round(t_senyap,3)});')
+J(f'tl.to("#pill-bts", {{ opacity: 0, duration: 0.06 }}, {round(seg("E1")["o"] - 0.08,3)});')
+J(f'tl.fromTo("#pill-nampak", {{ opacity: 0, scale: 0.5, rotation: -8 }}, {{ opacity: 1, scale: 1, rotation: 0, duration: 0.32, ease: "back.out(2.6)" }}, {round(seg("E1")["o"] - 0.03,3)});')
+J(f'tl.to("#pill-nampak", {{ opacity: 0, duration: 0.06 }}, {round(NAMPAK_END - 0.07,3)});')
 
 # noise arcs: flicker through precomputed frames while noisy, then flatten
 nz_on, nz_dim, nz_flat = 0.0, seg("B")["o"], t_senyap
@@ -470,7 +501,7 @@ while t < t_senyap:
     t += step
 J(f'tl.to(".noise", {{ opacity: 0.35, duration: 0.3 }}, {seg("B")["o"]});')
 J(f'tl.to(".noise", {{ opacity: 0.12, duration: 0.4 }}, {t_tap + 0.1});')
-J(f'tl.to(".noise", {{ opacity: 1, duration: 0.1 }}, {t_bising - 0.05});')
+J(f'tl.set(".noise", {{ opacity: 0 }}, {t_bising - 0.05});')
 J(f'tl.to(".noise", {{ opacity: 0, scale: 0.6, duration: 0.3, ease: "power3.in" }}, {t_senyap - 0.12});')
 
 # headlines: entrances vary by beat; exits are short blur-outs
@@ -503,15 +534,12 @@ J(f'const c43 = {{ v: 0 }}; tl.to(c43, {{ v: 43, duration: {round(t_43 + 0.25 - 
 J(f'const c45 = {{ v: 0 }}; tl.to(c45, {{ v: 45, duration: 0.55, ease: "power2.out", onUpdate: () => {{ document.getElementById("n-45").textContent = Math.round(c45.v); }} }}, {t_45 - 0.05});')
 J(f'tl.fromTo("#n-43", {{ scale: 1 }}, {{ scale: 1.12, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }}, {t_43});')
 # senyap: letters breathe apart once
-for i in range(7):
-    J(f'tl.fromTo("#sl-{i}", {{ x: 0 }}, {{ x: {(i-3)*14}, duration: 0.9, ease: "expo.out" }}, {t_senyap});')
 # bass punch
 J(f'tl.fromTo("#bass-slab", {{ scale: 1 }}, {{ scale: 1.22, duration: 0.09, yoyo: true, repeat: 3, ease: "power2.out" }}, {t_padu});')
 J(f'tl.fromTo("#cam", {{ y: 0 }}, {{ y: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }}, {t_padu});')
 # 90 min slab lands
 J(f'tl.fromTo("#slab-90", {{ scale: 0.6, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }}, {t_90});')
 J(f'tl.fromTo("#n-2", {{ scale: 0.3, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }}, {t_2});')
-J(f'tl.fromTo("#nampak-slab", {{ rotation: -8 }}, {{ rotation: 0, duration: 0.35, ease: "back.out(3)" }}, {seg("E1")["o"]});')
 # stars
 for i in range(5):
     J(f'tl.fromTo("#st-{i}", {{ scale: 0, rotation: -40 }}, {{ scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" }}, {round(t_best + 0.05 + i*0.07,3)});')
@@ -529,9 +557,9 @@ for cid, img, side, a, b in CARDS:
 
 # captions: group pops in, active word lifts
 for gi, (i0, i1) in enumerate(GROUPS):
-    if i0 >= 56:
+    if i0 >= 56 or i0 in (18, 19, 21):
         continue
-    a = round(T(W[i0][1]) - 0.06, 3)
+    a = round(T(W[i0][1]) - 0.06, 3) if i0 != 22 else NAMPAK_END
     J(f'tl.fromTo("#cap-{gi}-in", {{ opacity: 0, scale: 0.86, y: 14 }}, {{ opacity: 1, scale: 1, y: 0, duration: 0.16, ease: "back.out(2)" }}, {a});')
     nxt = GROUPS[gi + 1][0] if gi + 1 < len(GROUPS) else None
     end = T(W[i1][2]) + 0.04
