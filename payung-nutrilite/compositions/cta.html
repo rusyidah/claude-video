@@ -16,25 +16,25 @@
     .ico { display: inline-block; vertical-align: middle; }
     .ico svg { width: 100%; height: 100%; display: block; }
 
-    #ct-a { position: absolute; left: 92px; top: 796px; font: italic 800 70px/1 var(--font-serif); color: var(--leaf, #1E7B4A); }
-    #ct-b { position: absolute; left: 88px; top: 880px; font: 400 66px/1 var(--font-display); color: var(--forest, #0B3D2E);
-      text-transform: uppercase; white-space: nowrap; }
-    #ct-site { position: absolute; left: 96px; top: 986px; width: 740px; height: 337px; border-radius: 22px; overflow: hidden;
-      border: 8px solid #fff; box-shadow: 0 24px 50px rgba(11,61,46,.3); background: #fff; }
+    #ct-site { position: absolute; left: 60px; top: 178px; width: 700px; height: 319px; border-radius: 22px; overflow: hidden;
+      border: 8px solid #fff; box-shadow: 0 24px 50px rgba(0,0,0,.4); background: #fff; }
     #ct-site img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block; }
-    #ct-stamp { position: absolute; left: 726px; top: 1052px; width: 232px; height: 232px; filter: drop-shadow(0 14px 26px rgba(0,0,0,.3)); }
+    #ct-prod { position: absolute; left: 792px; top: 186px; width: 196px; height: 238px; border-radius: 26px; background: #fff;
+      box-shadow: 0 22px 44px rgba(0,0,0,.38); display: flex; align-items: center; justify-content: center; }
+    #ct-prod img { width: 166px; height: 208px; object-fit: contain; }
+    #ct-stamp { position: absolute; left: 806px; top: 420px; width: 196px; height: 196px; filter: drop-shadow(0 14px 26px rgba(0,0,0,.35)); }
     #ct-stamp svg { width: 100%; height: 100%; }
-    #ct-best { position: absolute; left: 300px; top: 1236px; padding: 18px 34px 20px; border-radius: 22px;
-      background: var(--coral, #FF7A59); color: var(--cream, #FFF6E3); font: 400 64px/1 var(--font-display);
-      text-transform: uppercase; box-shadow: 0 16px 34px rgba(0,0,0,.3); white-space: nowrap; }
-    #ct-a, #ct-b, #ct-site, #ct-stamp, #ct-best { opacity: 0; }
+    #ct-best { position: absolute; left: 60px; width: 880px; top: 1166px; text-align: center; }
+    #ct-best span { display: inline-block; padding: 20px 40px 22px; border-radius: 26px; background: var(--coral, #FF7A59);
+      color: var(--cream, #FFF6E3); font: 400 80px/1 var(--font-display); text-transform: uppercase;
+      box-shadow: 0 16px 34px rgba(0,0,0,.35); white-space: nowrap; }
+    #ct-site, #ct-prod, #ct-stamp, #ct-best { opacity: 0; }
 
   </style>
   <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
 
-    <div id="ct-a">Dapatkan sekarang</div>
-    <div id="ct-b">Suplemen Nutrilite</div>
     <div id="ct-site"><img src="assets/img/amway-site.png" alt="Amway Malaysia website"></div>
+    <div id="ct-prod"><img src="assets/img/bioc.png" alt="Nutrilite Bio C Plus"></div>
     <div id="ct-stamp" data-layout-ignore><svg viewBox="0 0 200 200" aria-hidden="true">
   <defs><path id="cts-c" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
   <circle cx="100" cy="100" r="98" fill="#C8F169"/>
@@ -43,18 +43,30 @@
     <textPath href="#cts-c">TEBUS PAYUNG • TEBUS PAYUNG • </textPath></text>
   <g transform="translate(70 66) scale(0.95)" color="#0B3D2E"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path d="M30 60 C30 44 33 26 42 6" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round"/><ellipse rx="6.5" ry="13" transform="translate(23 44) rotate(-48)" fill="currentColor"/><ellipse rx="6.5" ry="13" transform="translate(41 38) rotate(42)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(26 28) rotate(-40)" fill="currentColor"/><ellipse rx="6" ry="12" transform="translate(44 22) rotate(48)" fill="currentColor"/><ellipse rx="5" ry="10" transform="translate(41 8) rotate(10)" fill="currentColor"/></svg></g>
 </svg></div>
-    <div id="ct-best">Memang best!</div>
+    <div id="ct-best"><span>Memang best!</span></div>
 
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#ct-a", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power3.out" }, 0.150);
-      tl.fromTo("#ct-b", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power3.out" }, 1.460);
-      tl.fromTo("#ct-site", { opacity: 0, y: 160, rotation: 4 }, { opacity: 1, y: 0, rotation: -2, duration: 0.6, ease: "expo.out" }, 0.650);
-      tl.fromTo("#ct-stamp", { opacity: 0, scale: 0.2, rotation: -120 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.55, ease: "expo.out" }, 2.150);
+      tl.fromTo("#ct-site", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, 0.120);
+      tl.fromTo("#ct-site", { x: 820 }, { x: 0, duration: 0.65, ease: "power3.out" }, 0.120);
+      tl.fromTo("#ct-site", { y: -420 }, { y: 0, duration: 0.65, ease: "back.out(1.15)" }, 0.120);
+      tl.fromTo("#ct-site", { rotation: 28, scale: 0.55 }, { rotation: -3, scale: 1, duration: 0.65, ease: "back.out(1.6)" }, 0.120);
+      tl.fromTo("#ct-site", { filter: "blur(14px)" }, { filter: "blur(0px)", duration: 0.455, ease: "expo.out" }, 0.120);
+      tl.fromTo("#ct-prod", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, 1.460);
+      tl.fromTo("#ct-prod", { x: 420 }, { x: 0, duration: 0.55, ease: "power3.out" }, 1.460);
+      tl.fromTo("#ct-prod", { y: -480 }, { y: 0, duration: 0.55, ease: "back.out(1.15)" }, 1.460);
+      tl.fromTo("#ct-prod", { rotation: 60, scale: 0.55 }, { rotation: 6, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 1.460);
+      tl.fromTo("#ct-prod", { filter: "blur(14px)" }, { filter: "blur(0px)", duration: 0.385, ease: "expo.out" }, 1.460);
+      tl.fromTo("#ct-stamp", { opacity: 0, scale: 0.2, rotation: -150 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.55, ease: "expo.out" }, 2.150);
       tl.to("#ct-stamp svg", { rotation: 40, duration: 2.8, ease: "none" }, 2.150);
-      tl.fromTo("#ct-best", { opacity: 0, scale: 0.3, rotation: -14 }, { opacity: 1, scale: 1, rotation: 5, duration: 0.45, ease: "back.out(2)" }, 3.100);
+      tl.fromTo("#ct-best span", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, 3.020);
+      tl.fromTo("#ct-best span", { x: 0 }, { x: 0, duration: 0.5, ease: "power3.out" }, 3.020);
+      tl.fromTo("#ct-best span", { y: 420 }, { y: 0, duration: 0.5, ease: "back.out(1.15)" }, 3.020);
+      tl.fromTo("#ct-best span", { rotation: -20, scale: 0.55 }, { rotation: -3, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 3.020);
+      tl.fromTo("#ct-best span", { filter: "blur(14px)" }, { filter: "blur(0px)", duration: 0.350, ease: "expo.out" }, 3.020);
+      tl.fromTo("#ct-best", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 3.020);
 
       window.__timelines["cta"] = tl;
     })();

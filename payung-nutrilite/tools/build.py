@@ -205,43 +205,53 @@ pr_js += blur_in("#pr-sub", 0.30, 0.16)
 pr_js += blur_out("#pr-pill", 0.86, 0.13) + blur_out("#pr-sub", 0.86, 0.13)
 SCENES.append(("promo", pr_start, 1.0, scene("promo", pr_css, pr_html, pr_js)))
 
-# ---------------------------------------------------------------- 3 PRODUCTS (split layout)
+# ---------------------------------------------------------------- 3 PRODUCTS (flying B-roll over full-frame video)
 pd_start = 4.95
+
+
+def fly_in(sel, t, dx, dy, rot0, rot1, dur=0.6):
+    """Card flies in on an arc (x and y on different eases), spinning, blurred at speed, lands with a small settle."""
+    return (f'      tl.fromTo("{sel}", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.12, ease: "none" }}, {t:.3f});\n'
+            f'      tl.fromTo("{sel}", {{ x: {dx} }}, {{ x: 0, duration: {dur}, ease: "power3.out" }}, {t:.3f});\n'
+            f'      tl.fromTo("{sel}", {{ y: {dy} }}, {{ y: 0, duration: {dur}, ease: "back.out(1.15)" }}, {t:.3f});\n'
+            f'      tl.fromTo("{sel}", {{ rotation: {rot0}, scale: 0.55 }}, {{ rotation: {rot1}, scale: 1, duration: {dur}, ease: "back.out(1.6)" }}, {t:.3f});\n'
+            f'      tl.fromTo("{sel}", {{ filter: "blur(14px)" }}, {{ filter: "blur(0px)", duration: {dur * 0.7:.3f}, ease: "expo.out" }}, {t:.3f});\n')
+
+
+def fly_out(sel, t, dx, dy, rot, dur=0.38):
+    return (f'      tl.to("{sel}", {{ x: {dx}, y: {dy}, rotation: {rot}, scale: 0.7, opacity: 0, filter: "blur(10px)", '
+            f'duration: {dur}, ease: "power3.in" }}, {t:.3f});\n')
+
+
 pd_css = SHARED_CSS + """
-    #pd-a { position: absolute; left: 90px; top: 822px; font: 700 34px/1 var(--font-ui); color: var(--leaf, #1E7B4A);
-      letter-spacing: .02em; }
-    #pd-b { position: absolute; left: 84px; top: 866px; font: 400 96px/1 var(--font-display); color: var(--forest, #0B3D2E);
-      text-transform: uppercase; letter-spacing: -.01em; }
-    #pd-c { position: absolute; left: 90px; top: 966px; font: italic 800 62px/1 var(--font-serif); color: var(--leaf, #1E7B4A); }
-    #pd-c b { position: relative; color: var(--forest, #0B3D2E); }
-    #pd-line { position: absolute; left: 352px; top: 1034px; width: 268px; height: 12px; border-radius: 6px;
-      background: var(--lime, #C8F169); transform-origin: 0 50%; }
-    .pd-card { position: absolute; top: 1066px; width: 204px; height: 244px; border-radius: 26px; background: #fff;
-      box-shadow: 0 18px 36px rgba(11,61,46,.22); display: flex; align-items: center; justify-content: center; }
-    .pd-card img { width: 172px; height: 212px; object-fit: contain; }
-    #pd-k1 { left: 84px; } #pd-k2 { left: 302px; } #pd-k3 { left: 520px; } #pd-k4 { left: 738px; }
+    .pd-card { position: absolute; width: 196px; height: 238px; border-radius: 26px; background: #fff;
+      box-shadow: 0 22px 44px rgba(0,0,0,.38), 0 0 0 5px rgba(255,255,255,.55);
+      display: flex; align-items: center; justify-content: center; }
+    .pd-card img { width: 166px; height: 208px; object-fit: contain; }
+    .pd-glow { position: absolute; inset: -7px; border-radius: 32px; border: 6px solid var(--lime, #C8F169);
+      box-shadow: 0 0 26px rgba(200,241,105,.8); opacity: 0; }
+    #pd-k1 { left: 66px; top: 200px; } #pd-k2 { left: 302px; top: 178px; }
+    #pd-k3 { left: 538px; top: 198px; } #pd-k4 { left: 774px; top: 180px; }
 """
 pd_html = """
-    <div id="pd-a">dengan pembelian</div>
-    <div id="pd-b">Mana-mana</div>
-    <div id="pd-c">suplemen <b>Nutrilite</b></div>
-    <div id="pd-line"></div>
-    <div id="pd-k1" class="pd-card"><img src="assets/img/bioc.png" alt="Nutrilite Bio C Plus"></div>
-    <div id="pd-k2" class="pd-card"><img src="assets/img/amcell.png" alt="Nutrilite AmCELL"></div>
-    <div id="pd-k3" class="pd-card"><img src="assets/img/soy-berries.png" alt="Nutrilite Soy Protein Mixed Berries"></div>
-    <div id="pd-k4" class="pd-card"><img src="assets/img/soy-lecithin.png" alt="Nutrilite Soy Protein Lecithin"></div>
+    <div id="pd-k1" class="pd-card"><img src="assets/img/bioc.png" alt="Nutrilite Bio C Plus"><i class="pd-glow"></i></div>
+    <div id="pd-k2" class="pd-card"><img src="assets/img/amcell.png" alt="Nutrilite AmCELL"><i class="pd-glow"></i></div>
+    <div id="pd-k3" class="pd-card"><img src="assets/img/soy-berries.png" alt="Nutrilite Soy Protein Mixed Berries"><i class="pd-glow"></i></div>
+    <div id="pd-k4" class="pd-card"><img src="assets/img/soy-lecithin.png" alt="Nutrilite Soy Protein Lecithin"><i class="pd-glow"></i></div>
 """
 L = lambda t: round(t - pd_start, 3)
-pd_js = "".join(hide_at(s) for s in ["#pd-a", "#pd-b", "#pd-c", "#pd-line", ".pd-card"])
-pd_js += blur_in("#pd-a", L(5.10), 0.18)
-pd_js += blur_in("#pd-b", L(6.06), 0.2)
-pd_js += blur_in("#pd-c", L(7.42), 0.2)
-pd_js += '      tl.fromTo("#pd-line", { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.35, ease: "expo.out" }, %.3f);\n' % L(8.10)
-for i, (t, r) in enumerate([(5.45, -6), (5.75, 3), (6.05, -3), (6.35, 5)]):
-    pd_js += (f'      tl.fromTo("#pd-k{i+1}", {{ opacity: 0, y: 140, rotation: {r*3} }}, '
-              f'{{ opacity: 1, y: 0, rotation: {r}, duration: 0.55, ease: "expo.out" }}, {L(t)});\n')
-for i, s in enumerate(["#pd-a", "#pd-b", "#pd-c", "#pd-line", "#pd-k1", "#pd-k2", "#pd-k3", "#pd-k4"]):
-    pd_js += blur_out(s, L(9.18) + i * 0.025, 0.14)
+# (selector, word time, from dx, from dy, start rot, landed rot) - two from the left, two from the right
+PD_FLY = [("#pd-k1", 5.08, -620, -160, -70, -7), ("#pd-k2", 5.55, -520, -460, 50, 4),
+          ("#pd-k3", 6.06, 560, -460, -50, -3), ("#pd-k4", 6.90, 640, -160, 70, 6)]
+pd_js = "".join(hide_at(s) for s in [".pd-card"])
+for sel, t, dx, dy, r0, r1 in PD_FLY:
+    pd_js += fly_in(sel, L(t), dx, dy, r0, r1)
+for i, (sel, *_r) in enumerate(PD_FLY):  # lime glow passes along the row on "Nutrilite"
+    t = L(8.06) + i * 0.08
+    pd_js += f'      tl.fromTo("{sel} .pd-glow", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.14, ease: "power2.out" }}, {t:.3f});\n'
+    pd_js += f'      tl.to("{sel} .pd-glow", {{ opacity: 0, duration: 0.4, ease: "power2.in" }}, {t + 0.5:.3f});\n'
+for i, (sel, *_r) in enumerate(PD_FLY):
+    pd_js += fly_out(sel, L(9.22) + i * 0.05, (-1 if i < 2 else 1) * 420, -520, (-1 if i < 2 else 1) * 40)
 SCENES.append(("products", pd_start, 4.48, scene("products", pd_css, pd_html, pd_js)))
 
 # ---------------------------------------------------------------- 4 TEBUS
@@ -468,36 +478,36 @@ for s in ["#hb-card", "#hb-icon", "#hb-a", "#hb-b", "#hb-go"]:
     hb_js += blur_out(s, L(39.44), 0.14)
 SCENES.append(("handbag", hb_start, 2.5, scene("handbag", hb_css, hb_html, hb_js)))
 
-# ---------------------------------------------------------------- 12 CTA (split layout)
+# ---------------------------------------------------------------- 12 CTA (flying B-roll over full-frame video)
 ct_start = 39.6
 ct_css = SHARED_CSS + """
-    #ct-a { position: absolute; left: 92px; top: 796px; font: italic 800 70px/1 var(--font-serif); color: var(--leaf, #1E7B4A); }
-    #ct-b { position: absolute; left: 88px; top: 880px; font: 400 66px/1 var(--font-display); color: var(--forest, #0B3D2E);
-      text-transform: uppercase; white-space: nowrap; }
-    #ct-site { position: absolute; left: 96px; top: 986px; width: 740px; height: 337px; border-radius: 22px; overflow: hidden;
-      border: 8px solid #fff; box-shadow: 0 24px 50px rgba(11,61,46,.3); background: #fff; }
+    #ct-site { position: absolute; left: 60px; top: 178px; width: 700px; height: 319px; border-radius: 22px; overflow: hidden;
+      border: 8px solid #fff; box-shadow: 0 24px 50px rgba(0,0,0,.4); background: #fff; }
     #ct-site img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block; }
-    #ct-stamp { position: absolute; left: 726px; top: 1052px; width: 232px; height: 232px; filter: drop-shadow(0 14px 26px rgba(0,0,0,.3)); }
+    #ct-prod { position: absolute; left: 792px; top: 186px; width: 196px; height: 238px; border-radius: 26px; background: #fff;
+      box-shadow: 0 22px 44px rgba(0,0,0,.38); display: flex; align-items: center; justify-content: center; }
+    #ct-prod img { width: 166px; height: 208px; object-fit: contain; }
+    #ct-stamp { position: absolute; left: 806px; top: 420px; width: 196px; height: 196px; filter: drop-shadow(0 14px 26px rgba(0,0,0,.35)); }
     #ct-stamp svg { width: 100%; height: 100%; }
-    #ct-best { position: absolute; left: 300px; top: 1236px; padding: 18px 34px 20px; border-radius: 22px;
-      background: var(--coral, #FF7A59); color: var(--cream, #FFF6E3); font: 400 64px/1 var(--font-display);
-      text-transform: uppercase; box-shadow: 0 16px 34px rgba(0,0,0,.3); white-space: nowrap; }
+    #ct-best { position: absolute; left: 60px; width: 880px; top: 1166px; text-align: center; }
+    #ct-best span { display: inline-block; padding: 20px 40px 22px; border-radius: 26px; background: var(--coral, #FF7A59);
+      color: var(--cream, #FFF6E3); font: 400 80px/1 var(--font-display); text-transform: uppercase;
+      box-shadow: 0 16px 34px rgba(0,0,0,.35); white-space: nowrap; }
 """
 ct_html = f"""
-    <div id="ct-a">Dapatkan sekarang</div>
-    <div id="ct-b">Suplemen Nutrilite</div>
     <div id="ct-site"><img src="assets/img/amway-site.png" alt="Amway Malaysia website"></div>
+    <div id="ct-prod"><img src="assets/img/bioc.png" alt="Nutrilite Bio C Plus"></div>
     <div id="ct-stamp" data-layout-ignore>{stamp_svg('cts', 'TEBUS PAYUNG • TEBUS PAYUNG • ')}</div>
-    <div id="ct-best">Memang best!</div>
+    <div id="ct-best"><span>Memang best!</span></div>
 """
 L = lambda t: round(t - ct_start, 3)
-ct_js = "".join(hide_at(s) for s in ["#ct-a", "#ct-b", "#ct-site", "#ct-stamp", "#ct-best"])
-ct_js += blur_in("#ct-a", L(39.75), 0.2)
-ct_js += blur_in("#ct-b", L(41.06), 0.2)
-ct_js += '      tl.fromTo("#ct-site", { opacity: 0, y: 160, rotation: 4 }, { opacity: 1, y: 0, rotation: -2, duration: 0.6, ease: "expo.out" }, %.3f);\n' % L(40.25)
-ct_js += '      tl.fromTo("#ct-stamp", { opacity: 0, scale: 0.2, rotation: -120 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.55, ease: "expo.out" }, %.3f);\n' % L(41.75)
+ct_js = "".join(hide_at(s) for s in ["#ct-site", "#ct-prod", "#ct-stamp", "#ct-best"])
+ct_js += fly_in("#ct-site", L(39.72), 820, -420, 28, -3, 0.65)
+ct_js += fly_in("#ct-prod", L(41.06), 420, -480, 60, 6, 0.55)
+ct_js += '      tl.fromTo("#ct-stamp", { opacity: 0, scale: 0.2, rotation: -150 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.55, ease: "expo.out" }, %.3f);\n' % L(41.75)
 ct_js += '      tl.to("#ct-stamp svg", { rotation: 40, duration: 2.8, ease: "none" }, %.3f);\n' % L(41.75)
-ct_js += '      tl.fromTo("#ct-best", { opacity: 0, scale: 0.3, rotation: -14 }, { opacity: 1, scale: 1, rotation: 5, duration: 0.45, ease: "back.out(2)" }, %.3f);\n' % L(42.70)
+ct_js += fly_in("#ct-best span", L(42.62), 0, 420, -20, -3, 0.5)
+ct_js += '      tl.fromTo("#ct-best", { opacity: 0 }, { opacity: 1, duration: 0.01 }, %.3f);\n' % L(42.62)
 SCENES.append(("cta", ct_start, round(TOTAL - ct_start, 3), scene("cta", ct_css, ct_html, ct_js)))
 
 # ================================================================== captions
@@ -505,7 +515,7 @@ def wd(i, text=None, s=None, e=None):
     w = WORDS[i]
     return (text if text is not None else w["w"], s if s is not None else w["s"], e if e is not None else w["e"])
 
-HL = {"nutrilite", "amway", "promo", "satu", "tebus", "payung", "button", "tekan", "tarik", "handbag", "design", "best"}
+HL = {"nutrilite", "nutrilite.", "amway", "dapatkan", "promo", "satu", "tebus", "payung", "button", "tekan", "tarik", "handbag", "design", "best"}
 G = [
     [wd(0), wd(1), wd(2)],
     [wd(3, "design"), wd(4), wd(5)],
@@ -513,7 +523,9 @@ G = [
     [wd(9), wd(10)],
     [wd(11), wd(12)],
     [wd(13), wd(14)],
-    # 4.95-9.43 products split shows the words as layout type
+    [wd(15), wd(16)],
+    [("mana-mana", WORDS[17]["s"], WORDS[18]["e"])],
+    [wd(19), wd(20)],
     [wd(21), wd(22), wd(23)],
     [wd(24, "memadai.")],
     [wd(25), wd(26)],
@@ -550,9 +562,12 @@ G = [
     [wd(97), wd(98)],
     [("Bawalah", WORDS[99]["s"], WORDS[100]["e"]), wd(101)],
     [("mana-mana", WORDS[102]["s"], WORDS[103]["e"]), wd(104)],
-    # 39.6+ CTA split
+    [wd(105)],
+    [("mana-mana", WORDS[106]["s"], WORDS[107]["e"])],
+    [wd(108), wd(109), wd(110)],
+    # 42.62 "MEMANG BEST!" sticker flies into the caption slot
 ]
-HARD_STOPS = [4.93, 9.42, 19.92, 24.42, 33.16, 39.55]  # a caption never runs past these
+HARD_STOPS = [19.92, 24.42, 33.16, 42.6]  # a caption never runs past these
 
 cap_groups = []
 for gi, g in enumerate(G):
@@ -617,13 +632,16 @@ SFX = [  # (id, file, picture time, peak offset in file, volume)
     ("sx-stamp", "pop1", 1.86, 0.007, 0.9),
     ("sx-stamp-sh", "shimmer2", 1.90, 0.373, 0.35),
     ("sx-promo", "whoosh1", 4.12, 0.101, 0.6),
-    ("sx-split-in", "whoosh4", 5.02, 0.114, 0.55),
-    ("sx-card1", "pop2", 5.47, 0.248, 0.75),
-    ("sx-card2", "pop4", 5.77, 0.16, 0.75),
-    ("sx-card3", "pop1", 6.07, 0.007, 0.75),
-    ("sx-card4", "pop2", 6.37, 0.248, 0.75),
-    ("sx-nutri", "shimmer4", 8.12, 0.257, 0.3),
-    ("sx-split-out", "whoosh3", 9.48, 0.368, 0.5),
+    ("sx-fly1", "whoosh1", 5.25, 0.101, 0.45),
+    ("sx-land1", "pop2", 5.55, 0.248, 0.55),
+    ("sx-fly2", "whoosh4", 5.72, 0.114, 0.4),
+    ("sx-land2", "pop4", 6.02, 0.16, 0.55),
+    ("sx-fly3", "whoosh3", 6.23, 0.368, 0.4),
+    ("sx-land3", "pop1", 6.53, 0.007, 0.55),
+    ("sx-fly4", "whoosh1", 7.07, 0.101, 0.45),
+    ("sx-land4", "pop2", 7.37, 0.248, 0.55),
+    ("sx-nutri", "shimmer4", 8.12, 0.257, 0.35),
+    ("sx-flyout", "whoosh4", 9.40, 0.114, 0.45),
     ("sx-chip1", "pop4", 9.84, 0.16, 0.8),
     ("sx-umbicon", "pop1", 12.05, 0.007, 0.8),
     ("sx-sparkle", "shimmer2", 13.22, 0.373, 0.35),
@@ -643,12 +661,14 @@ SFX = [  # (id, file, picture time, peak offset in file, volume)
     ("sx-zip", "zip3", 37.30, 0.567, 0.75),
     ("sx-bag", "pop4", 37.30, 0.16, 0.6),
     ("sx-go", "whoosh1", 38.28, 0.101, 0.5),
-    ("sx-split-cta", "whoosh4", 39.66, 0.114, 0.55),
-    ("sx-site", "whoosh3", 40.32, 0.368, 0.4),
+    ("sx-site", "whoosh3", 39.92, 0.368, 0.45),
+    ("sx-site-land", "pop2", 40.25, 0.248, 0.55),
+    ("sx-prod", "whoosh1", 41.22, 0.101, 0.45),
+    ("sx-prod-land", "pop4", 41.5, 0.16, 0.55),
     ("sx-stamp2", "pop1", 41.79, 0.007, 0.9),
     ("sx-stamp2-sh", "shimmer2", 41.82, 0.373, 0.35),
-    ("sx-best", "impact1", 42.74, 0.022, 0.5),
-    ("sx-best-pop", "pop2", 42.74, 0.248, 0.7),
+    ("sx-best", "impact1", 42.98, 0.022, 0.5),
+    ("sx-best-pop", "pop2", 42.95, 0.248, 0.7),
 ]
 SFX_DUR = {"impact2": 1.0, "impact1": 1.0, "pop1": 1.0, "pop2": 2.0, "pop4": 2.0, "shimmer2": 1.0, "shimmer4": 1.0,
            "whoosh1": 0.755, "whoosh3": 1.983, "whoosh4": 1.956, "umb2": 2.595, "count3": 2.0, "zip3": 0.956}
@@ -672,41 +692,12 @@ music_auto = json.dumps({"version": 1, "lanes": [{"target": "volume", "points": 
     {"t": 0, "v": 0.24}, {"t": 0.6, "v": 0.17}, {"t": 19.45, "v": 0.17}, {"t": 19.7, "v": 0.27}, {"t": 20.4, "v": 0.17},
     {"t": 43.4, "v": 0.17}, {"t": 43.95, "v": 0.4}, {"t": TOTAL, "v": 0.0}]}]}).replace('"', "&quot;")
 
-# split-layout geometry: stage scaled about its top-left into a rounded window
-def split_state(win, face_xy, s=0.84):
-    x0, y0, x1, y1 = win
-    tx = x0 - 4
-    ty = round((y0 + (y1 - y0) / 2) - face_xy[1] * s)
-    l = (x0 - tx) / s; r = W - (x1 - tx) / s; t = (y0 - ty) / s; b = H - (y1 - ty) / s
-    return tx, ty, s, f"inset({t:.1f}px {r:.1f}px {b:.1f}px {l:.1f}px round {44 / s:.1f}px)"
-
-SPLIT_A = split_state((90, 150, 990, 790), (400, 800))
-SPLIT_B = split_state((90, 150, 990, 760), (420, 780))
-FULL_CLIP = "inset(0px 0px 0px 0px round 0px)"
-
-def split_js(t_in, t_out, st, win, shadow_id):
-    tx, ty, s, clip = st
-    x0, y0, x1, y1 = win
-    js = (f'      tl.to("#stage", {{ x: {tx}, y: {ty}, scale: {s}, clipPath: "{clip}", duration: 0.62, ease: "power3.inOut" }}, {t_in});\n'
-          f'      tl.to("#paper", {{ opacity: 1, duration: 0.4, ease: "power2.out" }}, {t_in});\n'
-          f'      tl.to("#scrim", {{ opacity: 0, duration: 0.3, ease: "power2.out" }}, {t_in});\n'
-          f'      tl.fromTo("{shadow_id}", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3, ease: "power2.out" }}, {t_in + 0.35});\n')
-    if t_out is not None:
-        js += (f'      tl.to("{shadow_id}", {{ opacity: 0, duration: 0.15, ease: "power2.in" }}, {t_out - 0.05});\n'
-               f'      tl.to("#stage", {{ x: 0, y: 0, scale: 1, clipPath: "{FULL_CLIP}", duration: 0.5, ease: "power3.inOut" }}, {t_out});\n'
-               f'      tl.to("#paper", {{ opacity: 0, duration: 0.35, ease: "power2.in" }}, {t_out + 0.15});\n'
-               f'      tl.to("#scrim", {{ opacity: 1, duration: 0.3, ease: "power2.in" }}, {t_out + 0.2});\n')
-    return js
-
 root_js = ""
-root_js += f'      tl.set("#stage", {{ x: 0, y: 0, scale: 1, transformOrigin: "0px 0px", clipPath: "{FULL_CLIP}" }}, 0);\n'
 root_js += '      tl.fromTo("#punch", { scale: 1.1, transformOrigin: "400px 780px" }, { scale: 1, duration: 0.8, ease: "expo.out" }, 0);\n'
-root_js += split_js(4.95, 9.40, SPLIT_A, (90, 150, 990, 790), "#ws-a")
 root_js += '      tl.fromTo("#punch", { scale: 1, transformOrigin: "640px 520px" }, { scale: 1.07, duration: 0.12, ease: "power4.out", immediateRender: false }, 19.97);\n'
 root_js += '      tl.to("#punch", { scale: 1, duration: 0.6, ease: "power2.inOut" }, 20.12);\n'
 root_js += '      tl.fromTo("#punch", { y: 0 }, { y: 7, duration: 0.05, ease: "power2.out", immediateRender: false }, 33.18);\n'
 root_js += '      tl.to("#punch", { y: 0, duration: 0.25, ease: "power2.out" }, 33.23);\n'
-root_js += split_js(39.6, None, SPLIT_B, (90, 150, 990, 760), "#ws-b")
 
 hosts = ""
 for k, (sid, st, dur, _) in enumerate(SCENES):
@@ -714,12 +705,6 @@ for k, (sid, st, dur, _) in enumerate(SCENES):
               f'data-start="{st}" data-duration="{dur}" data-track-index="{3 + (k % 2)}" data-track-kind="graphics" '
               f'data-width="{W}" data-height="{H}" style="z-index: 6;"></div>\n')
 
-LEAF_TILE = ("data:image/svg+xml;utf8," +
-             "<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'>"
-             "<g fill='%23E6DCC1'><ellipse cx='40' cy='50' rx='9' ry='20' transform='rotate(-40 40 50)'/>"
-             "<ellipse cx='58' cy='40' rx='9' ry='20' transform='rotate(40 58 40)'/>"
-             "<ellipse cx='130' cy='132' rx='9' ry='20' transform='rotate(35 130 132)'/>"
-             "<ellipse cx='112' cy='124' rx='9' ry='20' transform='rotate(-45 112 124)'/></g></svg>")
 
 index = Template(r"""<!doctype html>
 <html lang="ms" data-resolution="portrait">
@@ -733,14 +718,6 @@ index = Template(r"""<!doctype html>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0B3D2E; }
       #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--font-ui); }
-      #paper { position: absolute; inset: 0; z-index: 0; opacity: 0; background-color: var(--paper);
-        background-image: url("$leaf_tile"); background-size: 180px 180px; }
-      #paper-band { position: absolute; left: 0; right: 0; bottom: 0; height: 520px;
-        background: linear-gradient(180deg, rgba(244,237,219,0) 0%, rgba(230,220,193,.75) 100%); }
-      .win-shadow { position: absolute; left: 90px; width: 900px; border-radius: 44px; z-index: 1; opacity: 0;
-        background: #0B3D2E; box-shadow: 0 34px 70px rgba(11,61,46,.35), 0 0 0 10px #fff; }
-      #ws-a { top: 150px; height: 640px; }
-      #ws-b { top: 150px; height: 610px; }
       #stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; z-index: 2; overflow: hidden; }
       #punch { position: absolute; inset: 0; }
       .aroll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
@@ -750,9 +727,6 @@ index = Template(r"""<!doctype html>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="$total" data-width="1080" data-height="1920">
-      <div id="paper"><div id="paper-band"></div></div>
-      <div id="ws-a" class="win-shadow"></div>
-      <div id="ws-b" class="win-shadow"></div>
       <div id="stage">
         <div id="punch">
 $videos        </div>
@@ -775,7 +749,7 @@ $root_js      window.__timelines["main"] = tl;
     </script>
   </body>
 </html>
-""").substitute(tokens=CSS_TOKENS, leaf_tile=LEAF_TILE, total=TOTAL, videos=videos, hosts=hosts,
+""").substitute(tokens=CSS_TOKENS, total=TOTAL, videos=videos, hosts=hosts,
                 voice_end=VOICE_END, music_fx=music_fx, music_auto=music_auto, audio=audio, root_js=root_js)
 
 open(D("index.html"), "w").write(index)

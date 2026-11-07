@@ -21,14 +21,6 @@
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0B3D2E; }
       #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: var(--font-ui); }
-      #paper { position: absolute; inset: 0; z-index: 0; opacity: 0; background-color: var(--paper);
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><g fill='%23E6DCC1'><ellipse cx='40' cy='50' rx='9' ry='20' transform='rotate(-40 40 50)'/><ellipse cx='58' cy='40' rx='9' ry='20' transform='rotate(40 58 40)'/><ellipse cx='130' cy='132' rx='9' ry='20' transform='rotate(35 130 132)'/><ellipse cx='112' cy='124' rx='9' ry='20' transform='rotate(-45 112 124)'/></g></svg>"); background-size: 180px 180px; }
-      #paper-band { position: absolute; left: 0; right: 0; bottom: 0; height: 520px;
-        background: linear-gradient(180deg, rgba(244,237,219,0) 0%, rgba(230,220,193,.75) 100%); }
-      .win-shadow { position: absolute; left: 90px; width: 900px; border-radius: 44px; z-index: 1; opacity: 0;
-        background: #0B3D2E; box-shadow: 0 34px 70px rgba(11,61,46,.35), 0 0 0 10px #fff; }
-      #ws-a { top: 150px; height: 640px; }
-      #ws-b { top: 150px; height: 610px; }
       #stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; z-index: 2; overflow: hidden; }
       #punch { position: absolute; inset: 0; }
       .aroll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
@@ -38,9 +30,6 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="44.8" data-width="1080" data-height="1920">
-      <div id="paper"><div id="paper-band"></div></div>
-      <div id="ws-a" class="win-shadow"></div>
-      <div id="ws-b" class="win-shadow"></div>
       <div id="stage">
         <div id="punch">
         <video id="v00" class="clip aroll" src="assets/video/aroll.mp4" muted playsinline data-start="0" data-duration="1.97" data-media-start="54.98" data-track-index="1" style=""></video>
@@ -96,13 +85,16 @@
       <audio id="sx-stamp" class="clip" src="assets/audio/sfx/pop1.wav" data-start="1.886" data-duration="1.0" data-volume="0.9" data-track-index="20" data-audio-group="sfx"></audio>
       <audio id="sx-stamp-sh" class="clip" src="assets/audio/sfx/shimmer2.wav" data-start="1.56" data-duration="1.0" data-volume="0.35" data-track-index="21" data-audio-group="sfx"></audio>
       <audio id="sx-promo" class="clip" src="assets/audio/sfx/whoosh1.wav" data-start="4.052" data-duration="0.755" data-volume="0.6" data-track-index="20" data-audio-group="sfx"></audio>
-      <audio id="sx-split-in" class="clip" src="assets/audio/sfx/whoosh4.wav" data-start="4.939" data-duration="1.956" data-volume="0.55" data-track-index="20" data-audio-group="sfx"></audio>
-      <audio id="sx-card1" class="clip" src="assets/audio/sfx/pop2.wav" data-start="5.255" data-duration="2.0" data-volume="0.75" data-track-index="21" data-audio-group="sfx"></audio>
-      <audio id="sx-card2" class="clip" src="assets/audio/sfx/pop4.wav" data-start="5.643" data-duration="2.0" data-volume="0.75" data-track-index="22" data-audio-group="sfx"></audio>
-      <audio id="sx-card3" class="clip" src="assets/audio/sfx/pop1.wav" data-start="6.096" data-duration="1.0" data-volume="0.75" data-track-index="23" data-audio-group="sfx"></audio>
-      <audio id="sx-card4" class="clip" src="assets/audio/sfx/pop2.wav" data-start="6.155" data-duration="2.0" data-volume="0.75" data-track-index="24" data-audio-group="sfx"></audio>
-      <audio id="sx-nutri" class="clip" src="assets/audio/sfx/shimmer4.wav" data-start="7.896" data-duration="1.0" data-volume="0.3" data-track-index="20" data-audio-group="sfx"></audio>
-      <audio id="sx-split-out" class="clip" src="assets/audio/sfx/whoosh3.wav" data-start="9.145" data-duration="1.983" data-volume="0.5" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sx-fly1" class="clip" src="assets/audio/sfx/whoosh1.wav" data-start="5.182" data-duration="0.755" data-volume="0.45" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sx-land1" class="clip" src="assets/audio/sfx/pop2.wav" data-start="5.335" data-duration="2.0" data-volume="0.55" data-track-index="21" data-audio-group="sfx"></audio>
+      <audio id="sx-fly2" class="clip" src="assets/audio/sfx/whoosh4.wav" data-start="5.639" data-duration="1.956" data-volume="0.4" data-track-index="22" data-audio-group="sfx"></audio>
+      <audio id="sx-land2" class="clip" src="assets/audio/sfx/pop4.wav" data-start="5.893" data-duration="2.0" data-volume="0.55" data-track-index="23" data-audio-group="sfx"></audio>
+      <audio id="sx-fly3" class="clip" src="assets/audio/sfx/whoosh3.wav" data-start="5.895" data-duration="1.983" data-volume="0.4" data-track-index="24" data-audio-group="sfx"></audio>
+      <audio id="sx-land3" class="clip" src="assets/audio/sfx/pop1.wav" data-start="6.556" data-duration="1.0" data-volume="0.55" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sx-fly4" class="clip" src="assets/audio/sfx/whoosh1.wav" data-start="7.002" data-duration="0.755" data-volume="0.45" data-track-index="25" data-audio-group="sfx"></audio>
+      <audio id="sx-land4" class="clip" src="assets/audio/sfx/pop2.wav" data-start="7.155" data-duration="2.0" data-volume="0.55" data-track-index="26" data-audio-group="sfx"></audio>
+      <audio id="sx-nutri" class="clip" src="assets/audio/sfx/shimmer4.wav" data-start="7.896" data-duration="1.0" data-volume="0.35" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sx-flyout" class="clip" src="assets/audio/sfx/whoosh4.wav" data-start="9.319" data-duration="1.956" data-volume="0.45" data-track-index="20" data-audio-group="sfx"></audio>
       <audio id="sx-chip1" class="clip" src="assets/audio/sfx/pop4.wav" data-start="9.713" data-duration="2.0" data-volume="0.8" data-track-index="21" data-audio-group="sfx"></audio>
       <audio id="sx-umbicon" class="clip" src="assets/audio/sfx/pop1.wav" data-start="12.076" data-duration="1.0" data-volume="0.8" data-track-index="20" data-audio-group="sfx"></audio>
       <audio id="sx-sparkle" class="clip" src="assets/audio/sfx/shimmer2.wav" data-start="12.88" data-duration="1.0" data-volume="0.35" data-track-index="21" data-audio-group="sfx"></audio>
@@ -122,33 +114,22 @@
       <audio id="sx-zip" class="clip" src="assets/audio/sfx/zip3.wav" data-start="36.766" data-duration="0.956" data-volume="0.75" data-track-index="20" data-audio-group="sfx"></audio>
       <audio id="sx-bag" class="clip" src="assets/audio/sfx/pop4.wav" data-start="37.173" data-duration="2.0" data-volume="0.6" data-track-index="21" data-audio-group="sfx"></audio>
       <audio id="sx-go" class="clip" src="assets/audio/sfx/whoosh1.wav" data-start="38.212" data-duration="0.755" data-volume="0.5" data-track-index="20" data-audio-group="sfx"></audio>
-      <audio id="sx-split-cta" class="clip" src="assets/audio/sfx/whoosh4.wav" data-start="39.579" data-duration="1.956" data-volume="0.55" data-track-index="20" data-audio-group="sfx"></audio>
-      <audio id="sx-site" class="clip" src="assets/audio/sfx/whoosh3.wav" data-start="39.985" data-duration="1.983" data-volume="0.4" data-track-index="21" data-audio-group="sfx"></audio>
+      <audio id="sx-site" class="clip" src="assets/audio/sfx/whoosh3.wav" data-start="39.585" data-duration="1.983" data-volume="0.45" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sx-site-land" class="clip" src="assets/audio/sfx/pop2.wav" data-start="40.035" data-duration="2.0" data-volume="0.55" data-track-index="21" data-audio-group="sfx"></audio>
+      <audio id="sx-prod" class="clip" src="assets/audio/sfx/whoosh1.wav" data-start="41.152" data-duration="0.755" data-volume="0.45" data-track-index="22" data-audio-group="sfx"></audio>
+      <audio id="sx-prod-land" class="clip" src="assets/audio/sfx/pop4.wav" data-start="41.373" data-duration="2.0" data-volume="0.55" data-track-index="23" data-audio-group="sfx"></audio>
       <audio id="sx-stamp2" class="clip" src="assets/audio/sfx/pop1.wav" data-start="41.816" data-duration="1.0" data-volume="0.9" data-track-index="20" data-audio-group="sfx"></audio>
-      <audio id="sx-stamp2-sh" class="clip" src="assets/audio/sfx/shimmer2.wav" data-start="41.48" data-duration="1.0" data-volume="0.35" data-track-index="22" data-audio-group="sfx"></audio>
-      <audio id="sx-best" class="clip" src="assets/audio/sfx/impact1.wav" data-start="42.751" data-duration="1.0" data-volume="0.5" data-track-index="21" data-audio-group="sfx"></audio>
-      <audio id="sx-best-pop" class="clip" src="assets/audio/sfx/pop2.wav" data-start="42.525" data-duration="2.0" data-volume="0.7" data-track-index="22" data-audio-group="sfx"></audio>
+      <audio id="sx-stamp2-sh" class="clip" src="assets/audio/sfx/shimmer2.wav" data-start="41.48" data-duration="1.0" data-volume="0.35" data-track-index="24" data-audio-group="sfx"></audio>
+      <audio id="sx-best" class="clip" src="assets/audio/sfx/impact1.wav" data-start="42.991" data-duration="1.0" data-volume="0.5" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sx-best-pop" class="clip" src="assets/audio/sfx/pop2.wav" data-start="42.735" data-duration="2.0" data-volume="0.7" data-track-index="21" data-audio-group="sfx"></audio>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.set("#stage", { x: 0, y: 0, scale: 1, transformOrigin: "0px 0px", clipPath: "inset(0px 0px 0px 0px round 0px)" }, 0);
       tl.fromTo("#punch", { scale: 1.1, transformOrigin: "400px 780px" }, { scale: 1, duration: 0.8, ease: "expo.out" }, 0);
-      tl.to("#stage", { x: 86, y: -202, scale: 0.84, clipPath: "inset(419.0px 3.8px 739.0px 4.8px round 52.4px)", duration: 0.62, ease: "power3.inOut" }, 4.95);
-      tl.to("#paper", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.95);
-      tl.to("#scrim", { opacity: 0, duration: 0.3, ease: "power2.out" }, 4.95);
-      tl.fromTo("#ws-a", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 5.3);
-      tl.to("#ws-a", { opacity: 0, duration: 0.15, ease: "power2.in" }, 9.35);
-      tl.to("#stage", { x: 0, y: 0, scale: 1, clipPath: "inset(0px 0px 0px 0px round 0px)", duration: 0.5, ease: "power3.inOut" }, 9.4);
-      tl.to("#paper", { opacity: 0, duration: 0.35, ease: "power2.in" }, 9.55);
-      tl.to("#scrim", { opacity: 1, duration: 0.3, ease: "power2.in" }, 9.6);
       tl.fromTo("#punch", { scale: 1, transformOrigin: "640px 520px" }, { scale: 1.07, duration: 0.12, ease: "power4.out", immediateRender: false }, 19.97);
       tl.to("#punch", { scale: 1, duration: 0.6, ease: "power2.inOut" }, 20.12);
       tl.fromTo("#punch", { y: 0 }, { y: 7, duration: 0.05, ease: "power2.out", immediateRender: false }, 33.18);
       tl.to("#punch", { y: 0, duration: 0.25, ease: "power2.out" }, 33.23);
-      tl.to("#stage", { x: 86, y: -200, scale: 0.84, clipPath: "inset(416.7px 3.8px 777.1px 4.8px round 52.4px)", duration: 0.62, ease: "power3.inOut" }, 39.6);
-      tl.to("#paper", { opacity: 1, duration: 0.4, ease: "power2.out" }, 39.6);
-      tl.to("#scrim", { opacity: 0, duration: 0.3, ease: "power2.out" }, 39.6);
-      tl.fromTo("#ws-b", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 39.95);
       window.__timelines["main"] = tl;
     </script>
   </body>
