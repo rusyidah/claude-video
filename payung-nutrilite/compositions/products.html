@@ -1,0 +1,69 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #pd-a { position: absolute; left: 90px; top: 822px; font: 700 34px/1 var(--font-ui); color: var(--leaf, #1E7B4A);
+      letter-spacing: .02em; }
+    #pd-b { position: absolute; left: 84px; top: 866px; font: 400 96px/1 var(--font-display); color: var(--forest, #0B3D2E);
+      text-transform: uppercase; letter-spacing: -.01em; }
+    #pd-c { position: absolute; left: 90px; top: 966px; font: italic 800 62px/1 var(--font-serif); color: var(--leaf, #1E7B4A); }
+    #pd-c b { position: relative; color: var(--forest, #0B3D2E); }
+    #pd-line { position: absolute; left: 352px; top: 1034px; width: 268px; height: 12px; border-radius: 6px;
+      background: var(--lime, #C8F169); transform-origin: 0 50%; }
+    .pd-card { position: absolute; top: 1066px; width: 204px; height: 244px; border-radius: 26px; background: #fff;
+      box-shadow: 0 18px 36px rgba(11,61,46,.22); display: flex; align-items: center; justify-content: center; }
+    .pd-card img { width: 172px; height: 212px; object-fit: contain; }
+    #pd-k1 { left: 84px; } #pd-k2 { left: 302px; } #pd-k3 { left: 520px; } #pd-k4 { left: 738px; }
+    #pd-a, #pd-b, #pd-c, #pd-line, .pd-card { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="products" data-width="1080" data-height="1920">
+
+    <div id="pd-a">dengan pembelian</div>
+    <div id="pd-b">Mana-mana</div>
+    <div id="pd-c">suplemen <b>Nutrilite</b></div>
+    <div id="pd-line"></div>
+    <div id="pd-k1" class="pd-card"><img src="assets/img/bioc.png" alt="Nutrilite Bio C Plus"></div>
+    <div id="pd-k2" class="pd-card"><img src="assets/img/amcell.png" alt="Nutrilite AmCELL"></div>
+    <div id="pd-k3" class="pd-card"><img src="assets/img/soy-berries.png" alt="Nutrilite Soy Protein Mixed Berries"></div>
+    <div id="pd-k4" class="pd-card"><img src="assets/img/soy-lecithin.png" alt="Nutrilite Soy Protein Lecithin"></div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#pd-a", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.18, ease: "power3.out" }, 0.150);
+      tl.fromTo("#pd-b", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power3.out" }, 1.110);
+      tl.fromTo("#pd-c", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.2, ease: "power3.out" }, 2.470);
+      tl.fromTo("#pd-line", { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.35, ease: "expo.out" }, 3.150);
+      tl.fromTo("#pd-k1", { opacity: 0, y: 140, rotation: -18 }, { opacity: 1, y: 0, rotation: -6, duration: 0.55, ease: "expo.out" }, 0.5);
+      tl.fromTo("#pd-k2", { opacity: 0, y: 140, rotation: 9 }, { opacity: 1, y: 0, rotation: 3, duration: 0.55, ease: "expo.out" }, 0.8);
+      tl.fromTo("#pd-k3", { opacity: 0, y: 140, rotation: -9 }, { opacity: 1, y: 0, rotation: -3, duration: 0.55, ease: "expo.out" }, 1.1);
+      tl.fromTo("#pd-k4", { opacity: 0, y: 140, rotation: 15 }, { opacity: 1, y: 0, rotation: 5, duration: 0.55, ease: "expo.out" }, 1.4);
+      tl.to("#pd-a", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.230);
+      tl.to("#pd-b", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.255);
+      tl.to("#pd-c", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.280);
+      tl.to("#pd-line", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.305);
+      tl.to("#pd-k1", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.330);
+      tl.to("#pd-k2", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.355);
+      tl.to("#pd-k3", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.380);
+      tl.to("#pd-k4", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 4.405);
+
+      window.__timelines["products"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,47 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #pr-pill { position: absolute; left: 64px; top: 200px; display: flex; align-items: center; gap: 18px;
+      padding: 20px 40px 22px 30px; border-radius: 28px; background: var(--lime, #C8F169);
+      color: var(--forest, #0B3D2E); font: 400 84px/1 var(--font-display); text-transform: uppercase;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35); transform: rotate(-2deg); }
+    #pr-pill .ico { width: 64px; height: 64px; color: var(--forest, #0B3D2E); }
+    #pr-sub { position: absolute; left: 82px; top: 330px; font: 800 34px/1 var(--font-ui);
+      letter-spacing: .16em; color: var(--cream, #FFF6E3); text-transform: uppercase;
+      text-shadow: 0 3px 14px rgba(0,0,0,.6); }
+    #pr-pill, #pr-sub { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="promo" data-width="1080" data-height="1920">
+
+    <div id="pr-pill"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2 C34 22 42 30 62 32 C42 34 34 42 32 62 C30 42 22 34 2 32 C22 30 30 22 32 2 Z" fill="currentColor"/></svg></span>Promo</div>
+    <div id="pr-sub">Bulan ni</div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#pr-pill", { opacity: 0, x: -140, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.34, ease: "expo.out" }, 0.10);
+      tl.fromTo("#pr-sub", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 0.300);
+      tl.to("#pr-pill", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 0.860);
+      tl.to("#pr-sub", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 0.860);
+
+      window.__timelines["promo"] = tl;
+    })();
+  </script>
+</template>

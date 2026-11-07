@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #tb-chip { left: 64px; top: 190px; }
+    #tb-row { position: absolute; left: 60px; top: 276px; display: flex; align-items: center; gap: 22px; }
+    #tb-a { position: relative; font: 400 92px/1 var(--font-display); color: var(--lime, #C8F169); text-transform: uppercase;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    #tb-u { position: relative; width: 92px; height: 92px; color: var(--cream, #FFF6E3);
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,.45)); }
+    #tb-b { position: relative; font: 400 92px/1 var(--font-display); color: var(--cream, #FFF6E3); text-transform: uppercase;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    #tb-chip, #tb-a, #tb-u, #tb-b { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="tebus" data-width="1080" data-height="1920">
+
+    <div id="tb-chip" class="chip"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="4" width="24" height="10" rx="3" fill="currentColor"/><rect x="14" y="16" width="36" height="44" rx="8" fill="currentColor"/><rect x="20" y="28" width="24" height="18" rx="3" fill="#0B3D2E" opacity=".35"/></svg></span>1 suplemen pun memadai</div>
+    <div id="tb-row"><div id="tb-a">Tebus</div><div id="tb-u" class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 32 Q32 2 58 32 Q51.5 27 45 32 Q38.5 27 32 32 Q25.5 27 19 32 Q12.5 27 6 32 Z" fill="currentColor"/><path d="M32 31 V52 Q32 59 25 59 Q20 59 20 54" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div><div id="tb-b">Payung</div></div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#tb-chip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.200);
+      tl.fromTo("#tb-a", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 2.120);
+      tl.fromTo("#tb-u", { opacity: 0, scale: 0.4, rotation: -12 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.7)" }, 2.400);
+      tl.fromTo("#tb-b", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 2.540);
+      tl.to("#tb-chip", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.100);
+      tl.to("#tb-a", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.100);
+      tl.to("#tb-u", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.100);
+      tl.to("#tb-b", { opacity: 0, filter: "blur(8px)", duration: 0.13, ease: "power2.in" }, 3.100);
+
+      window.__timelines["tebus"] = tl;
+    })();
+  </script>
+</template>

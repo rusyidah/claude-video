@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: visible; }
+
+    .chip { position: absolute; display: inline-flex; align-items: center; gap: 14px;
+      padding: 12px 26px 12px 18px; border-radius: 999px; background: var(--forest, #0B3D2E);
+      color: var(--lime, #C8F169); font: 800 30px/1 var(--font-ui, Inter); letter-spacing: .14em;
+      text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.28); white-space: nowrap; }
+    .chip .ico { width: 38px; height: 38px; flex: none; }
+    .big { position: absolute; font-family: var(--font-display, "Archivo Black"); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; line-height: .92; letter-spacing: -.01em; white-space: nowrap;
+      text-shadow: 0 6px 0 rgba(11,61,46,.9), 0 14px 34px rgba(0,0,0,.45); }
+    .serif { position: absolute; font-family: var(--font-serif, "Playfair Display"); font-style: italic;
+      font-weight: 800; color: var(--lime, #C8F169); white-space: nowrap; line-height: 1;
+      text-shadow: 0 6px 24px rgba(0,0,0,.45); }
+    .ico { display: inline-block; vertical-align: middle; }
+    .ico svg { width: 100%; height: 100%; display: block; }
+
+    #hb-card { position: absolute; left: 60px; top: 180px; width: 640px; height: 210px; border-radius: 36px;
+      background: var(--forest, #0B3D2E); box-shadow: 0 22px 50px rgba(0,0,0,.4); transform: rotate(-2.5deg); }
+    #hb-icon { position: absolute; left: 92px; top: 206px; width: 150px; height: 150px; border-radius: 50%;
+      background: var(--lime, #C8F169); color: var(--forest, #0B3D2E); display: flex; align-items: center; justify-content: center; }
+    #hb-icon svg { width: 92px; height: 92px; }
+    #hb-a { position: absolute; left: 268px; top: 214px; font: 800 30px/1 var(--font-ui); letter-spacing: .16em;
+      color: var(--lime, #C8F169); text-transform: uppercase; }
+    #hb-b { position: absolute; left: 262px; top: 256px; font: 400 92px/1 var(--font-display); color: var(--cream, #FFF6E3);
+      text-transform: uppercase; }
+    #hb-go { left: 84px; top: 418px; background: var(--lime, #C8F169); color: var(--forest, #0B3D2E); }
+    #hb-card, #hb-icon, #hb-a, #hb-b, #hb-go { opacity: 0; }
+
+  </style>
+  <div id="root" data-composition-id="handbag" data-width="1080" data-height="1920">
+
+    <div id="hb-card"></div>
+    <div id="hb-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M22 24 V18 Q22 8 32 8 Q42 8 42 18 V24" stroke="currentColor" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M10 22 H54 L50 58 H14 Z" fill="currentColor" stroke-linejoin="round"/><circle cx="24" cy="30" r="3" fill="#0B3D2E"/><circle cx="40" cy="30" r="3" fill="#0B3D2E"/></svg></div>
+    <div id="hb-a">Muat dalam</div>
+    <div id="hb-b">Handbag</div>
+    <div id="hb-go" class="chip"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 60 C32 60 12 38 12 24 A20 20 0 0 1 52 24 C52 38 32 60 32 60 Z" fill="currentColor"/><circle cx="32" cy="24" r="7" fill="#0B3D2E"/></svg></span>Bawa ke mana-mana</div>
+
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hb-card", { opacity: 0, scale: 0.5, rotation: -10 }, { opacity: 1, scale: 1, rotation: -2.5, duration: 0.45, ease: "back.out(1.5)" }, 0.140);
+      tl.fromTo("#hb-icon", { opacity: 0, scale: 0.4, rotation: -12 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.7)" }, 0.220);
+      tl.fromTo("#hb-a", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, ease: "power3.out" }, 0.260);
+      tl.fromTo("#hb-b", { opacity: 0, filter: "blur(10px)", y: 0 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.18, ease: "power3.out" }, 0.340);
+      tl.fromTo("#hb-go", { opacity: 0, x: -120, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.34, ease: "expo.out" }, 1.140);
+      tl.to("#hb-card", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.340);
+      tl.to("#hb-icon", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.340);
+      tl.to("#hb-a", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.340);
+      tl.to("#hb-b", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.340);
+      tl.to("#hb-go", { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" }, 2.340);
+
+      window.__timelines["handbag"] = tl;
+    })();
+  </script>
+</template>
