@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Dengar Kata Ibu Ayah — pentas</title>
+<style>
+  @font-face { font-family: 'Baloo 2'; font-weight: 800; src: url('../fonts/baloo-2-latin-800-normal.woff2') format('woff2'); }
+  html, body { margin: 0; background: #000; }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #fff; }
+  #stage > .scene, #stage > svg.over { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+  .scene svg { display: block; width: 1920px; height: 1080px; }
+  text { font-family: 'Baloo 2', sans-serif; font-weight: 800; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="scene" id="s1"></div>
+  <div class="scene" id="s2"></div>
+  <div class="scene" id="s3"></div>
+  <div class="scene" id="s4"></div>
+  <div class="scene" id="s5"></div>
+  <div class="scene" id="s6"></div>
+  <svg class="over" id="fx" viewBox="0 0 1920 1080"></svg>
+  <svg class="over" id="cap" viewBox="0 0 1920 1080"></svg>
+</div>
+<script src="film.js"></script>
+</body>
+</html>
