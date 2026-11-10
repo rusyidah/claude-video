@@ -122,18 +122,18 @@ const VIS = { s1: [0, 3], s2: [3, 9], s3: [9, 14.14], s4: [13.86, 20], s5: [20, 
 
 // Captions: short single lines, karaoke fill, one keyword echo.
 const CAPS = [
-  [3.6, 5.0, 'Amir, Sofia,'],
-  [5.0, 7.0, 'masa untuk kemas mainan'],
-  [7.0, 8.4, 'ya, sayang.'],
-  [8.4, 9.0, 'Kemas!', true],
-  [9.3, 11.0, 'Baik, ibu!'],
-  [11.3, 13.8, 'Jom kemas sama-sama, abang!'],
-  [14.3, 16.0, 'Sebelum makan,'],
-  [16.0, 17.3, 'basuh tangan dulu.'],
-  [17.6, 19.6, 'Baik, ayah!'],
-  [20.3, 21.5, 'Terima kasih'],
-  [21.5, 23.0, 'sebab dengar kata.'],
-  [23.3, 25.7, 'Anak-anak yang baik!'],
+  [3.6, 5.0, 'Amir, Sofia,', false, 3.6, 5.0],
+  [5.0, 7.0, 'masa untuk kemas mainan', false, 5.5, 6.9],
+  [7.0, 8.0, 'ya, sayang.', false, 6.95, 7.4],
+  [8.0, 9.0, 'Kemas!', true],
+  [9.3, 10.7, 'Baik, ibu!', false, 9.3, 10.3],
+  [11.3, 13.7, 'Jom kemas sama-sama, abang!', false, 11.3, 13.3],
+  [14.3, 16.0, 'Sebelum makan,', false, 14.3, 15.2],
+  [16.0, 17.3, 'basuh tangan dulu.', false, 15.95, 16.9],
+  [17.6, 19.0, 'Baik, ayah!', false, 17.6, 18.5],
+  [20.7, 21.5, 'Terima kasih', false, 20.7, 21.45],
+  [21.5, 23.0, 'sebab dengar kata.', false, 21.5, 22.7],
+  [23.3, 25.4, 'Anak-anak yang baik!', false, 23.3, 25.0],
 ];
 const CAP = { size: 64, fill: '#FFFFFF', sung: '#FFD23F', stroke: '#16343A', strokeW: 10, baseline: 1080 - 90 - 14 };
 const RING = ['#F2637E', '#FFD23F', '#3DAA6D', '#7CCBF2'];
@@ -221,9 +221,9 @@ function scene1(t) {
   const s = S.s1;
   s.rays.setAttribute('transform', `rotate(${6 * t} 960 620)`);
   const up = p => (1 - spring(p)) * 760;
-  pose(s.amir, { dy: up(prog(t, 0, 0.6)) + hop(Math.max(0, t - 0.6), 14), arms: waveArms(s.amir, t, 14), head: 3 * Math.sin(2 * Math.PI * t) });
-  pose(s.sofia, { dy: up(prog(t, 0.1, 0.7)) + hop(Math.max(0, t - 0.7), 14, 0.5), arms: waveArms(s.sofia, t, 14, 2, 1), head: -3 * Math.sin(2 * Math.PI * t) });
-  [0.5, 1.0, 1.5, 2.0].forEach((t0, i) => popWord(s.words[i], prog(t, t0, t0 + 0.3)));
+  pose(s.amir, { dy: up(prog(t, 0, 0.6)) + hop(Math.max(0, t - 0.6), 14), arms: waveArms(s.amir, t, 14), head: 3 * Math.sin(2 * Math.PI * t), talk: talking(t, 0.45, 2.03) });
+  pose(s.sofia, { dy: up(prog(t, 0.1, 0.7)) + hop(Math.max(0, t - 0.7), 14, 0.5), arms: waveArms(s.sofia, t, 14, 2, 1), head: -3 * Math.sin(2 * Math.PI * t), talk: talking(t, 0.45, 2.03) });
+  [0.45, 0.91, 1.19, 1.51].forEach((t0, i) => popWord(s.words[i], prog(t, t0, t0 + 0.3)));
   s.stars.forEach((e, i) => twinkle(e, t, i));
   s.hearts.forEach((e, i) => beatPulse(e, t, i * 0.5));
 }
@@ -234,15 +234,15 @@ function scene2(t) {
   pose(s.sofia, { head: lerp(3 * Math.sin(2 * Math.PI * t / 1.0 + 1.3), 7, turn), dy: hop(t, 5, 0.5) * (1 - turn) });
   const inP = eout(prog(t, 3.0, 4.0));
   pose(s.ibu, { dx: (1 - inP) * 760, dy: inP < 1 ? hop(t * 2, 10) : 0, head: 2.5 * Math.sin(2 * Math.PI * t / 1.6),
-    arms: [3 * Math.sin(2 * Math.PI * t * 1.2), 0], talk: talking(t, 3.6, 8.4) });
+    arms: [3 * Math.sin(2 * Math.PI * t * 1.2), 0], talk: talking(t, 3.6, 7.4) });
   // toys knock on the beat
   s.toys.forEach((e, i) => { const k = pulse(t, 3.5 + ((i * 3) % 7) * 0.5, 0.3) + pulse(t, 5.0 + ((i * 2) % 4) * 0.5, 0.3) + pulse(t, 7 + (i % 3) * 0.5, 0.3);
     fx(e).set(`translate(0 ${-14 * k})`, `rotate(${6 * k * (i % 2 ? 1 : -1)})`); });
 }
 function scene3(t) {
   const s = S.s3;
-  pose(s.amir, { dy: hop(t, 8), head: 3 * Math.sin(2 * Math.PI * t), talk: talking(t, 9.3, 11.0) });
-  pose(s.sofia, { dy: hop(t, 8, 0.5), head: -3 * Math.sin(2 * Math.PI * t), talk: talking(t, 9.3, 13.8) >= 0 && !(t > 11.0 && t < 11.3) ? t : -1 });
+  pose(s.amir, { dy: hop(t, 8), head: 3 * Math.sin(2 * Math.PI * t), talk: talking(t, 9.3, 10.35) });
+  pose(s.sofia, { dy: hop(t, 8, 0.5), head: -3 * Math.sin(2 * Math.PI * t), talk: (t >= 9.3 && t <= 10.35) || (t >= 11.3 && t <= 13.35) ? t : -1 });
   // toys fly into the box on an arc; coordinates are local to the box group
   const fly = (e, p, from, to, scl, flip) => {
     const q = eio(p), x = lerp(from[0], to[0], q), y = lerp(from[1], to[1], q) - 190 * Math.sin(Math.PI * q);
@@ -266,9 +266,9 @@ function scene4(t) {
   const s = S.s4;
   const scrub = 7 * Math.sin(2 * Math.PI * t / 0.4); // 12-frame cycle
   const nod = 9 * (pulse(t, 18.0, 0.4) + pulse(t, 18.5, 0.4));
-  pose(s.ayah, { head: nod + 1.5 * Math.sin(2 * Math.PI * t / 2), arms: [2 * Math.sin(2 * Math.PI * t), 0], talk: talking(t, 14.3, 17.3) });
+  pose(s.ayah, { head: nod + 1.5 * Math.sin(2 * Math.PI * t / 2), arms: [2 * Math.sin(2 * Math.PI * t), 0], talk: talking(t, 14.3, 16.9) });
   pose(s.sofia, { arms: [scrub, -scrub], head: 3 * Math.sin(2 * Math.PI * t), dy: hop(t, 4) });
-  pose(s.amir, { arms: [-scrub, scrub], head: -3 * Math.sin(2 * Math.PI * t), dy: hop(t, 4, 0.5), talk: talking(t, 17.6, 19.6) });
+  pose(s.amir, { arms: [-scrub, scrub], head: -3 * Math.sin(2 * Math.PI * t), dy: hop(t, 4, 0.5), talk: talking(t, 17.6, 18.5) });
   s.drops.forEach((d, i) => d.setAttribute('y', 444 + ((t * 300 + i * 50) % 150) * 0.78));
   s.bubbles.forEach(([b, hl], i) => {
     const period = 2.4 + (i % 3) * 0.5, ph = (t / period + i * 0.31) % 1;
@@ -284,8 +284,8 @@ function scene4(t) {
 function scene5(t) {
   const s = S.s5;
   const proud = eout(prog(t, 23.0, 23.4));
-  pose(s.ibu, { head: 2.5 * Math.sin(2 * Math.PI * t / 1.5), talk: talking(t, 20.3, 23.0) });
-  pose(s.ayah, { head: 2 * Math.sin(2 * Math.PI * t / 1.5 + 1), arms: s.ayah.arms.map(a => (a.raised ? 10 * proud * Math.sin(2 * Math.PI * 2 * t) : 0)), talk: talking(t, 23.3, 25.7) });
+  pose(s.ibu, { head: 2.5 * Math.sin(2 * Math.PI * t / 1.5), talk: talking(t, 20.7, 22.7) });
+  pose(s.ayah, { head: 2 * Math.sin(2 * Math.PI * t / 1.5 + 1), arms: s.ayah.arms.map(a => (a.raised ? 10 * proud * Math.sin(2 * Math.PI * 2 * t) : 0)), talk: talking(t, 23.3, 25.0) });
   const joy = t >= 21.5 ? 12 : 5;
   pose(s.amir, { dy: hop(t, joy), head: 3 * Math.sin(2 * Math.PI * t) });
   pose(s.sofia, { dy: hop(t, joy, 0.5), head: -3 * Math.sin(2 * Math.PI * t) });
@@ -301,8 +301,8 @@ function scene6(t) {
   const s = S.s6;
   [s.ayah, s.ibu, s.amir, s.sofia].forEach((r, i) => pose(r, {
     arms: waveArms(r, t, 15, 2, i * 0.8), head: 2.5 * Math.sin(2 * Math.PI * t + i),
-    dy: i >= 2 ? hop(t, 10, i * 0.5) : 0, talk: talking(t, 26.3, 29.7) }));
-  s.words.forEach((w, i) => { const t0 = 26.33 + i * (1.67 - 0.3) / 5; popWord(w, prog(t, t0, t0 + 0.3)); });
+    dy: i >= 2 ? hop(t, 10, i * 0.5) : 0, talk: talking(t, 26.3, 29.25) }));
+  [26.3, 26.98, 27.23, 27.49, 27.93, 28.77].forEach((t0, i) => popWord(s.words[i], prog(t, t0, t0 + 0.3)));
   s.hearts.forEach((e, i) => { const ph = (t / 3 + i * 0.4) % 1;
     fx(e).set(`translate(${14 * Math.sin(2 * Math.PI * ph)} ${-70 * ph})`, `scale(${1 + 0.1 * Math.sin(2 * Math.PI * t * 2)})`);
     e.setAttribute('opacity', ph > 0.8 ? (1 - ph) * 5 : 1); });
@@ -339,13 +339,13 @@ function caption(t) {
   const c = CAPS.find(c => t >= c[0] && t < c[1]);
   const node = S.capText;
   if (!c) { if (S.capKey) { node.textContent = ''; S.capKey = ''; } return; }
-  const [a, b, text, echo] = c;
+  const [a, b, text, echo, f0 = a + 0.05, f1 = echo ? a + 0.4 : b - 0.2] = c;
   if (S.capKey !== text) {
     node.textContent = '';
     [...text].forEach(chr => { el('tspan', {}, node).textContent = chr; });
     S.capKey = text;
   }
-  const n = Math.floor(prog(t, a + 0.05, echo ? a + 0.4 : b - 0.2) * text.length + 1e-6);
+  const n = Math.floor(prog(t, f0, f1) * text.length + 1e-6);
   [...node.children].forEach((ts, i) => ts.setAttribute('fill', i < n ? CAP.sung : CAP.fill));
   const s = echo ? 1.25 * (0.6 + 0.4 * back(prog(t, a, a + 0.2))) : 1; // the echo word is larger and pops
   node.setAttribute('transform', `translate(${W / 2} ${CAP.baseline}) scale(${s}) translate(${-W / 2} ${-CAP.baseline})`);

@@ -85,11 +85,11 @@ for bi in range(int(DUR / 2)):
         if bs and e in (0, 4): add(bass(midi(ROOT[ch] + (7 if e == 4 else 0))), t, bs * 0.3)
 
 # title: a pop for each title word, whoosh for the opening wipe
-for i, t in enumerate((0.5, 1.0, 1.5, 2.0)): add(pop(380 + 90 * i, 800 + 150 * i), t, 0.5)
+for i, t in enumerate((0.45, 0.91, 1.19, 1.51)): add(pop(380 + 90 * i, 800 + 150 * i), t, 0.5)
 add(whoosh(0.8), 2.6, 0.5)
 # scene 2: toys knocking
 for t in (3.5, 4.5, 5.0, 5.5, 6.0, 6.5, 7.5, 8.0): add(knock(), t, 0.22, pan=-0.3)
-add(pop(), 8.4, 0.45)                        # keyword echo
+add(pop(), 8.0, 0.45)                        # keyword echo
 # scene 3: three tings as the toys land
 for i, t in enumerate((11.5, 12.0, 12.5)): add(ting(2093 * 2 ** (i * 2 / 12)), t, 0.3)
 add(whoosh(0.3), 13.85, 0.4)                 # fast push
@@ -105,7 +105,7 @@ add(pop(600, 1200), 23.0, 0.4); add(ting(1568), 23.0, 0.18)
 add(whoosh(0.8), 25.6, 0.35)
 for i, n in enumerate([72, 76, 79, 84]): add(glock(midi(n), 2.0), 26.5 + i * 0.25, 0.16, pan=-0.2)
 strum('F', 26.5, 0.9); strum('G', 27.0, 0.9); add(bass(midi(41), 0.5), 26.5, 0.3); add(bass(midi(43), 0.5), 27.0, 0.3)
-strum('C', 27.5, 1.0); add(bass(midi(36), 1.2), 27.5, 0.35); add(clap(), 27.5, 0.5)
+strum('C', 27.5, 1.0); add(bass(midi(36), 1.2), 27.5, 0.35)
 for i, n in enumerate([84, 88, 91, 96]): add(glock(midi(n), 2.5), 28.0 + i * 0.125, 0.14)
 strum('C', 28.5, 0.8, down=False)
 
