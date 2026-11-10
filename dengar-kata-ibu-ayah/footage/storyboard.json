@@ -1,0 +1,90 @@
+{
+  "tajuk": "Dengar Kata Ibu Ayah",
+  "format": { "nisbah": "16:9", "resolusi": "1920x1080", "fps": 30, "durasi_saat": 30, "jumlah_frame": 900 },
+  "gaya": "Animasi 2D vektor rata, warna ceria, watak asli (bukan watak sedia ada)",
+  "muzik": "Lagu kanak-kanak ceria, 110 BPM, ukulele + glockenspiel + tepukan; perlahankan -12 dB semasa dialog",
+  "sarikata": { "font": "Baloo 2 ExtraBold", "saiz_px": 64, "warna": "#FFFFFF", "garis_luar": "#16343A 10px", "kedudukan": "tengah bawah, 90px dari tepi bawah" },
+  "watak": [
+    { "id": "amir", "nama": "Amir", "peranan": "Abang, 8 tahun", "rupa": "Rambut pendek coklat gelap berjambul, baju-T hijau berjalur krim, seluar pendek biru tua, kasut jingga", "suara": "Budak lelaki, ceria dan yakin" },
+    { "id": "sofia", "nama": "Sofia", "peranan": "Adik, 5 tahun", "rupa": "Rambut tocang dua dengan getah jingga, gaun ungu berkolar putih, kasut merah jambu", "suara": "Budak perempuan, manja dan riang" },
+    { "id": "ibu", "nama": "Ibu", "peranan": "Ibu", "rupa": "Tudung hijau kebiruan, baju kurung kuning kunyit", "suara": "Lembut dan penyayang" },
+    { "id": "ayah", "nama": "Ayah", "peranan": "Ayah", "rupa": "Rambut hitam pendek, cermin mata bulat, baju merah hati, seluar kelabu", "suara": "Tenang dan mesra" }
+  ],
+  "scene": [
+    {
+      "no": 1, "nama": "Kad tajuk", "mula": 0, "tamat": 3,
+      "imej": "scenes/01-tajuk.png", "imej_tanpa_teks": "scenes/01-tajuk-tanpa-teks.png",
+      "lokasi": "Latar sinaran matahari, bukit hijau",
+      "syot": "Wide shot, kamera statik",
+      "aksi": "Amir dan Sofia melompat masuk dari kiri dan kanan sambil melambai. Tajuk muncul di tengah.",
+      "animasi": "Sinaran berputar perlahan (6°/saat). Watak masuk dengan spring dari bawah (frame 0-15). Tajuk pop-in skala 0→1.1→1 (frame 10-30). Bintang berkelip.",
+      "bunyi": "Intro muzik, bunyi 'pop' semasa tajuk muncul",
+      "peralihan": "Wipe bulat ke Scene 2",
+      "dialog": [ { "watak": "Amir & Sofia", "teks": "Dengar kata ibu ayah!", "mula": 0.4, "tamat": 2.8 } ]
+    },
+    {
+      "no": 2, "nama": "Ibu minta kemas mainan", "mula": 3, "tamat": 9,
+      "imej": "scenes/02-ibu-minta-kemas.png",
+      "lokasi": "Ruang tamu, petang",
+      "syot": "Wide shot, zoom masuk perlahan 100%→106%",
+      "aksi": "Amir dan Sofia sedang bermain blok dan patung beruang. Mainan bersepah di atas permaidani. Ibu datang dan menegur dengan lembut sambil menunjuk ke arah mainan.",
+      "animasi": "Kepala kanak-kanak bergoyang kiri-kanan (±3°). Ibu masuk dari kanan (frame 90-120). Mulut ibu buka-tutup ikut dialog. Kanak-kanak berpaling ke arah ibu pada frame 150.",
+      "bunyi": "Muzik perlahan, bunyi mainan berketuk",
+      "peralihan": "Cut terus ke Scene 3",
+      "dialog": [ { "watak": "Ibu", "teks": "Amir, Sofia, masa untuk kemas mainan ya, sayang.", "mula": 3.6, "tamat": 8.4 } ]
+    },
+    {
+      "no": 3, "nama": "Adik-beradik kemas mainan", "mula": 9, "tamat": 14,
+      "imej": "scenes/03-kemas-mainan.png",
+      "lokasi": "Ruang tamu, permaidani kini kemas",
+      "syot": "Medium shot kedua-dua beradik dengan kotak mainan di tengah",
+      "aksi": "Kedua-duanya terus menjawab dengan gembira, lalu memasukkan blok dan kereta mainan ke dalam kotak bersama-sama.",
+      "animasi": "Mainan melayang masuk ke kotak satu demi satu mengikut lengkung (frame 300-390). Bintang 'ting' muncul di atas kotak setiap kali mainan masuk. Watak melantun kecil (bounce 8px).",
+      "bunyi": "Bunyi 'ting' x3, muzik naik semula",
+      "peralihan": "Slide ke kiri ke Scene 4",
+      "dialog": [
+        { "watak": "Amir & Sofia", "teks": "Baik, ibu!", "mula": 9.3, "tamat": 11.0 },
+        { "watak": "Sofia", "teks": "Jom kemas sama-sama, abang!", "mula": 11.3, "tamat": 13.8 }
+      ]
+    },
+    {
+      "no": 4, "nama": "Ayah ajak basuh tangan", "mula": 14, "tamat": 20,
+      "imej": "scenes/04-basuh-tangan.png",
+      "lokasi": "Bilik air, sinki",
+      "syot": "Medium wide shot, kamera statik",
+      "aksi": "Ayah mengingatkan anak-anak supaya basuh tangan sebelum makan. Amir dan Sofia menurut dan menggosok tangan dengan sabun di sinki.",
+      "animasi": "Air paip mengalir (garis bergerak ke bawah). Tangan bergerak gosok kiri-kanan (kitaran 12 frame). Buih terapung naik dan pecah. Ayah mengangguk pada frame 540.",
+      "bunyi": "Bunyi air mengalir, bunyi buih 'blup'",
+      "peralihan": "Wipe buih ke Scene 5",
+      "dialog": [
+        { "watak": "Ayah", "teks": "Sebelum makan, basuh tangan dulu.", "mula": 14.3, "tamat": 17.3 },
+        { "watak": "Amir", "teks": "Baik, ayah!", "mula": 17.6, "tamat": 19.6 }
+      ]
+    },
+    {
+      "no": 5, "nama": "Makan bersama", "mula": 20, "tamat": 26,
+      "imej": "scenes/05-makan-bersama.png",
+      "lokasi": "Ruang makan, waktu senja",
+      "syot": "Wide shot seluruh keluarga di meja makan",
+      "aksi": "Keluarga duduk makan bersama. Ibu memuji anak-anak kerana mendengar kata. Ayah mengangkat tangan tanda bangga. Anak-anak tersenyum lebar.",
+      "animasi": "Wap makanan beralun naik. Lampu gantung berayun perlahan (±2°). Hati timbul di atas meja selepas pujian ibu (frame 690). Anak-anak melantun gembira.",
+      "bunyi": "Bunyi sudu pinggan perlahan, muzik hangat",
+      "peralihan": "Cross-fade ke Scene 6",
+      "dialog": [
+        { "watak": "Ibu", "teks": "Terima kasih sebab dengar kata.", "mula": 20.3, "tamat": 23.0 },
+        { "watak": "Ayah", "teks": "Anak-anak yang baik!", "mula": 23.3, "tamat": 25.7 }
+      ]
+    },
+    {
+      "no": 6, "nama": "Kad penutup dan pengajaran", "mula": 26, "tamat": 30,
+      "imej": "scenes/06-penutup.png", "imej_tanpa_teks": "scenes/06-penutup-tanpa-teks.png",
+      "lokasi": "Halaman depan rumah, siang",
+      "syot": "Wide shot keluarga berdiri di depan rumah",
+      "aksi": "Seluruh keluarga melambai ke arah penonton. Mesej pengajaran muncul di atas.",
+      "animasi": "Teks masuk perkataan demi perkataan (frame 790-840). Semua watak melambai (lengan berayun ±15°). Hati terapung naik. Fade out ke putih pada frame 885-900.",
+      "bunyi": "Muzik penutup, sorakan kanak-kanak 'Yeay!'",
+      "peralihan": "Fade out",
+      "dialog": [ { "watak": "Semua", "teks": "Dengar kata ibu bapa, keluarga bahagia!", "mula": 26.3, "tamat": 29.7 } ]
+    }
+  ]
+}
