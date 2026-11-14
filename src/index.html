@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Rajah Fasa: Air &amp; CO₂</title>
+<style>
+  @font-face {
+    font-family: 'Baloo 2'; font-weight: 800; font-style: normal;
+    src: url('fonts/baloo-2-latin-800-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215;
+  }
+  @font-face {
+    font-family: 'Baloo 2'; font-weight: 800; font-style: normal;
+    src: url('fonts/baloo-2-latin-ext-800-normal.woff2') format('woff2');
+    unicode-range: U+0100-0130, U+0132-0151, U+0154-02BA, U+1E00-1EFF, U+2070-209F;
+  }
+  html, body { margin: 0; background: #111; overflow: hidden; }
+  #stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; background: #fff; transform-origin: 0 0; }
+  #stage > svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; display: block; }
+  #hud { position: fixed; right: 12px; top: 12px; color: #fff; font: 14px/1.4 monospace; background: rgba(0,0,0,.6); padding: 8px 10px; border-radius: 6px; }
+  #hud input { width: 260px; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="hud" hidden>
+  <div><button id="play">▶︎/⏸</button> frame <span id="fr">0</span> / 1350</div>
+  <input id="seek" type="range" min="0" max="1349" value="0">
+</div>
+<script src="animate.js"></script>
+</body>
+</html>

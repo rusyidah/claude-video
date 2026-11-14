@@ -1,0 +1,107 @@
+{
+  "tajuk": "Rajah Fasa: Air & CO₂",
+  "format": { "nisbah": "9:16", "resolusi": "1080x1920", "fps": 30, "durasi_saat": 45, "jumlah_frame": 1350 },
+  "gaya": "Animasi 2D vektor rata, warna ceria, watak asli (bukan watak sedia ada)",
+  "muzik": "Lagu kanak-kanak ceria gaya sains, 105 BPM, ukulele + glockenspiel + synth lembut; perlahankan -12 dB semasa dialog",
+  "sarikata": { "font": "Baloo 2 ExtraBold", "saiz_px": 60, "warna": "#FFFFFF", "garis_luar": "#16343A 10px", "kedudukan": "jalur kosong antara kad rajah dan watak, y 1150-1300 px, maksimum 2 baris, lebar 920 px" },
+  "zon_selamat": "Elak letak teks penting dalam 220 px terbawah dan 120 px paling kanan (butang aplikasi video pendek)",
+  "nota_sains": "Rajah dilukis secara skematik, bukan mengikut skala. Semua nilai berlabel ialah nilai sebenar: air (takat tigaan 0.01°C, 0.006 atm; takat genting 374°C, 218 atm; lebur 0°C dan didih 100°C pada 1 atm), CO₂ (takat tigaan -56.6°C, 5.11 atm; takat genting 31.1°C, 72.8 atm; memejalwap pada -78.5°C pada 1 atm).",
+  "watak": [
+    { "id": "amir", "nama": "Amir", "peranan": "Abang, 8 tahun", "rupa": "Rambut pendek coklat gelap berjambul, baju-T hijau berjalur krim, seluar pendek biru tua, kasut jingga", "suara": "Budak lelaki, ceria dan yakin" },
+    { "id": "sofia", "nama": "Sofia", "peranan": "Adik, 5 tahun", "rupa": "Rambut tocang dua dengan getah jingga, gaun ungu berkolar putih, kasut merah jambu", "suara": "Budak perempuan, manja dan riang" }
+  ],
+  "scene": [
+    {
+      "no": 1, "nama": "Kad tajuk", "mula": 0, "tamat": 4,
+      "imej": "scenes/01-tajuk.png",
+      "lokasi": "Latar sinaran biru kehijauan",
+      "syot": "Wide shot, kamera statik",
+      "aksi": "Amir dan Sofia melambai. Tajuk muncul, diikuti tiga ikon fasa: pepejal, cecair, gas.",
+      "animasi": "Sinaran berputar perlahan (6°/saat). Tajuk pop-in skala 0→1.1→1 (frame 5-25). Tiga ikon muncul satu demi satu dari kiri (frame 40, 55, 70) dengan anak panah. Watak melantun masuk dari bawah (frame 0-15).",
+      "bunyi": "Intro muzik, tiga bunyi 'pop' untuk ikon",
+      "peralihan": "Wipe bulat ke Scene 2",
+      "dialog": [ { "watak": "Amir & Sofia", "teks": "Jom kenal rajah fasa!", "mula": 0.5, "tamat": 3.5 } ]
+    },
+    {
+      "no": 2, "nama": "Apa itu rajah fasa?", "mula": 4, "tamat": 10,
+      "imej": "scenes/02-apa-itu-rajah-fasa.png",
+      "lokasi": "Latar kuning lembut, kad rajah di tengah",
+      "syot": "Kad rajah di bahagian atas, watak di bawah",
+      "aksi": "Amir menunjuk ke rajah. Paksi tekanan dan suhu dilukis, kemudian tiga kawasan fasa diwarnakan.",
+      "animasi": "Paksi dilukis (stroke draw, frame 120-150). Kawasan Pepejal, Cecair, Gas fade-in berturutan (frame 160, 185, 210) bersama ikon dan label. Garis sempadan dilukis dari takat tigaan keluar.",
+      "bunyi": "Bunyi pensel melukis, 'ting' setiap kawasan muncul",
+      "peralihan": "Slide ke atas ke Scene 3",
+      "dialog": [ { "watak": "Amir", "teks": "Rajah fasa tunjuk bila bahan jadi pepejal, cecair atau gas, ikut suhu dan tekanan.", "mula": 4.3, "tamat": 9.7 } ]
+    },
+    {
+      "no": 3, "nama": "Rajah fasa air", "mula": 10, "tamat": 18,
+      "imej": "scenes/03-rajah-fasa-air.png",
+      "lokasi": "Latar biru muda",
+      "syot": "Kad rajah air, garis 1 atm ditonjolkan",
+      "aksi": "Sofia menerangkan rajah fasa air. Garis 1 atm dilukis merentas rajah, lalu titik lebur dan titik didih menyala.",
+      "animasi": "Garis putus-putus 1 atm dilukis kiri ke kanan (frame 330-380). Titik 0°C pop-in (frame 400) dan 100°C (frame 450) dengan garis turun ke paksi suhu. Jalur ais → air → wap di bawah menyala seiring.",
+      "bunyi": "Bunyi 'ting' x2, bunyi titisan air",
+      "peralihan": "Cut terus ke Scene 4 (rajah sama, sorotan berubah)",
+      "dialog": [
+        { "watak": "Sofia", "teks": "Ini rajah fasa air!", "mula": 10.3, "tamat": 12.0 },
+        { "watak": "Sofia", "teks": "Pada 1 atm, ais cair pada 0°C dan air mendidih pada 100°C.", "mula": 12.3, "tamat": 17.6 }
+      ]
+    },
+    {
+      "no": 4, "nama": "Istimewanya air", "mula": 18, "tamat": 26,
+      "imej": "scenes/04-istimewanya-air.png",
+      "lokasi": "Latar biru muda",
+      "syot": "Kad rajah air, takat tigaan dan garis lebur ditonjolkan",
+      "aksi": "Amir menunjuk takat tigaan, kemudian garis lebur yang condong ke kiri. Segelas air dengan ais terapung muncul di bawah.",
+      "animasi": "Gelang putus-putus berputar di takat tigaan (frame 545-640). Garis lebur bertukar jingga dan menebal (frame 650). Label takat genting fade-in (frame 600). Ais dalam gelas terapung turun-naik (±6 px).",
+      "bunyi": "Bunyi 'whoosh' semasa sorotan, bunyi ais berdenting dalam gelas",
+      "peralihan": "Slide ke kiri ke Scene 5, latar bertukar ungu",
+      "dialog": [
+        { "watak": "Amir", "teks": "Di takat tigaan, tiga fasa wujud serentak.", "mula": 18.3, "tamat": 21.3 },
+        { "watak": "Amir", "teks": "Garis lebur air condong ke kiri sebab ais kurang tumpat daripada air.", "mula": 21.6, "tamat": 25.7 }
+      ]
+    },
+    {
+      "no": 5, "nama": "Rajah fasa CO₂", "mula": 26, "tamat": 33,
+      "imej": "scenes/05-rajah-fasa-co2.png",
+      "lokasi": "Latar ungu muda",
+      "syot": "Kad rajah CO₂, takat tigaan dan garis 1 atm kelihatan",
+      "aksi": "Sofia memperkenalkan rajah fasa karbon dioksida dan menunjukkan takat tigaannya berada di atas garis 1 atm.",
+      "animasi": "Rajah dilukis semula (frame 780-820). Garis 5.11 atm dari paksi ke takat tigaan dilukis (frame 850). Garis 1 atm dilukis di bawahnya (frame 900). Label takat genting fade-in.",
+      "bunyi": "Bunyi 'ting', muzik bertukar sedikit misteri",
+      "peralihan": "Cut terus ke Scene 6 (rajah sama, sorotan berubah)",
+      "dialog": [
+        { "watak": "Sofia", "teks": "Ini pula karbon dioksida!", "mula": 26.3, "tamat": 28.2 },
+        { "watak": "Sofia", "teks": "Takat tigaannya 5.11 atm, lebih tinggi daripada tekanan udara biasa.", "mula": 28.5, "tamat": 32.7 }
+      ]
+    },
+    {
+      "no": 6, "nama": "Ais kering tak cair", "mula": 33, "tamat": 40,
+      "imej": "scenes/06-ais-kering.png",
+      "lokasi": "Latar ungu muda",
+      "syot": "Kad rajah CO₂ dengan anak panah pemejalwapan, ais kering di bawah",
+      "aksi": "Amir menunjukkan anak panah pada garis 1 atm yang terus dari pepejal ke gas. Bongkah ais kering di antara mereka mengeluarkan kabus.",
+      "animasi": "Anak panah jingga bergerak dari kawasan Pepejal ke Gas sepanjang garis 1 atm (frame 1000-1060). Label -78.5°C pop-in. Kabus ais kering mengembang dan naik berterusan (kitaran 60 frame).",
+      "bunyi": "Bunyi desis kabus 'ssss'",
+      "peralihan": "Wipe kabus putih ke Scene 7",
+      "dialog": [
+        { "watak": "Amir", "teks": "Sebab itu pada 1 atm, ais kering tak cair.", "mula": 33.3, "tamat": 36.2 },
+        { "watak": "Amir", "teks": "Ia terus memejalwap jadi gas pada -78.5°C!", "mula": 36.5, "tamat": 39.7 }
+      ]
+    },
+    {
+      "no": 7, "nama": "Perbandingan dan penutup", "mula": 40, "tamat": 45,
+      "imej": "scenes/07-perbandingan.png",
+      "lokasi": "Latar hijau pudina",
+      "syot": "Dua rajah mini sebelah-menyebelah, mesej penutup, watak melambai",
+      "aksi": "Rajah air dan CO₂ dibandingkan: garis lebur condong ke arah berlawanan. Kedua-dua beradik melambai dan menyebut mesej penutup.",
+      "animasi": "Dua kad mini masuk dari kiri dan kanan (frame 1200-1220). Anak panah condong berkelip. Teks penutup masuk perkataan demi perkataan (frame 1270-1310). Fade out ke putih (frame 1335-1350).",
+      "bunyi": "Muzik penutup, sorakan 'Yeay!'",
+      "peralihan": "Fade out",
+      "dialog": [
+        { "watak": "Sofia", "teks": "Air condong ke kiri, CO₂ condong ke kanan.", "mula": 40.2, "tamat": 42.6 },
+        { "watak": "Amir & Sofia", "teks": "Lain bahan, lain rajah fasanya!", "mula": 42.8, "tamat": 44.8 }
+      ]
+    }
+  ]
+}
