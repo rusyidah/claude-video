@@ -1,0 +1,6 @@
+node_modules/
+out/frames/
+out/stills/
+out/check/
+out/*.wav
+__pycache__/
